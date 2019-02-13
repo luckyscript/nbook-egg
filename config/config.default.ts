@@ -9,7 +9,13 @@ export default (appInfo: EggAppInfo) => {
 
   // add your egg config in here
   config.middleware = [];
-  
+ 
+  config.view = {
+    mapping: {
+      '.ejs': 'ejs',
+      '.html': 'ejs',
+    },
+  };
 
   config.sequelize = {
     dialect: 'mysql',

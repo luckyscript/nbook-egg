@@ -5,4 +5,5 @@ export default (app: Application) => {
 
   router.get('/', controller.home.index);
   router.get('/test', controller.home.test);
+  router.get('/admin/*', controller.admin.index);
 };

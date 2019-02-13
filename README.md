@@ -1,8 +1,7 @@
-# hackernews-async-ts
-
-[Hacker News](https://news.ycombinator.com/) showcase using typescript && egg
-
-## QuickStart
+* 基于eggjs的个人博客
+* 前端展示部分采用ejs，后台管理系统采用react+antd(https://github.com/luckyscript/nbook-admin)
+* 数据存储采用mysql + redis
+* 部署考虑使用nginx + docker
 
 ### Development
 
@@ -19,6 +18,23 @@ Don't tsc compile at development mode, if you had run `tsc` then you need to `np
 ```bash
 $ npm run tsc
 $ npm start
+```
+#### nginx config
+
+nginx.conf
+```
+location ~ /admin/ {                                                                              
+ root  /Users/lukai/MySpace/nbook-admin;
+ index index.html;
+ include /Users/lukai/Myspace/nbook-admin/admin/.htaccess;
+}
+```
+
+.htaccess
+```
+if (!-e $request_filename){
+  rewrite ^/(.*)$ /webroot/index.php?_ca_=$1 last;
+}
 ```
 
 ### Npm Scripts

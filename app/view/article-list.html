@@ -1,0 +1,27 @@
+<main class="container">
+    <ul class="post-list">
+        <%articleList.forEach(function(item) {%>
+        <li class="post-list-item">
+            <article class="post-block">
+                <h2 class="post-title">
+                    <a href="/article/<%=item.link%>" class="post-title-link"><%=item.title%></a>
+                </h2>
+                <div class="post-info"><%=item.created%></div>
+                <div class="post-content">
+                    <%-item.text%>
+                </div>
+                <a href="/article/<%=item.link%>" class="read-more">read more</a>
+            </article>
+        </li>
+        <%})%>
+    </ul>
+
+    <ul class="page">
+        <%if(pageInfo.currentPage != 1){%>
+          <li><a href="/page/<%=Number(pageInfo.currentPage)-1%>">PREV</a></li>
+        <%}%>
+        <%if(pageInfo.currentPage != pageInfo.totalPage){%>
+          <li><a href="/page/<%=Number(pageInfo.currentPage)+1%>">NEXT</a></li>
+        <%}%>
+    </ul>
+</main>

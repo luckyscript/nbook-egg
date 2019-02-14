@@ -6,9 +6,9 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-view-ejs',
   },
-  mysql: {
+  sequelize: {
     enable: true,
-    package: 'egg-mysql',
+    package: 'egg-sequelize',
   },
   redis: {
     enable: true,

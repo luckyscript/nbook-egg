@@ -25,6 +25,7 @@ export default (appInfo: EggAppInfo) => {
     user: 'root',
     password: '12345678',
     database: 'nbook',
+    timestamps: false,
   };
 
   // add your special config in here

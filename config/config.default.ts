@@ -8,8 +8,9 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1550045738056_5215';
 
   // add your egg config in here
-  config.middleware = [];
- 
+  config.middleware = [
+  ];
+
   config.view = {
     mapping: {
       '.ejs': 'ejs',
@@ -21,9 +22,9 @@ export default (appInfo: EggAppInfo) => {
     dialect: 'mysql',
     host: 'localhost',
     port: 3306,
-    user: 'test_uesr',
-    password: 'test',
-    database: 'test',
+    user: 'root',
+    password: '12345678',
+    database: 'nbook',
   };
 
   // add your special config in here

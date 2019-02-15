@@ -4,7 +4,7 @@ class ArticleController extends Controller {
   async index() {
     const { ctx } = this;
     const { slug, id: aid } = ctx.params;
-    let where:any = { slug, aid };
+    const where: any = { slug, aid };
     const articleRaw = await ctx.model.Article.findByWhere(where);
     const article = ctx.service.article.handleArticle(articleRaw);
     await ctx.render('article.html', {
@@ -14,6 +14,6 @@ class ArticleController extends Controller {
       title: article.title || '文章详情',
     });
   }
-};
+}
 
 export default ArticleController;

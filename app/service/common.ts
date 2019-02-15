@@ -21,21 +21,21 @@ export default class CommonService extends Service {
    * markdown
    * @param code
    */
-  public markdown(code: string)  {
+  public markdown(code: string) {
     const marked = require('marked');
     marked.setOptions({
       highlight (code) {
         return require('highlight.js').highlightAuto(code).value;
       },
     });
-    let toc:any = [];
+    const toc: any = [];
     const renderer = new marked.Renderer();
     renderer.heading = (text, level, raw, slugger) => {
-      const slug = `${slugger.slug(raw)}`
+      const slug = `${slugger.slug(raw)}`;
       toc.push({
-        level: level,
-        slug: slug,
-        title: text
+        level,
+        slug,
+        title: text,
       });
       const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
       return `
@@ -47,8 +47,8 @@ export default class CommonService extends Service {
           </h${level}>`;
     };
     return {
-      html: marked(code, { renderer: renderer }),
+      html: marked(code, { renderer }),
       toc,
-    }
+    };
   }
 }

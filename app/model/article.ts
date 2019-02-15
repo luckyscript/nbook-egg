@@ -32,7 +32,7 @@ const ArticleModel = app => {
 
   Article.findByWhere = async function (where) {
     Object.keys(where).forEach(w => {
-      if (where[w] == undefined) {
+      if (where[w] === undefined) {
         delete where[w];
       }
     });
@@ -40,7 +40,7 @@ const ArticleModel = app => {
       where,
     });
     return data;
-  }
+  };
 
   return Article;
 };

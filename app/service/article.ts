@@ -10,6 +10,6 @@ class ArticleService extends Service {
     articleRaw.brief = brief;
     return articleRaw;
   }
-};
+}
 
 export default ArticleService;

@@ -1,4 +1,4 @@
-const userModel = (app) => {
+const userModel = app => {
   const { STRING, INTEGER } = app.Sequelize;
 
   const User = app.model.define('user', {
@@ -18,10 +18,10 @@ const userModel = (app) => {
   User.findByLogin = async function(login) {
     return await this.findOne({
       where: {
-        login
+        login,
       },
     });
-  }
+  };
 
   return User;
-}
+};

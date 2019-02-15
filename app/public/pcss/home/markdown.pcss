@@ -1,0 +1,125 @@
+.post-content {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    margin: 10px 0;
+  }
+  & p {
+    line-height: 2;
+  }
+  & p code, & li code {
+    color: #d480aa;
+    font-family: "Lucida Console","monospace";
+  }
+  & ol,& ul {
+    margin-left: 30px;
+  }
+  & hr {
+    height: 3px;
+    margin: 50px 0;
+    border-top: 3px dashed #42b983;
+  }
+  & blockquote {
+    margin: 2em 0;
+    padding: 5px 20px;
+    border-left: 5px solid #42b983;
+    background: #fdfdfd;
+  }
+  & a {
+    color: #42b983;
+    word-break: break-all;
+  }
+  & img {
+    max-width: 100%;
+    display: block;
+    margin: 20px auto;
+  }
+  & pre {
+    &:hover {
+      & code::after {
+        visibility: visible;
+      }
+    }
+    background: #f6f8fa;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 5px 0;
+    position: relative;
+    & code {
+      font-family: "Menlo","Lucida Console";
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      &::after {
+        content: "Code";
+        position: absolute;
+        right: 10px;
+        top: 1px;
+        visibility: hidden;
+      }
+      &.language-js,
+      &.language-javascript {
+        &::after {
+          content: "javaScript";
+        }
+      }
+      &.language-nodejs {
+        &::after {
+          content: "Node.js";
+        }
+      }
+      &.language-css {
+        &::after {
+          content: "CSS";
+        }
+      }
+      &.language-html {
+        &::after {
+          content: "HTML";
+        }
+      }
+      &.language-c {
+        &::after {
+          content: "C";
+        }
+      }
+      &.language-c++,
+      &.language-cpp {
+        &::after {
+          content: "C++";
+        }
+      }
+      &.language-shell,
+      &.language-bash {
+        &::after {
+          content: "Shell";
+        }
+      }
+      &.language-python {
+        &::after {
+          content: "Python";
+        }
+      }
+      &.language-php {
+        &::after {
+          content: "PHP";
+        }
+      }
+      &.language-lisp {
+        &::after {
+          content: "Lisp";
+        }
+      }
+    }
+  }
+}
+
+
+  #MathJax_Message {
+    display: none;
+  }
+  .MathJax {
+    outline: 0;
+  }

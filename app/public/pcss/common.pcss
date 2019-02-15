@@ -1,0 +1,506 @@
+@import "./variable.pcss";
+/*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #002b36;
+  color: #839496;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #586e75;
+}
+
+/* Solarized Green */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+  color: #859900;
+}
+
+/* Solarized Cyan */
+.hljs-number,
+.hljs-string,
+.hljs-meta .hljs-meta-string,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
+  color: #2aa198;
+}
+
+/* Solarized Blue */
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #268bd2;
+}
+
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-type {
+  color: #b58900;
+}
+
+/* Solarized Orange */
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-link {
+  color: #cb4b16;
+}
+
+/* Solarized Red */
+.hljs-built_in,
+.hljs-deletion {
+  color: #dc322f;
+}
+
+.hljs-formula {
+  background: #073642;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing:border-box;
+  color: var(--fontColor);
+}
+body {
+}
+ul {
+    list-style: none;
+}
+.wrap {
+  max-width: 1000px;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+}
+.container {
+  width: calc(100% - 50px);
+  margin: 60px auto;
+}
+  
+/*header*/
+header {
+  font-family: "Menlo","Lucida Console";
+  background-color: #fff;
+  min-height: 60px;
+  padding: 20px 0;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  & div {
+    display: inline-block;
+    overflow: hidden;
+  }
+  & .logo-link {
+    float: left;
+    & img {
+      height: 60px;
+      border-radius: 50%;
+    }
+  }
+    
+  & .nav {
+    float: left;
+    margin-left: 50px;
+    position: relative;
+    & i {
+      display: block;
+      height: 2px;
+      background: var(--activeColor);
+      width: 0px;
+      position: absolute;
+      bottom: 14px;
+      left: 10px;
+    }
+  }
+  & .nav-list-item {
+    display: inline-block;
+    padding: 19px 10px;
+    & a {
+      font-size: 16px;
+      color: var(--mainColor);
+      line-height: 1.4;
+      padding-bottom: 5px;
+      &.active {
+        border-bottom: 2px solid var(--activeColor);  
+      }
+    }
+  }
+}
+@media screen and (max-width: 763px) {
+   header {
+    font-family: "Menlo","Lucida Console";
+    background-color: #fff;
+    min-height: 60px;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    & div {
+      display: inline-block;
+      overflow: hidden;
+    }
+    & .logo-link {
+      float: none;
+      & img {
+        height: 60px;
+        border-radius: 50%;
+      }
+    }
+    & .nav {
+      float: none;
+      margin-left: 0;
+      & i {
+        display: block;
+        height: 2px;
+        background: var(--activeColor);
+        width: 0px;
+        position: absolute;
+        bottom: 14px;
+        left: 10px;
+      }
+    }
+    & .nav-list-item {
+      display: inline-block;
+      padding: 19px 10px;
+      & a {
+        font-size: 16px;
+        color: var(--mainColor);
+        line-height: 1.4;
+        padding-bottom: 5px;
+        &.active {
+          border-bottom: 2px solid var(--activeColor);  
+        }
+      }
+    }
+  }
+}
+
+/*footer*/
+footer {
+  font-family: "Menlo","Lucida Console";
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 1px;
+  & .copyright {
+    margin: 4em 0;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+  }
+  & .copyright p,& .copyright a {
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 100;
+  }
+  & .copyright a:hover {
+    color: #888;
+  }
+}
+
+#page {
+  text-align: center;
+  & li {
+    cursor: pointer;
+    width: 50px;
+    height: 35px;
+    background-color: #4fc08d;
+    font-size: 14px;
+    line-height: 35px;
+    text-align: center;
+    display: inline-block;
+    border-bottom: 4px solid #3aa373;
+    border-radius: 5px;
+    margin: 10px;
+    & a {
+      color: #fff;
+    }
+  }
+}
+
+.container {
+  width: calc(100% - 50px);
+  margin: 60px auto;
+  & .post-list {
+    margin-top: 2em;
+  }
+}
+.post-list-item {
+  padding: 1em 0 2em;
+  border-bottom: 1px solid #ddd;
+  &:last-child {
+    border-bottom: 0px;
+  }
+  & .post-title {
+    margin: 0.65em 0;
+    font-size: 2.2em;
+    text-align: center;
+    & a {
+      color: var(--mainColor);
+      &:hover {
+        border-bottom: 2px solid var(--activeColor);
+      }
+    }
+  }
+  & .article-title {
+    color: #42b983;
+  }
+  & .post-info {
+    color: #7f8c8d;
+    margin: 1.2em 0;
+    text-align: right;
+  }
+  & .article-info {
+    text-align: left;
+  }
+  & .post-content {
+    color: #34495e;
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: "Menlo","Lucida Console";
+    & p {
+      display: block;
+      margin: 1em 0;
+    }
+    & h1 {
+      font-size: 2em;
+    }
+    & h1, & h2, & h3, & h4, & h5 {
+      position: relative;
+      &::before {
+        content: '#';
+        color: #42b983;
+        position: absolute;
+        left: -0.8em;
+      }
+    }
+  }
+  & .read-more {
+    color: #42b983;
+  }
+}
+
+.post-comment {
+  border-top: 1px solid #ddd;
+  margin-top: 100px;
+  & .comment-form {
+    width: 100%;
+    & input {
+      width: 200px;
+      margin: 11px;
+      font-size: 16px;
+      padding: 5px;
+      outline: 0;
+    }
+  }
+  & .text-area {
+    padding: 5px;
+    & textarea {
+      resize: none;
+      width: calc( 100% - 20px);
+      margin: 10px;
+      height: 150px;
+      font-size: 16px;
+      outline: 0;
+      padding: 10px;
+    }
+  }
+  & button {
+    width: 80px;
+    height: 30px;
+    float: right;
+    margin-right: 15px;
+    background: none;
+    border: 2px solid #42b983;
+
+  }
+}
+
+.comment-container {
+  margin-top: 20px;
+  & .comment-item {
+    overflow: hidden;
+  }
+  & .avatar {
+    float: left;
+    & img {
+      width: 42px;
+      height: 42px;
+    }
+  }
+  & .comment-detail {
+    float: left;
+    margin: 0 0 15px 15px;
+    width: calc(100% - 100px);
+    & .comment-title {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    & time {
+      margin: 0 5px;
+      color: #999;
+    }
+    & a {
+      &:hover {
+        border-bottom: 2px solid #42b983;
+      }
+    }
+  }
+  & .child-node {
+    margin-left: 50px;
+    clear: both;
+  }
+}
+
+.post-content {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    margin: 10px 0;
+  }
+  & p {
+    line-height: 2;
+  }
+  & p code, & li code {
+    color: #d480aa;
+    font-family: "Lucida Console","monospace";
+  }
+  & ol,& ul {
+    margin-left: 30px;
+  }
+  & hr {
+    height: 3px;
+    margin: 50px 0;
+    border-top: 3px dashed #42b983;
+  }
+  & blockquote {
+    margin: 2em 0;
+    padding-left: 20px;
+    border-left: 4px solid #42b983;
+  }
+  & a {
+    color: #42b983;
+    word-break: break-all;
+  }
+  & img {
+    max-width: 100%;
+    display: block;
+    margin: 20px auto;
+  }
+  & pre {
+    &:hover {
+      & code::after {
+        visibility: visible;
+      }
+    }
+    background: #f6f8fa;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 5px 0;
+    position: relative;
+    & code {
+      font-family: "Menlo","Lucida Console";
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      &::after {
+        content: "Code";
+        position: absolute;
+        right: 10px;
+        top: 1px;
+        visibility: hidden;
+      }
+      &.language-js,
+      &.language-javascript {
+        &::after {
+          content: "javaScript";
+        }
+      }
+      &.language-nodejs {
+        &::after {
+          content: "Node.js";
+        }
+      }
+      &.language-css {
+        &::after {
+          content: "CSS";
+        }
+      }
+      &.language-html {
+        &::after {
+          content: "HTML";
+        }
+      }
+      &.language-c {
+        &::after {
+          content: "C";
+        }
+      }
+      &.language-c++,
+      &.language-cpp {
+        &::after {
+          content: "C++";
+        }
+      }
+      &.language-shell,
+      &.language-bash {
+        &::after {
+          content: "Shell";
+        }
+      }
+      &.language-python {
+        &::after {
+          content: "Python";
+        }
+      }
+      &.language-php {
+        &::after {
+          content: "PHP";
+        }
+      }
+      &.language-lisp {
+        &::after {
+          content: "Lisp";
+        }
+      }
+    }
+  }
+}
+
+
+#MathJax_Message {
+  display: none;
+}
+.MathJax {
+  outline: 0;
+}

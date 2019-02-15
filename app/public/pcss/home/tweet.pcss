@@ -1,0 +1,59 @@
+.wb-form {
+    width: 600px;
+    margin: 0 auto;
+    padding: 5px;
+    & textarea {
+        resize: none;
+        width: 590px;
+        height: 100px;
+        outline: 0;
+    }
+}
+
+.tweet-wrap {
+    & .tweet-item {
+        padding: 10px;
+        & .tweet-header {
+            overflow: hidden;
+        }
+        & .tweet-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 10px;
+        }
+        & .tweet-repost {
+            margin: 1rem 10px;
+            padding: 0.5em 10px;
+            background: inherit;
+            color: #34495e;
+            quotes: "\201C" "\201D" "\2018" "\2019";
+            font-weight: bold;
+           &:before {
+                margin-right: 0.25em;
+                color: #d480aa;
+                content: "Repost: ";
+                font-size: 1em;
+            } 
+        }
+        & .tweet-body {
+            & time {
+                color: #42b983;
+            }
+            margin: 1rem 10px;
+            padding: 0.5em 10px;
+            background: inherit;
+            color: #34495e;
+            quotes: "\201C" "\201D" "\2018" "\2019";
+            font-weight: bold;
+            &:before {
+                margin-right: 0.25em;
+                color: #d480aa;
+                content: "\201C";
+                vertical-align: -0.4em;
+                font-size: 2em;
+                line-height: 0.1em;
+            }
+        }
+    }
+}

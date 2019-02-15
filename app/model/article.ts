@@ -20,17 +20,17 @@ const ArticleModel = app => {
   });
 
   Article.findByPage = async function (pageSize, page) {
-    const data =  await this.findAll({ 
+    const data = await this.findAll({
       limit: pageSize,
-      offset: (page-1) * pageSize,
+      offset: (page - 1) * pageSize,
       order: [
-        ['created', 'DESC'],
+        [ 'created', 'DESC' ],
       ],
      });
-     return data;
+    return data;
   };
 
   return Article;
-}
+};
 
 export default ArticleModel;

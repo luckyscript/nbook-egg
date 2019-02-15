@@ -5,12 +5,12 @@ import { Service } from 'egg';
  */
 export default class CommonService extends Service {
   /**
-   * 
-   * @param {string} text 
+   *
+   * @param {string} text
    * @return {string}
    */
   public getBrief(text: string, length: number = 300): string {
-    if(text.search('<!--more-->') == -1) {
+    if (text.search('<!--more-->') === -1) {
       return text.substr(0, length);
     } else {
       return text.split('<!--more-->')[0];
@@ -18,15 +18,15 @@ export default class CommonService extends Service {
   }
 
   /**
-   * markdown 
-   * @param code 
+   * markdown
+   * @param code
    */
   public markdown(code: string): string {
     const marked = require('marked');
     marked.setOptions({
-      highlight: function (code) {
+      highlight (code) {
         return require('highlight.js').highlightAuto(code).value;
-      }
+      },
     });
     return marked(code);
   }

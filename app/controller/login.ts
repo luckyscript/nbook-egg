@@ -17,6 +17,6 @@ class LoginController extends Controller {
     const resultDTO = await this.service.login.doLogin(params);
     ctx.body = resultDTO;
   }
-};
+}
 
 export default LoginController;

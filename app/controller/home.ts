@@ -5,7 +5,7 @@ export default class HomeController extends Controller {
     const { ctx } = this;
     const title = '首页';
     const pageSize = 5; // 后面做成配置存到数据库里
-    let page:number = ctx.params.page || 1;
+    const page: number = ctx.params.page || 1;
     await ctx.renderSome('header.html', {
       title,
     });
@@ -16,9 +16,9 @@ export default class HomeController extends Controller {
       articleList,
       pageInfo: {
         totalPage: Math.ceil(totalCount / pageSize),
-        currentPage: page
-      }
-    })    
+        currentPage: page,
+      },
+    });
   }
 
   public async test() {

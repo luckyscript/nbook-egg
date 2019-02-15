@@ -1,6 +1,5 @@
 import { Application } from 'egg';
 
-
 export default (app: Application) => {
   const { controller, router, middleware } = app;
   const routerControl = middleware.routerControl();

@@ -8,6 +8,10 @@ export default (app: Application) => {
   router.get('/', controller.home.index);
   router.get('/page/:page', routerControl, controller.home.index);
 
+  // article page
+  router.get('/article/id/:id', controller.article.index);
+  router.get('/article/:slug', controller.article.index);
+
   router.get('/test', controller.home.test);
   router.get('/admin/*', controller.admin.index);
 };

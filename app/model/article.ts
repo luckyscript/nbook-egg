@@ -30,6 +30,18 @@ const ArticleModel = app => {
     return data;
   };
 
+  Article.findByWhere = async function (where) {
+    Object.keys(where).forEach(w => {
+      if (where[w] == undefined) {
+        delete where[w];
+      }
+    });
+    const data = await this.findOne({
+      where,
+    });
+    return data;
+  }
+
   return Article;
 };
 

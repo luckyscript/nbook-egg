@@ -13,11 +13,8 @@ logs/
 !.autod.conf.js
 
 app/**/*.js
-app/**/*.css
 test/**/*.js
 config/**/*.js
 app/**/*.map
 test/**/*.map
 config/**/*.map
-
-typings

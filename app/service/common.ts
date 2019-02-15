@@ -21,13 +21,34 @@ export default class CommonService extends Service {
    * markdown
    * @param code
    */
-  public markdown(code: string): string {
+  public markdown(code: string)  {
     const marked = require('marked');
     marked.setOptions({
       highlight (code) {
         return require('highlight.js').highlightAuto(code).value;
       },
     });
-    return marked(code);
+    let toc:any = [];
+    const renderer = new marked.Renderer();
+    renderer.heading = (text, level, raw, slugger) => {
+      const slug = `${slugger.slug(raw)}`
+      toc.push({
+        level: level,
+        slug: slug,
+        title: text
+      });
+      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+      return `
+          <h${level} id="${slug}" class="testheader">
+            <a name="${escapedText}" class="anchor" href="#${slug}">
+              <span class="header-link"></span>
+            </a>
+            ${text}
+          </h${level}>`;
+    };
+    return {
+      html: marked(code, { renderer: renderer }),
+      toc,
+    }
   }
 }

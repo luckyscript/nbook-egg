@@ -19,8 +19,8 @@ export default function() {
       }),
     ],
     multiPath: [{
-      source: path.resolve(__dirname, '..', 'app', 'public', 'pcss'),
-      desc: path.resolve(__dirname, '..', 'app', 'public', 'stylesheets'),
+      source: path.resolve(__dirname, '..', 'app', 'public', 'pcss', 'common.pcss'),
+      desc: path.resolve(__dirname, '..', 'app', 'public', 'stylesheets', 'common.css'),
     }],
     sourceMap: true,
   });

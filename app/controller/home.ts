@@ -9,7 +9,8 @@ export default class HomeController extends Controller {
     await ctx.renderSome('header.html', {
       title,
     });
-    const articleList = await ctx.model.Article.findByPage(pageSize, page);
+    let articleList = await ctx.model.Article.findByPage(pageSize, page);
+    articleList = ctx.service.home.handleArticleList(articleList);
     const totalCount = await ctx.model.Article.count();
     await ctx.render('index.html', {
       articleList,

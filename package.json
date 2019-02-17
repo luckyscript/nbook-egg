@@ -25,7 +25,6 @@
     "clean": "ets clean"
   },
   "dependencies": {
-    "autocompiler": "^1.0.10",
     "egg": "^2.6.1",
     "egg-redis": "^2.3.0",
     "egg-router-plus": "^1.3.0",
@@ -41,7 +40,8 @@
     "@types/node": "^7.10.3",
     "@types/supertest": "^2.0.0",
     "autod": "^3.0.1",
-    "autod-egg": "^1.1.0",
+    "autod-egg": "^1.1.0",    
+    "postcss-transform-runtime": "^1.1.0",
     "cssnano": "^4.1.10",
     "egg-bin": "^4.6.2",
     "egg-ci": "^1.8.0",

@@ -1,38 +1,37 @@
 <% include header.html %>
-<div class="wrap">
-  <main class="container">
-    <input type="hidden" id="aid" value="<%=article.aid%>">
-    <ul class="post-list">
-      <li class="post-list-item">
-        <article class="post-block">
-          <h2 class="post-title article-title"><%=article.title%>
-          </h2>
-          <div class="post-info article-info">
-              <time><%=article.created%></time>
+<div class="wrap" data-aid=<%=article.aid%>>
+  <main class="article-main">
+    <article class="article">
+      <h2 id="articleTitle">
+        <a href="/article/<%=article.aid%>"><%=article.title%></a>
+      </h2>
+      <div class="post-info article-info">
+          <time><%=article.created%></time>
+          |
+          阅读：<span><%=article.readnum%></span>
+          <%if(category && category[0]){%>
               |
-              阅读：<span><%=article.readnum%></span>
-              <%if(category && category[0]){%>
-                  |
-                  <i class="fa fa-bookmark"></i>
-                  <a href="/category/<%=category[0].name%>">#<%=category[0].name%></a>
-              <%}%>
-              <%if(tags && tags.length > 0) {%>
-              |
-              <i class="fa fa-tags"></i>
-                  <%tags.forEach(function(i) {%>
-                      <a href="/tag/<%=i.name%>">#<%=i.name%></a>
-                  <%})%>
-              <%}%>
-          </div>
-          <div class="post-content">
-            <%if (article.diff) {%>
-              <p class="expired-tips"> 提醒：本文最后更新于 <%=article.diff%> 天前，文中所描述的信息可能已发生改变，请谨慎阅读。</p>
-            <%}%>
-            <%-article.text%>
-          </div>
-        </article>
-      </li>
-    </ul>
+              <i class="fa fa-bookmark"></i>
+              <a href="/category/<%=category[0].name%>">#<%=category[0].name%></a>
+          <%}%>
+          <%if(tags && tags.length > 0) {%>
+          |
+          <i class="fa fa-tags"></i>
+              <%tags.forEach(function(i) {%>
+                  <a href="/tag/<%=i.name%>">#<%=i.name%></a>
+              <%})%>
+          <%}%>
+      </div>
+      <div class="post-content">
+        <%if (article.diff) {%>
+          <p class="expired-tips"> 提醒：本文最后更新于 <%=article.diff%> 天前，文中所描述的信息可能已发生改变，请谨慎阅读。</p>
+        <%}%>
+        <%-article.text%>
+      </div>
+    </article>
+    <aside class="aside">
+      <%- include('./components/toc.ejs') %>
+    </aside>
   </main>
 </div>
 <%- include('footer.html') %>

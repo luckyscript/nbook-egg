@@ -1,6 +1,22 @@
 @import "./variable.pcss";
 
+@import "./mathJax.pcss";
+
+@import "./article.pcss";
 /* global */
+
+/* 头部css */
+@import "./header.pcss";
+
+/* 底部css */
+@import "./footer.pcss";
+
+@import "./comment.pcss";
+
+@import "./markdown.pcss";
+
+@import "./highlight.pcss";
+
 * {
   margin: 0;
   padding: 0;
@@ -14,20 +30,8 @@ ul {
 }
 
 .wrap {
-  max-width: 1000px;
-  width: calc(100% - 20px);
-  margin: 0 auto;
+  width: 100%;
 }
-.container {
-  width: calc(100% - 50px);
-  margin: 60px auto;
-}
-
-/* 头部css */
-@import "./header.pcss";
-
-/* 底部css */
-@import "./footer.pcss";
 
 #page {
   text-align: center;
@@ -111,46 +115,42 @@ ul {
   }
 }
 
-.post-comment {
-  border-top: 1px solid #ddd;
-  margin-top: 100px;
-  & .comment-form {
-    width: 100%;
-    & input {
-      width: 200px;
-      margin: 11px;
-      font-size: 16px;
-      padding: 5px;
-      outline: 0;
-    }
-  }
-  & .text-area {
-    padding: 5px;
-    & textarea {
-      resize: none;
-      width: calc( 100% - 20px);
-      margin: 10px;
-      height: 150px;
-      font-size: 16px;
-      outline: 0;
-      padding: 10px;
-    }
-  }
-  & button {
-    width: 80px;
-    height: 30px;
-    float: right;
-    margin-right: 15px;
-    background: none;
-    border: 2px solid #42b983;
 
+.article-main {
+  width: 1140px;
+  margin: 15px auto;
+  padding: 0 15px;
+  overflow: hidden; 
+  & .article {
+    width: 80%;
+    float: left;
+    & #articleTitle {
+      font-size: 30px;
+      line-height: 42px;
+      margin-top: 15px;
+      margin-bottom: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+    }
+  }
+  & .aside {
+    width: 20%;
+    float: right;
+    & .toc {
+      border-left: 1px solid var(--borderColor);
+      padding: 0 15px;
+      & .toc-header {
+        font-weight: bold;
+        font-size: 16px;
+        padding: 8px 12px;
+        color: #333;
+        line-height: 1.5;
+      }
+      & .toc-body {
+        & .articleIndex {
+          list-style: square;
+          font-size: 14px;
+        }
+      }
+    }
   }
 }
-
-@import "./comment.pcss";
-
-@import "./markdown.pcss";
-@import "./highlight.pcss";
-@import "./mathJax.pcss";
-
-

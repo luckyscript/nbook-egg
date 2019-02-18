@@ -17,10 +17,9 @@ export default (appInfo: EggAppInfo) => {
       '.html': 'ejs',
     },
   };
-
   config.sequelize = {
     dialect: 'mysql',
-    host: 'localhost',
+    host: process.env.NBOOK_MYSQL_HOST || 'localhost',
     port: 3306,
     user: 'root',
     password: '12345678',

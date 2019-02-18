@@ -1,28 +1,5 @@
 version: '3'
 services: 
-  nbook:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - env=value
-    environment:
-      - NODE_ENV=production
-      - EGG_SERVER_ENV=prod
-      - EGG_REDIS_DB=0
-      - EGG_REDIS_HOST=redis
-      - EGG_REDIS_PORT=6379
-      - EGG_REDIS_PASSWORD=nbook_redis
-      - EGG_MINI_ASSETS=true
-      # - EGG_SITE_STATIC_HOST=${EGG_SITE_STATIC_HOST}
-    depends_on:
-      - redis
-      - mysql
-    networks:
-      - docker_nbook
-    ports:
-      - 7001:7001
-
   redis:
     image: redis:3.2-alpine
     command: redis-server --appendonly yes --requirepass nbook
@@ -35,12 +12,44 @@ services:
 
   mysql:
     image: 'mysql/mysql-server:5.7'
-    restart: always
     container_name: mysql
+    environment:
+      MYSQL_DATABASE: "nbook"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "12345678"
+      MYSQL_ROOT_PASSWORD: "12345678"
+    volumes:
+      - ./init.d/mysql:/docker-entrypoint-initdb.d
     networks:
       - docker_nbook
     # ports:
     #   - '3306:3306'
+
+  nbook-egg_ttt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - env=value
+    volumes:
+      - ./logs/docker:/root/logs/nbook-egg
+    environment:
+      - NODE_ENV=production
+      - EGG_SERVER_ENV=prod
+      - EGG_REDIS_DB=0
+      - EGG_REDIS_HOST=redis
+      - EGG_REDIS_PORT=6379
+      - EGG_REDIS_PASSWORD=nbook_redis
+      - NBOOK_MYSQL_HOST=mysql
+      - EGG_MINI_ASSETS=true
+      # - EGG_SITE_STATIC_HOST=${EGG_SITE_STATIC_HOST}
+    depends_on:
+      - redis
+      - mysql
+    networks:
+      - docker_nbook
+    ports:
+      - 7001:7001
 
 volumes:
   egg-redis:

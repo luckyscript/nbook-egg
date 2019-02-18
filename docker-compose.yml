@@ -22,8 +22,8 @@ services:
       - ./init.d/mysql:/docker-entrypoint-initdb.d
     networks:
       - docker_nbook
-    # ports:
-    #   - '3306:3306'
+    ports:
+      - '3306:3306'
 
   nbook-egg_ttt:
     build:
@@ -50,6 +50,7 @@ services:
       - docker_nbook
     ports:
       - 7001:7001
+    command: ["./wait-for-it.sh", "mysql:3306", "--", "npm", "run", "docker"]
 
 volumes:
   egg-redis:

@@ -1,0 +1,35 @@
+version: '3'
+services: 
+  redis:
+    image: redis:3.2-alpine
+    command: redis-server --appendonly yes --requirepass nbook
+    volumes:
+      - nbook-redis:/data
+    networks:
+      - docker_nbook
+    ports:
+      - 6379:6379
+
+  mysql:
+    image: 'mysql/mysql-server:5.7'
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: "nbook"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "12345678"
+      MYSQL_ROOT_PASSWORD: "12345678"
+    volumes:
+      - ./init.d/mysql:/docker-entrypoint-initdb.d
+      - nbook-mysql:/var/lib/mysql
+    networks:
+      - docker_nbook
+    ports:
+      - '3306:3306'
+
+volumes:
+  nbook-redis:
+  nbook-mysql:
+
+networks:
+  docker_nbook:
+    driver: bridge

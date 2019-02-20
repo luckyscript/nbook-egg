@@ -39,7 +39,7 @@ export default class CommonService extends Service {
       });
       const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
       return `
-          <h${level} id="${slug}" class="testheader">
+          <h${level} id="${slug}" class="articleHeader">
             <a name="${escapedText}" class="anchor" href="#${slug}">
               <span class="header-link"></span>
             </a>

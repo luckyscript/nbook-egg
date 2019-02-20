@@ -3,7 +3,7 @@ import * as path from 'path';
 // const env = process.env.NODE_ENV;
 export default function() {
   console.log('autoCompiler for postcss start...');
-  const autoCompiler = require('autocompiler');
+  const autoCompiler = require('postcss-transform-runtime');
   autoCompiler({
     plugins: [
       require('postcss-easy-import'),

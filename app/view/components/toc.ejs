@@ -1,3 +1,4 @@
+<% if (article.toc && article.toc.length) {%>
 <div class="toc">
   <div class="toc-header">目录</div>
   <div class="toc-body">
@@ -7,6 +8,8 @@
         <a href="#<%=item.slug%>"> <%=item.title%> </a>
       </li>
     <% }) %>
+      <li id="highlight-header"></li>
     </ul>
   </div>
 </toc>
+<%}%>

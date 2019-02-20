@@ -4,7 +4,7 @@ services:
     image: redis:3.2-alpine
     command: redis-server --appendonly yes --requirepass nbook
     volumes:
-      - egg-redis:/data
+      - nbook-redis:/data
     networks:
       - docker_nbook
     # ports:
@@ -20,12 +20,13 @@ services:
       MYSQL_ROOT_PASSWORD: "12345678"
     volumes:
       - ./init.d/mysql:/docker-entrypoint-initdb.d
+      - nbook-mysql:/var/lib/mysql
     networks:
       - docker_nbook
-    ports:
-      - '3306:3306'
+    # ports:
+    #   - '3306:3306'
 
-  nbook-egg_ttt:
+  nbook-egg:
     build:
       context: .
       dockerfile: Dockerfile
@@ -53,7 +54,8 @@ services:
     command: ["./wait-for-it.sh", "mysql:3306", "--", "npm", "run", "docker"]
 
 volumes:
-  egg-redis:
+  nbook-redis:
+  nbook-mysql:
 
 networks:
   docker_nbook:

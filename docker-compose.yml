@@ -38,9 +38,9 @@ services:
       - NODE_ENV=production
       - EGG_SERVER_ENV=prod
       - EGG_REDIS_DB=0
-      - EGG_REDIS_HOST=redis
-      - EGG_REDIS_PORT=6379
-      - EGG_REDIS_PASSWORD=nbook_redis
+      - NBOOK_REDIS_HOST=redis
+      - NBOOK_REDIS_PORT=6379
+      - NBOOK_REDIS_PASSWORD=nbook_redis
       - NBOOK_MYSQL_HOST=mysql
       - EGG_MINI_ASSETS=true
       # - EGG_SITE_STATIC_HOST=${EGG_SITE_STATIC_HOST}

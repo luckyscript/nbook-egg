@@ -3,13 +3,27 @@ import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
 
-  // override config from framework / plugin
-  // use for cookie sign key, should change to your own and keep security
+  const {
+    NBOOK_MYSQL_HOST,
+    NBOOK_REDIS_HOST,
+    NBOOK_REDIS_PORT,
+    NBOOK_REDIS_PASSWORD,
+  } = process.env;
+
   config.keys = 'nbook_config_keys';
 
   // add your egg config in here
   config.middleware = [
   ];
+
+  config.redis = {
+    client: {
+      port: Number(NBOOK_REDIS_PORT),
+      host: NBOOK_REDIS_HOST,
+      password: NBOOK_REDIS_PASSWORD,
+      db: 0,
+    },
+  };
 
   config.view = {
     mapping: {
@@ -19,12 +33,19 @@ export default (appInfo: EggAppInfo) => {
   };
   config.sequelize = {
     dialect: 'mysql',
-    host: process.env.NBOOK_MYSQL_HOST || 'localhost',
+    host: NBOOK_MYSQL_HOST,
     port: 3306,
     user: 'root',
     password: '12345678',
     database: 'nbook',
     timestamps: false,
+  };
+
+  config.session = {
+    maxAge: 24 * 3600 * 1000, // ms
+    key: 'nbook_SESS',
+    httpOnly: true,
+    encrypt: true,
   };
 
   // add your special config in here

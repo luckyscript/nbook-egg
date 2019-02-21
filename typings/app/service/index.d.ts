@@ -8,6 +8,7 @@ import ExportCommon from '../../../app/service/common';
 import ExportHome from '../../../app/service/home';
 import ExportLogin from '../../../app/service/login';
 import ExportTweet from '../../../app/service/tweet';
+import ExportUser from '../../../app/service/user';
 
 declare module 'egg' {
   interface IService {
@@ -17,5 +18,6 @@ declare module 'egg' {
     home: ExportHome;
     login: ExportLogin;
     tweet: ExportTweet;
+    user: ExportUser;
   }
 }

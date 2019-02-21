@@ -16,6 +16,21 @@ export interface Article {
   link?: string;
 }
 
+export interface User {
+  uid: string;
+  name: string;
+  password: string;
+  mail: string;
+  url: string;
+  salt: string;
+  screenName: string;
+  created: string;
+  activated: string;
+  logged: string;
+  group: string;
+  authCode: string;
+}
+
 export interface PageInfo {
   currentPage: number;
   totalPage: number;

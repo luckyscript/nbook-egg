@@ -13,6 +13,20 @@ const context: any = {
     }
     this.res.write(content);
   },
+  success(data) {
+    return {
+      success: true,
+      errMsg: '',
+      data,
+    };
+  },
+  error(data, errMsg = '') {
+    return {
+      success: false,
+      errMsg,
+      data,
+    }
+  },
 };
 
 export default context;

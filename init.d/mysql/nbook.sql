@@ -46,12 +46,12 @@ CREATE TABLE `articles` (
 
 
 
-# Dump of table un_category
+# Dump of table category
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_category`;
+DROP TABLE IF EXISTS `category`;
 
-CREATE TABLE `un_category` (
+CREATE TABLE `category` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) DEFAULT NULL,
   `name` varchar(20) NOT NULL DEFAULT '',
@@ -63,12 +63,12 @@ CREATE TABLE `un_category` (
 
 
 
-# Dump of table un_category_config
+# Dump of table category_config
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_category_config`;
+DROP TABLE IF EXISTS `category_config`;
 
-CREATE TABLE `un_category_config` (
+CREATE TABLE `category_config` (
   `cid` int(11) unsigned NOT NULL,
   `aid` int(11) NOT NULL,
   PRIMARY KEY (`cid`,`aid`)
@@ -76,12 +76,12 @@ CREATE TABLE `un_category_config` (
 
 
 
-# Dump of table un_chat
+# Dump of table chat
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_chat`;
+DROP TABLE IF EXISTS `chat`;
 
-CREATE TABLE `un_chat` (
+CREATE TABLE `chat` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(20) DEFAULT NULL,
   `content` text,
@@ -91,12 +91,12 @@ CREATE TABLE `un_chat` (
 
 
 
-# Dump of table un_comment
+# Dump of table comment
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_comment`;
+DROP TABLE IF EXISTS `comment`;
 
-CREATE TABLE `un_comment` (
+CREATE TABLE `comment` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(20) NOT NULL DEFAULT '',
   `content` text,
@@ -111,12 +111,12 @@ CREATE TABLE `un_comment` (
 
 
 
-# Dump of table un_history
+# Dump of table history
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_history`;
+DROP TABLE IF EXISTS `history`;
 
-CREATE TABLE `un_history` (
+CREATE TABLE `history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(200) NOT NULL,
   `date` varchar(20) DEFAULT NULL,
@@ -126,12 +126,12 @@ CREATE TABLE `un_history` (
 
 
 
-# Dump of table un_links
+# Dump of table links
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_links`;
+DROP TABLE IF EXISTS `links`;
 
-CREATE TABLE `un_links` (
+CREATE TABLE `links` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `date` varchar(50) NOT NULL DEFAULT '',
   `name` varchar(50) NOT NULL DEFAULT '',
@@ -145,12 +145,12 @@ CREATE TABLE `un_links` (
 
 
 
-# Dump of table un_nav
+# Dump of table nav
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_nav`;
+DROP TABLE IF EXISTS `nav`;
 
-CREATE TABLE `un_nav` (
+CREATE TABLE `nav` (
   `name` varchar(20) NOT NULL DEFAULT '',
   `path` varchar(100) NOT NULL DEFAULT '',
   `show` tinyint(1) NOT NULL DEFAULT '1',
@@ -161,12 +161,12 @@ CREATE TABLE `un_nav` (
 
 
 
-# Dump of table un_tag
+# Dump of table tag
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_tag`;
+DROP TABLE IF EXISTS `tag`;
 
-CREATE TABLE `un_tag` (
+CREATE TABLE `tag` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
@@ -175,12 +175,12 @@ CREATE TABLE `un_tag` (
 
 
 
-# Dump of table un_tag_config
+# Dump of table tag_config
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_tag_config`;
+DROP TABLE IF EXISTS `tag_config`;
 
-CREATE TABLE `un_tag_config` (
+CREATE TABLE `tag_config` (
   `tagid` int(11) unsigned NOT NULL,
   `aid` int(11) NOT NULL,
   PRIMARY KEY (`tagid`,`aid`)
@@ -188,12 +188,12 @@ CREATE TABLE `un_tag_config` (
 
 
 
-# Dump of table un_tweet
+# Dump of table tweet
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_tweet`;
+DROP TABLE IF EXISTS `tweet`;
 
-CREATE TABLE `un_tweet` (
+CREATE TABLE `tweet` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `content` text,
   `time` varchar(25) DEFAULT NULL,
@@ -203,16 +203,17 @@ CREATE TABLE `un_tweet` (
 
 
 
-# Dump of table un_user
+# Dump of table user
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `un_user`;
+DROP TABLE IF EXISTS `user`;
 
-CREATE TABLE `un_user` (
+CREATE TABLE `user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) DEFAULT NULL,
   `password` varchar(64) DEFAULT NULL,
   `mail` varchar(200) DEFAULT NULL,
+  `salt` varchar(8) DEFAULT NULL,
   `url` varchar(200) DEFAULT NULL,
   `screenName` varchar(32) DEFAULT NULL,
   `created` int(10) unsigned DEFAULT '0',

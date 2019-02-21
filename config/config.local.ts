@@ -11,5 +11,13 @@ export default () => {
     database: 'nbook',
     timestamps: false,
   };
+  config.redis = {
+    client: {
+      port: 6379,
+      host: 'localhost',
+      password: 'nbook',
+      db: 0,
+    },
+  };
   return config;
 };

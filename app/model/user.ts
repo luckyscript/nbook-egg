@@ -7,21 +7,26 @@ const userModel = app => {
     password: STRING(64),
     mail: STRING(200),
     url: STRING(200),
+    salt: STRING(8),
     screenName: STRING(32),
     created: INTEGER(10),
     activated: INTEGER(10),
     logged: INTEGER(10),
     group: STRING(16),
     authCode: STRING(16),
+  }, {
+    timestamps: false,
   });
 
-  User.findByLogin = async function(login) {
+  User.findByName = async function(name) {
     return await this.findOne({
       where: {
-        login,
+        name,
       },
     });
   };
 
   return User;
 };
+
+export default userModel;

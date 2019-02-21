@@ -2,13 +2,13 @@
 <div class="toc">
   <div class="toc-header">目录</div>
   <div class="toc-body">
+    <div id="highlight-header"></div>
     <ul class="articleIndex">
     <% article.toc.forEach(function(item) { %>
-      <li style="margin-left: <%=item.level * 15 - 15%>px;">
+      <li style="margin-left: <%=item.level * 15 - 5%>px;" class="toc-list">
         <a href="#<%=item.slug%>"> <%=item.title%> </a>
       </li>
     <% }) %>
-      <li id="highlight-header"></li>
     </ul>
   </div>
 </toc>

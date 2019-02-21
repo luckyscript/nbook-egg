@@ -3,10 +3,17 @@ window.onload = function() {
     result.push(...document.querySelectorAll(`h${current}.articleHeader`));
     return result;
   }, []);
-  headerNodesOffsetTop = headerNodes.map(v => v.offsetTop);
+  const headerNodesOffsetTop = headerNodes.map(v => v.offsetTop);
+
+  const tocListNodes = document.querySelectorAll('li.toc-list');
+
   // flag 节流
   let flag = false;
-  document.addEventListener('scroll', function() {
+  handleScroll();
+  
+  document.addEventListener('scroll', handleScroll, false);
+
+  function handleScroll () {
     if (flag)
       return;
     flag = true;
@@ -14,16 +21,22 @@ window.onload = function() {
       let scrollTop = document.documentElement.scrollTop;
       const activeIndex = headerNodesOffsetTop.map(v => v - scrollTop).filter(v => v <= 0).length - 1;
       console.log(activeIndex);
+      setActiveHeader(activeIndex);
       flag = false;
-    }, 100);
-  }, false);
+    }, 10);
+  }
 
   function setActiveHeader(index) {
-    const highLightHeader = document.querySelector('#hightlight-header');
-    
+    const highLightHeader = document.querySelector('#highlight-header');
+    tocListNodes.forEach(toc => {
+      toc.className = 'toc-list';
+    })
     if (index === -1) {
-      highLightHeader.style.display = 'none';
-
+      highLightHeader.style.top = 0;
+      tocListNodes[0].className = 'toc-list active';
+    } else {
+      highLightHeader.style.top = index * 28 + 'px';
+      tocListNodes[index].className = 'toc-list active';
     }
 
   }

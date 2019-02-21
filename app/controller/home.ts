@@ -1,4 +1,5 @@
 import { Controller } from 'egg';
+import { PageInfo } from '../../typings/index';
 
 export default class HomeController extends Controller {
   public async index() {
@@ -12,12 +13,13 @@ export default class HomeController extends Controller {
     let articleList = await ctx.model.Article.findByPage(pageSize, page);
     articleList = ctx.service.home.handleArticleList(articleList);
     const totalCount = await ctx.model.Article.count();
+    const pageInfo: PageInfo = {
+      totalPage: Math.ceil(totalCount / pageSize),
+      currentPage: page,
+    };
     await ctx.render('index.html', {
       articleList,
-      pageInfo: {
-        totalPage: Math.ceil(totalCount / pageSize),
-        currentPage: page,
-      },
+      pageInfo,
     });
   }
 

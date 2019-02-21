@@ -15,3 +15,8 @@ export interface Article {
   type: string;
   link?: string;
 }
+
+export interface PageInfo {
+  currentPage: number;
+  totalPage: number;
+}

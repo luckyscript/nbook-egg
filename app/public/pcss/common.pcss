@@ -138,8 +138,8 @@ ul {
     float: right;
     & .toc {
       border-left: 1px solid var(--borderColor);
-      padding: 0 15px;
       position: fixed;
+      width: 250px;
       & .toc-header {
         font-weight: bold;
         font-size: 16px;
@@ -148,23 +148,33 @@ ul {
         line-height: 1.5;
       }
       & .toc-body {
+        position:relative;
+        & #highlight-header {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 28px;
+          z-index: 1;
+          list-style: none;
+          background: #f3f3f3;
+          border-left: 2px solid var(--activeColor);
+          transition: all .2s ease;
+        }
         & .articleIndex {
+          padding: 0 15px;
           list-style: square;
+          position: relative;
           font-size: 14px;
           line-height: 2;
-          position:relative;
+          z-index: 2;
           & li {
+            height: 28px;
+            &.active , &.active a{
+              color: var(--activeColor);
+            }
             &:hover {
               text-decoration: underline;
-            }
-            &#highlight-header {
-              position: absolute;
-              top: 0;
-              left: 0;
-              background: #f3f3f3;
-              z-index: 1;
-              border-left: 2px solid #009A61;
-              transition: all .2s ease;
             }
           }
         }

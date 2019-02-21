@@ -14,7 +14,7 @@ class UserService extends Service {
     }
     const md5 = require('md5');
     const { salt, password: passwordDB } = user;
-    const algropass = md5(salt + password + 'nbook^' + salt + '$nbook')
+    const algropass = md5(salt + password + 'nbook^' + salt + '$nbook');
     if (password && algropass === passwordDB) {
       return true;
     }

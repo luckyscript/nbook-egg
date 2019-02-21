@@ -25,7 +25,7 @@ const context: any = {
       success: false,
       errMsg,
       data,
-    }
+    };
   },
 };
 

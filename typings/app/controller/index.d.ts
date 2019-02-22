@@ -11,6 +11,7 @@ import ExportLink from '../../../app/controller/link';
 import ExportTest from '../../../app/controller/test';
 import ExportTweet from '../../../app/controller/tweet';
 import ExportUser from '../../../app/controller/user';
+import ExportApiArticle from '../../../app/controller/api/article';
 
 declare module 'egg' {
   interface IController {
@@ -23,5 +24,8 @@ declare module 'egg' {
     test: ExportTest;
     tweet: ExportTweet;
     user: ExportUser;
+    api: {
+      article: ExportApiArticle;
+    }
   }
 }

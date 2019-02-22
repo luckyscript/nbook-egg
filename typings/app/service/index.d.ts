@@ -6,7 +6,6 @@ import ExportTest from '../../../app/service/Test';
 import ExportArticle from '../../../app/service/article';
 import ExportCommon from '../../../app/service/common';
 import ExportGeetest from '../../../app/service/geetest';
-import ExportHome from '../../../app/service/home';
 import ExportTweet from '../../../app/service/tweet';
 import ExportUser from '../../../app/service/user';
 
@@ -16,7 +15,6 @@ declare module 'egg' {
     article: ExportArticle;
     common: ExportCommon;
     geetest: ExportGeetest;
-    home: ExportHome;
     tweet: ExportTweet;
     user: ExportUser;
   }

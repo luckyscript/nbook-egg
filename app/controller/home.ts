@@ -11,8 +11,13 @@ export default class HomeController extends Controller {
       title,
     });
 
-    const articleList = await ctx.service.home.findAllByPage(pageSize, page);
-    const totalCount = await ctx.model.Article.count();
+    const articleList = await ctx.service.article.findAllPublicByPage(pageSize, page);
+
+    const totalCount = await ctx.model.Article.count({
+      where: {
+        status: 'public',
+      },
+    });
     const pageInfo: PageInfo = {
       totalPage: Math.ceil(totalCount / pageSize),
       currentPage: page,

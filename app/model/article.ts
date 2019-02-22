@@ -19,8 +19,9 @@ const ArticleModel = app => {
     timestamps: false,
   });
 
-  Article.findByPage = async function (pageSize, page) {
+  Article.findByPage = async function (pageSize, page, where?: any) {
     const data = await this.findAll({
+      where,
       limit: pageSize,
       offset: (page - 1) * pageSize,
       order: [

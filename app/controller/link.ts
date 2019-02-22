@@ -11,7 +11,7 @@ class LinkController extends Controller {
     console.log('inhere');
     const linksData = await ctx.model.Link.findByPage(page, pageSize);
     const moment = require('moment');
-    linksData.forEach((v) => {
+    linksData.forEach(v => {
       v.date = moment(v.date).format('YYYY-MM-DD');
     });
     const pageInfo: PageInfo = {

@@ -12,9 +12,16 @@ export default (app: Application) => {
   router.get('/article/id/:id', controller.article.index);
   router.get('/article/:slug', controller.article.index);
 
+  // link page
+  router.get('/link', controller.link.index);
+  router.get('/link/add', controller.link.add);
+  router.get('/link/to/:uuid', controller.link.to);
+  router.post('/link/submit', controller.link.submit);
+  router.get('/link/validate', controller.link.validate);
+
   // login api
   router.post('/login', controller.login.login);
 
-  router.get('/test', controller.home.test);
+  router.get('/test', controller.test.index);
   router.get('/admin/*', controller.admin.index);
 };

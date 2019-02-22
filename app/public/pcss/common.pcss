@@ -17,6 +17,10 @@
 
 @import "./highlight.pcss";
 
+@import "./link.pcss";
+
+@import "./linkadd.pcss";
+
 * {
   margin: 0;
   padding: 0;
@@ -31,6 +35,22 @@ ul {
 
 .wrap {
   width: 100%;
+}
+
+.container {
+  width: 1200px;
+  margin: 30px auto;
+  display: flex;
+}
+
+.main ,.article {
+  width: 900px;
+  padding: 0 20px;
+}
+
+.aside {
+  width: 300px;
+  padding: 0 20px;
 }
 
 #page {
@@ -54,8 +74,6 @@ ul {
 }
 
 .container {
-  width: calc(100% - 50px);
-  margin: 60px auto;
   & .post-list {
     margin-top: 2em;
   }
@@ -116,10 +134,7 @@ ul {
 }
 
 
-.article-main {
-  width: 1140px;
-  margin: 15px auto;
-  padding: 0 15px;
+.article-container {
   overflow: hidden; 
   & .article {
     width: 80%;

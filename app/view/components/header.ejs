@@ -25,12 +25,23 @@
 <body>
 <header>
     <div>
-        <a href="/" class="logo-link">
+        <!-- <a href="/" class="logo-link">
             <img src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMfaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzE0NSA3OS4xNjM0OTksIDIwMTgvMDgvMTMtMTY6NDA6MjIgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjA5M0E0MUYwMDdFQzExRTk5N0E4OTdENUY2MUE0QTA1IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA5M0E0MUVGMDdFQzExRTk5N0E4OTdENUY2MUE0QTA1IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSIxQ0ZGQjUwNjU1QkRBQkU1RUM2RjkzOURDODY1NEMwNyIgc3RSZWY6ZG9jdW1lbnRJRD0iMUNGRkI1MDY1NUJEQUJFNUVDNkY5MzlEQzg2NTRDMDciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAAGBAQEBQQGBQUGCQYFBgkLCAYGCAsMCgoLCgoMEAwM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" alt="logo">
-        </a>
+        </a> -->
+        <span class="site-title">
+            Luckyscript's 
+            <span>Blog</span>
+        </span>
         <ul class="nav nav-list">
-            
-            <i></i>
+            <%nav.forEach(function (item) {%>
+                <li class="nav-list-item">
+                    <a href="<%=item.url%>" target="_self" class="nav-list-link"><%=item.name%></a>
+                </li>
+            <%})%>
         </ul>
+        <form action="/search">
+            <input id="searchBox" name="keywords" placeholder="请输入关键字">
+            <button>Search</button>
+        </form>
     </div>
 </header>

@@ -1,0 +1,98 @@
+  <%- include('components/header.ejs') %>
+  <div id="app" class="wrap">
+    <div class="container">
+        <form>
+          <ul class="form-style-1">
+            <li><label>链接 <span class="required">*</span></label><input type="text" name="url" id="url" class="field-long" /></li>
+            <li>
+              <label>标题 <span class="required">*</span></label>
+              <input type="email" name="field3" class="field-long" id="title"/>
+            </li>
+            <li>
+              <label>分类<span class="required">*</span></label>
+              <select name="field4" class="field-select" id="category">
+                <% categorys.forEach(v => {%>
+                  <option value="<%=v.id%>"><%=v.name%></option>
+                <%})%>
+              </select>
+            </li>
+            <li>
+              <label>贡献理由</label>
+              <textarea name="field5" id="field5" class="field-long field-textarea"></textarea>
+            </li>
+            <li>
+            <div id="captcha">
+                <p id="wait" class="show">验证码正在赶来的路上...</p>
+            </div>
+            </li>
+            <li>
+              <input type="button" value="提交" class="submit" id="submit"/>
+              <input type="button" value="返回" class="back"/>
+            </li>
+          </ul>
+        </form>
+    </div>
+  </div>
+</body>
+<script src="//apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
+<script>
+  const cookieObject = document.cookie.split(';').reduce((result, current) => {
+    const [,key, value] = /(.+)=(.+)/.exec(current.trim());
+    result[key] = value;
+    return result;
+  }, {});
+  const csrfToken = cookieObject['csrfToken'];
+  var handler = function (captchaObj) {
+    captchaObj.appendTo('#captcha');
+    captchaObj.onReady(function () {
+      $("#wait").hide();
+    });
+    $('#submit').click(function () {
+      var result = captchaObj.getValidate();
+      if (!result) {
+        return alert('请完成验证');
+      }
+      $.ajax({
+        url: '/link/submit',
+        type: 'POST',
+        dataType: 'json',
+        headers: {
+          'x-csrf-token': csrfToken,
+        },
+        data: {
+          url: $('#url').val(),
+          title: $('#title').val(),
+          category: $('#category').val(),
+          geetest_challenge: result.geetest_challenge,
+          geetest_validate: result.geetest_validate,
+          geetest_seccode: result.geetest_seccode
+        },
+        success: function (data) {
+          if (data.success) {
+            window.location.href = '/link';
+          } else {
+            alert('提交失败，请完成验证');
+            captchaObj.reset();
+          }
+        }
+      });
+    })
+  };
+  $.ajax({
+      url: "/link/validate?t=" + (new Date()).getTime(),
+      type: "get",
+      dataType: "json",
+      success: function (data) {
+        initGeetest({
+          gt: data.gt,
+          challenge: data.challenge,
+          offline: !data.success,
+          new_captcha: data.new_captcha,
+          product: "popup",
+          width: "300px"
+        }, handler);
+      }
+    });
+  </script>
+</html>

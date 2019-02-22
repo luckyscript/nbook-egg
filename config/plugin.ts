@@ -18,6 +18,10 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-router-plus',
   },
+  session: {
+    enable: true,
+    package: 'egg-session',
+  },
 };
 
 export default plugin;

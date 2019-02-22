@@ -14,6 +14,8 @@ export default (appInfo: EggAppInfo) => {
 
   // add your egg config in here
   config.middleware = [
+    'local',
+    'authUser',
   ];
 
   config.redis = {
@@ -31,6 +33,7 @@ export default (appInfo: EggAppInfo) => {
       '.html': 'ejs',
     },
   };
+
   config.sequelize = {
     dialect: 'mysql',
     host: NBOOK_MYSQL_HOST,
@@ -51,6 +54,28 @@ export default (appInfo: EggAppInfo) => {
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
+    nav: [
+      {
+        name: 'Home',
+        url: '/',
+      },
+      {
+        name: 'Archive',
+        url: '/archive',
+      },
+      {
+        name: 'Tweet',
+        url: '/tweet',
+      },
+      {
+        name: 'About',
+        url: '/about',
+      },
+      {
+        name: 'Link',
+        url: '/link',
+      },
+    ],
   };
 
   // the return config will combines to EggAppConfig

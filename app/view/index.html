@@ -1,6 +1,17 @@
   <div class="wrap">
-    <% include article-list.html %>
+    <div class="container">
+      <% include article-list.html %>
+      <aside class="aside">
+        <div>
+          <span>Featured Tags</span>
+
+        </div>
+      </aside>
+    </div>
   </div>
 <%- include('footer.html') %>
+<%if (userInfo) {%>
+<div><%= userInfo.name%></div>
+<%}%>
 </body>
 </html>

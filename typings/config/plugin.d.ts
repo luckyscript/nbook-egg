@@ -6,3 +6,4 @@ import 'egg-view-ejs';
 import 'egg-sequelize';
 import 'egg-redis';
 import 'egg-router-plus';
+import 'egg-session';

@@ -1,0 +1,46 @@
+    <%- include('components/header.ejs') %>
+    <div id="app" class="wrap">
+      <div class="container">
+        <main class="main">
+        <div class="form">
+          <button id="submit">贡献好文</button>
+        </div>
+        <table class="fl-table">
+          <thead>
+            <tr>
+              <th width="10%">时间</th>
+              <th>标题</th>
+              <th width="15%">类别</th>
+              <th width="10%">点击</th>
+            </tr>
+          </thead>
+          <tbody>
+              <%links.data.forEach(function(item) {%>
+                <tr title="<%=item.url%>">
+                  <td><%=item.date%></td>
+                  <td><a href="/link/to/<%=item.uuid%>"><%=item.name%></a></td>
+                  <td><%=item.category && item.category.name%></td>
+                  <td><%=item.readnum%></td>
+                </tr>
+              <%})%>
+          </tbody>
+        </table>
+        </main>
+        <aside class="aside">
+        </aside>
+      </div>
+      <ul id="page">
+          <%if(links.currentPage != 1){%><li><a href="/link/page/<%=Number(links.currentPage)-1%>">PREV</a></li><%}%>
+          <%if(links.currentPage != links.totalPages){%><li><a href="/link/page/<%=Number(links.currentPage)+1%>">NEXT</a></li><%}%>
+      </ul>
+    </div>
+       
+
+</body>
+<script>
+  document.querySelector('#submit').addEventListener('click', function() {
+    window.location.href = '/link/add';
+  })
+</script>
+
+</html>

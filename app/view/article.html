@@ -1,6 +1,6 @@
-<% include header.html %>
+<% include components/header.ejs %>
 <div class="wrap" data-aid=<%=article.aid%>>
-  <main class="article-main">
+  <div class="container article-container">
     <article class="article">
       <h2 id="articleTitle">
         <a href="/article/<%=article.aid%>"><%=article.title%></a>
@@ -32,7 +32,7 @@
     <aside class="aside">
       <%- include('./components/toc.ejs') %>
     </aside>
-  </main>
+  </div>
 </div>
 <%- include('footer.html') %>
 </body>

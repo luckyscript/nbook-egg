@@ -8,6 +8,7 @@ import ExportArticle from '../../../app/controller/article';
 import ExportHome from '../../../app/controller/home';
 import ExportLink from '../../../app/controller/link';
 import ExportLogin from '../../../app/controller/login';
+import ExportTest from '../../../app/controller/test';
 import ExportTweet from '../../../app/controller/tweet';
 
 declare module 'egg' {
@@ -18,6 +19,7 @@ declare module 'egg' {
     home: ExportHome;
     link: ExportLink;
     login: ExportLogin;
+    test: ExportTest;
     tweet: ExportTweet;
   }
 }

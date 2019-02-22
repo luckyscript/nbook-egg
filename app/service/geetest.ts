@@ -31,7 +31,7 @@ const validatePromise = (gt, gtSec) => {
   });
 };
 
-class GeetestController extends Service {
+class GeetestService extends Service {
   async register() {
     return await registerPromise();
   }
@@ -44,4 +44,4 @@ class GeetestController extends Service {
   }
 }
 
-export default GeetestController;
+export default GeetestService;

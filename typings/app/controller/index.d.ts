@@ -2,6 +2,7 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
+import ExportAbout from '../../../app/controller/about';
 import ExportAdmin from '../../../app/controller/admin';
 import ExportArchive from '../../../app/controller/archive';
 import ExportArticle from '../../../app/controller/article';
@@ -13,6 +14,7 @@ import ExportTweet from '../../../app/controller/tweet';
 
 declare module 'egg' {
   interface IController {
+    about: ExportAbout;
     admin: ExportAdmin;
     archive: ExportArchive;
     article: ExportArticle;

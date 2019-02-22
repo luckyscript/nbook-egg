@@ -21,6 +21,10 @@ export default (app: Application) => {
   router.post('/link/submit', controller.link.submit);
   router.get('/link/validate', controller.link.validate);
 
+  // tweet page
+  router.get('/tweet', controller.tweet.index);
+  router.get('/tweet/page/:page', controller.tweet.index);
+
   // login api
   router.post('/login', controller.login.login);
 

@@ -1,0 +1,51 @@
+<%- include('components/header.ejs') %>
+  <div class="wrap">
+    <div class="container">
+        <main class="main">
+            <ul class="tweet-wrap">
+                <li class="tweet-item">
+                    <blockquote class="tweet-body">
+                    [<time>现在</time>]
+                    本页面聚合了我的新浪微博，如果想关注我的微博，请点击<a style="color: #d480aa" href="https://weibo.com/luckyscript" target="_blank">follow</a>
+                    </blockquote>
+                </li>
+                <%data.forEach(function(i) {%>
+                    <li class="tweet-item">
+                        <blockquote class="tweet-body">
+                            [<time><%=i.mblog.created_at%></time>]
+                            <%- i.mblog.text.replace("<a href='\/", '<a target="_blank" href=\'http://m.weibo.cn\/')%>
+                            <%if (i.mblog.pics && i.mblog.pics.length) {%>
+                                <div>
+                                    <%i.mblog.pics.forEach(function(p) {%>
+                                        <img src="<%=p.url%>" alt="tweet-image" class="tweet-image"/>
+                                    <%})%> 
+                                </div>
+                            <%}%>
+                            <%if(i.mblog.retweeted_status) {%>
+                            <blockquote class="tweet-repost">
+                                <span><%=i.mblog.retweeted_status.user.screen_name%>: </span>
+                                <%-i.mblog.retweeted_status.text.replace('<a href="\/', '<a target="_blank" href="http://m.weibo.cn\/')%>
+                            <%if (i.mblog.retweeted_status.pics && i.mblog.retweeted_status.pics.length) {%>
+                                <div>
+                                    <%i.mblog.retweeted_status.pics.forEach(function(p) {%>
+                                        <img src="<%=p.url%>" alt="tweet-image" class="tweet-image"/>
+                                    <%})%> 
+                                </div>
+                            <%}%>
+                            </blockquote>
+                            <%}%>
+                        </blockquote>
+                    </li>
+                <%})%>
+            </ul>
+        
+            <ul id="page">
+                <%if(pageInfo.currentPage != 1){%><li><a href="/tweet/page/<%=Number(pageInfo.currentPage)-1%>">PREV</a></li><%}%>
+                <%if(pageInfo.currentPage != pageInfo.totalPage){%><li><a href="/tweet/page/<%=Number(pageInfo.currentPage)+1%>">NEXT</a></li><%}%>
+            </ul>
+        </main>
+    </div>
+  </div>
+<%- include('footer.html') %>
+</body>
+</html>

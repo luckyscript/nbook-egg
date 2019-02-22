@@ -13,7 +13,8 @@ class TweetController extends Controller {
       currentPage: page,
       totalPage: Math.ceil(total / 10),
     };
-    ctx.render('tweet.html', {
+    await ctx.render('tweet.html', {
+      title: '微博',
       data,
       pageInfo,
     });

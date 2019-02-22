@@ -27,7 +27,6 @@ class ArticleService extends Service {
       v.time = moment(v.created).format('MMM Do');
     });
     const archive = _.chain(articleList).groupBy(v => moment(v.created).format('YYYY')).value();
-    console.log(archive);
     const result = Object.entries(archive).reduce((result: any[], current) => {
       const [ key, value ] = current;
       const single = {

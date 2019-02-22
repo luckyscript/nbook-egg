@@ -12,10 +12,10 @@ class TweetEntity extends Entity {
     super(data);
   }
   get tweetData() {
-    return this.data.cards || [];
+    return this.data.data.cards || [];
   }
   get total() {
-    return this.data.cardlistInfo.total || 0;
+    return this.data.data.cardlistInfo.total || 0;
   }
 }
 

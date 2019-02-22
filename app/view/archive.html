@@ -1,0 +1,19 @@
+<%- include('components/header.ejs') %>
+  <div class="wrap">
+    <main class="container">
+        <div class="archive">
+            <% archive.forEach(function(a) {%>
+                <h2 class="archive-year"><%=a['key']%></h2>      
+                <%a['value'].forEach(function(item) {%>
+                    <div class="post-item">
+                        <div class="post-info"><%=item.time%></div>
+                        <a href="/article/<%=item.link%>" class="post-title-link"><%=item.title%></a>
+                    </div>
+                <% })%>
+            <% })%>
+        </div>
+    </main>
+  </div>
+<%- include('footer.html') %>
+</body>
+</html>

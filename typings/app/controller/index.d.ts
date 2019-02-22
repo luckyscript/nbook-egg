@@ -8,9 +8,9 @@ import ExportArchive from '../../../app/controller/archive';
 import ExportArticle from '../../../app/controller/article';
 import ExportHome from '../../../app/controller/home';
 import ExportLink from '../../../app/controller/link';
-import ExportLogin from '../../../app/controller/login';
 import ExportTest from '../../../app/controller/test';
 import ExportTweet from '../../../app/controller/tweet';
+import ExportUser from '../../../app/controller/user';
 
 declare module 'egg' {
   interface IController {
@@ -20,8 +20,8 @@ declare module 'egg' {
     article: ExportArticle;
     home: ExportHome;
     link: ExportLink;
-    login: ExportLogin;
     test: ExportTest;
     tweet: ExportTweet;
+    user: ExportUser;
   }
 }

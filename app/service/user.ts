@@ -2,6 +2,17 @@ import { Service } from 'egg';
 import { User } from '../../typings/index';
 
 class UserService extends Service {
+  async login(params: any) {
+    const { ctx } = this;
+    const { name, password } = params;
+    const userInfo = await this.validateUser(name, password);
+    if (userInfo) {
+      await ctx.setSession('userInfo', userInfo);
+      return ctx.success('登陆成功');
+    }
+    return ctx.error('用户不存在或密码错误', 1, 'ERROR::User unexist or wrong password');
+  }
+
   async queryUser(name: string): Promise<User> {
     return await this.ctx.model.User.findByName(name);
   }
@@ -26,12 +37,6 @@ class UserService extends Service {
       return userInfo;
     }
     return null;
-  }
-
-  get userInfo() {
-    return (async () => {
-      return await this.ctx.get('userInfo');
-    })();
   }
 
 }

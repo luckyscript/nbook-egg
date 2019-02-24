@@ -89,7 +89,7 @@ ul {
   }
   & .post-title {
     margin: 0.65em 0;
-    font-size: 2.2em;
+    font-size: 26px;
     text-align: center;
     & a {
       color: var(--mainColor);
@@ -102,18 +102,28 @@ ul {
     color: #42b983;
   }
   & .post-info {
-    color: #7f8c8d;
+    color: #999;
     margin: 1.2em 0;
-    text-align: right;
+    text-align: center;
+    & span {
+      color: #999;
+      font-size: 12px;
+      &:not(:last-of-type)::after {
+        content: '|';
+        margin-left: 5px;
+      }
+    }
   }
   & .article-info {
     text-align: left;
   }
+  
   & .post-content {
     color: #34495e;
     font-size: 15px;
     line-height: 1.6;
     font-family: "Menlo","Lucida Console";
+    padding: 0 20px;
     & p {
       display: block;
       margin: 1em 0;
@@ -132,7 +142,25 @@ ul {
     }
   }
   & .read-more {
-    color: #42b983;
+    width: 120px;
+    height: 32px;
+    background: #fff;
+    border-radius: 2px;
+    margin: 20px auto 0;
+    border: 2px solid var(--activeColor);
+    text-align: center;
+    & a {
+      display: block;
+      width: 100%;
+      line-height: 26px;
+      color: var(--activeColor);
+    }
+    &:hover {
+      background: var(--activeColor);
+      & a {
+        color: #fff;
+      }
+    }
   }
 }
 

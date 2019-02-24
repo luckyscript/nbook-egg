@@ -6,7 +6,6 @@ class ArticleController extends Controller {
     const { slug, id: aid } = ctx.params;
     const where: any = { slug, aid, status: 'public' };
     const articleRaw = await ctx.model.Article.findByWhere(where);
-    console.log(articleRaw);
     if (!articleRaw) {
       ctx.status = 404;
       return await ctx.render('404.html', {
@@ -24,6 +23,23 @@ class ArticleController extends Controller {
   }
   async random() {
     // const {}
+  }
+  async search() {
+    const { ctx } = this;
+    const keyword = ctx.query.keyword;
+    const page = ctx.params.page || 1;
+    const pageSize = 15;
+    const where = {
+      status: 'public',
+      title: [ 'LIKE', keyword ],
+    };
+    const articleService = ctx.service.article;
+    const articleListRaw = await articleService.findAllByPage(pageSize, page, where);
+    const articleList = articleService.handleArticleList(articleListRaw);
+    await ctx.render('search.html', {
+      title: `${keyword}搜索结果`,
+      articleList,
+    });
   }
 }
 

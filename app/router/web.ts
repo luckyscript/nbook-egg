@@ -12,6 +12,7 @@ export default (app: Application) => {
   router.get('/article/id/:id', controller.article.index);
   router.get('/article/:slug', controller.article.index);
   router.get('/random/article', controller.article.random);
+  router.get('/search', controller.article.search);
 
   // archive page
   router.get('/archive', controller.archive.index);

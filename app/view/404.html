@@ -1,0 +1,20 @@
+<% include components/header.ejs %>
+<div class="container">
+  <div class="main">
+    <h1>Not Found</h1>
+    <h2><%= message%></h2>
+    网页将在<i>10</i>秒后返回首页，你也可以<a href="/random/article">点此</a>随机看一篇文章
+  </div>
+</div>
+</body>
+<script>
+  var i = 9;
+  var time = setInterval(function() {
+    document.querySelector('i').innerText = i;
+    if(i == 0) {
+      clearInterval(time);
+      window.location.href = '/';
+    }
+    i--;
+  }, 1000)
+</script>

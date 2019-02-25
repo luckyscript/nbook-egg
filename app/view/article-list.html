@@ -6,11 +6,18 @@
                 <h2 class="post-title">
                     <a href="/article/<%=item.link%>" class="post-title-link"><%=item.title%></a>
                 </h2>
-                <div class="post-info"><%=item.created%></div>
+                <div class="post-info">
+                    <span>Post on <%=item.created%></span>
+                    <span>5 Comments</span>
+                    <span>Words count:3,006</span>
+                    <span>Reading time 13 min</span>
+                </div>
                 <div class="post-content">
                     <%-item.text%>
                 </div>
-                <a href="/article/<%=item.link%>" class="read-more">read more</a>
+                <div class="read-more">
+                    <a href="/article/<%=item.link%>">read more</a>
+                </div>
             </article>
         </li>
         <%})%>

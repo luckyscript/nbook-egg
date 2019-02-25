@@ -1,5 +1,5 @@
 import { Service } from 'egg';
-import rp from 'request-promise';
+import * as rp from 'request-promise';
 import TweetEntity from '../entity/tweetEntity';
 
 class TweetService extends Service {

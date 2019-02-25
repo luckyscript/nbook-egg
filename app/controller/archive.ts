@@ -26,7 +26,7 @@ class ArchiveController extends Controller {
     //   this.assign({archive: result});
     // }
     // return this.display(this.theme+'/home/archive');
-    console.log(archive)
+    console.log(archive);
     ctx.render('/archive', { archive });
   }
 }

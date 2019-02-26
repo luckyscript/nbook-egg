@@ -35,3 +35,10 @@ export interface PageInfo {
   currentPage: number;
   totalPage: number;
 }
+
+export interface MailData {
+  from: string;
+  to: string;
+  subject: string;
+  html?: string;
+}

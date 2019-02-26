@@ -44,6 +44,16 @@ export default (appInfo: EggAppInfo) => {
     timestamps: false,
   };
 
+  config.mail_opts = {
+    host: 'smtp.exmail.qq.com',
+    port: 465,
+    auth: {
+      user: 'root@luckyscript.me',
+      pass: '****',
+    },
+    secure: true,
+  };
+
   config.session = {
     maxAge: 24 * 3600 * 1000, // ms
     key: 'nbook_SESS',

@@ -33,7 +33,12 @@ class ArticleService extends Service {
     articleRaw.brief = brief;
     return articleRaw;
   }
-
+  public generateArticleCommentsNode(comments) {
+    const { ctx } = this;
+    const { generateCommentTree, generateCommentNode } = ctx.service.comment;
+    const tree = generateCommentTree(comments);
+    return generateCommentNode(tree);
+  }
   public async findAllByArchive() {
     const { ctx } = this;
     const articleList = await ctx.model.Article.findAll({

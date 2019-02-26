@@ -4,6 +4,7 @@
 import 'egg';
 import ExportTest from '../../../app/service/Test';
 import ExportArticle from '../../../app/service/article';
+import ExportComment from '../../../app/service/comment';
 import ExportCommon from '../../../app/service/common';
 import ExportGeetest from '../../../app/service/geetest';
 import ExportTweet from '../../../app/service/tweet';
@@ -13,6 +14,7 @@ declare module 'egg' {
   interface IService {
     test: ExportTest;
     article: ExportArticle;
+    comment: ExportComment;
     common: ExportCommon;
     geetest: ExportGeetest;
     tweet: ExportTweet;

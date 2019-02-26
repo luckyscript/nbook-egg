@@ -14,9 +14,11 @@ class ArticleController extends Controller {
       });
     }
     const article = ctx.service.article.handleArticle(articleRaw);
+    const commentNode = ctx.service.article.generateArticleCommentsNode(article.comments);
     await ctx.render('article.html', {
       article,
-      category: [],
+      category: article.category,
+      commentNode,
       tags: [],
       title: article.title || '文章详情',
     });

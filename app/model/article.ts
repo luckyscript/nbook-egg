@@ -1,5 +1,9 @@
+import CommentModel from './comment';
+import CategoryModel from './category';
 const ArticleModel = app => {
   const { STRING, DATE, INTEGER } = app.Sequelize;
+  const Comment = CommentModel(app);
+  const Category = CategoryModel(app);
   const Article = app.model.define('article', {
     aid: { type: INTEGER(11), primaryKey: true, autoIncrement: true },
     title: STRING(200),
@@ -19,6 +23,9 @@ const ArticleModel = app => {
     timestamps: false,
   });
 
+  Article.hasMany(Comment, { foreignKey: 'identity' });
+  Article.belongsTo(Category, { foreignKey: 'categoryId' });
+
   Article.findByPage = async function (pageSize, page, where?: any) {
     const data = await this.findAll({
       where,
@@ -27,6 +34,7 @@ const ArticleModel = app => {
       order: [
         [ 'created', 'DESC' ],
       ],
+      include: [ Comment, Category ],
      });
     return data;
   };
@@ -39,6 +47,7 @@ const ArticleModel = app => {
     });
     const data = await this.findOne({
       where,
+      include: [ Comment, Category ],
     });
     return data;
   };

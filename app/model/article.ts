@@ -1,9 +1,14 @@
 import CommentModel from './comment';
 import CategoryModel from './category';
+import TagModel from './tag';
+import TagConfigModel from './tag_config';
+
 const ArticleModel = app => {
   const { STRING, DATE, INTEGER } = app.Sequelize;
   const Comment = CommentModel(app);
   const Category = CategoryModel(app);
+  const Tag = TagModel(app);
+  const TagConfig = TagConfigModel(app);
   const Article = app.model.define('article', {
     aid: { type: INTEGER(11), primaryKey: true, autoIncrement: true },
     title: STRING(200),
@@ -26,6 +31,11 @@ const ArticleModel = app => {
   Article.hasMany(Comment, { foreignKey: 'identity' });
   Article.belongsTo(Category, { foreignKey: 'categoryId' });
 
+  Article.belongsToMany(Tag, {
+    through: TagConfig,
+    foreignKey: 'aid',
+  });
+
   Article.findByPage = async function (pageSize, page, where?: any) {
     const data = await this.findAll({
       where,
@@ -47,7 +57,7 @@ const ArticleModel = app => {
     });
     const data = await this.findOne({
       where,
-      include: [ Comment, Category ],
+      include: [ Comment, Category, Tag ],
     });
     return data;
   };

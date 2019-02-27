@@ -19,7 +19,7 @@ class ArticleController extends Controller {
       article,
       category: article.category,
       commentNode,
-      tags: [],
+      tags: article.tags,
       title: article.title || '文章详情',
     });
   }

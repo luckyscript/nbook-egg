@@ -8,6 +8,7 @@ import ExportComment from '../../../app/service/comment';
 import ExportCommon from '../../../app/service/common';
 import ExportGeetest from '../../../app/service/geetest';
 import ExportMail from '../../../app/service/mail';
+import ExportTag from '../../../app/service/tag';
 import ExportTweet from '../../../app/service/tweet';
 import ExportUser from '../../../app/service/user';
 
@@ -19,6 +20,7 @@ declare module 'egg' {
     common: ExportCommon;
     geetest: ExportGeetest;
     mail: ExportMail;
+    tag: ExportTag;
     tweet: ExportTweet;
     user: ExportUser;
   }

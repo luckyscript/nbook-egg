@@ -1,12 +1,22 @@
-* 基于eggjs的个人博客
-* 前端展示部分采用ejs，后台管理系统采用react+antd(https://github.com/luckyscript/nbook-admin)
+# Nbook
+
+* 前端展示部分采用ejs
+* 后台管理系统采用react+antd (https://github.com/luckyscript/nbook-admin)
 * 数据存储采用mysql + redis
-* 部署考虑使用nginx + docker
+* 部署使用nginx + docker
+
+## TODO-FE
+- [ ] aside content
+
+## TODO-BE
+- [ ] API controllers
+- [ ] write test code
 
 ### Development
 
 ```bash
-$ npm i
+$ docker-compose -f docker-compose.dev.yml up
+$ npm i 
 $ npm run dev
 $ open http://localhost:7001/
 ```
@@ -16,8 +26,7 @@ Don't tsc compile at development mode, if you had run `tsc` then you need to `np
 ### Deploy
 
 ```bash
-$ npm run tsc
-$ npm start
+$ docker-compose up
 ```
 #### nginx config
 
@@ -33,7 +42,7 @@ location ~ /admin/ {
 .htaccess
 ```
 if (!-e $request_filename){
-  rewrite ^/(.*)$ /webroot/index.php?_ca_=$1 last;
+  rewrite ^/(.*)$ /webroot/index.html?_ca_=$1 last;
 }
 ```
 

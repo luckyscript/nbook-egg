@@ -87,33 +87,7 @@ ul {
   &:last-child {
     border-bottom: 0px;
   }
-  & .post-title {
-    margin: 0.65em 0;
-    font-size: 26px;
-    text-align: center;
-    & a {
-      color: var(--mainColor);
-      &:hover {
-        border-bottom: 2px solid var(--activeColor);
-      }
-    }
-  }
-  & .article-title {
-    color: #42b983;
-  }
-  & .post-info {
-    color: #999;
-    margin: 1.2em 0;
-    text-align: center;
-    & span {
-      color: #999;
-      font-size: 12px;
-      &:not(:last-of-type)::after {
-        content: '|';
-        margin-left: 5px;
-      }
-    }
-  }
+
   & .article-info {
     text-align: left;
   }
@@ -163,7 +137,70 @@ ul {
     }
   }
 }
-
+.post-title {
+  margin: 0.65em 0;
+  font-size: 26px;
+  text-align: center;
+  & a {
+    color: var(--mainColor);
+    &:hover {
+      border-bottom: 2px solid var(--activeColor);
+    }
+  }
+}
+.article-title {
+  text-align: left;
+  font-size: 30px;
+  margin: 5px 0;
+  & a {
+    color: var(--activeColor);
+  }
+}
+.post-info {
+  color: #999;
+  margin: 1.2em 0;
+  text-align: center;
+  & span {
+    color: #999;
+    font-size: 12px;
+    &:not(:last-of-type)::after {
+      content: '|';
+      margin-left: 5px;
+    }
+  }
+}
+.article-info {
+  text-align: left;
+  margin: 15px 0 5px 0;
+  & span {
+    margin-left: 5px;
+  }
+  & a {
+    font-size: 13px;
+  }
+  & .article-tag {
+    padding: 0 6px;
+    color: var(--activeColor);
+    border: 1px solid var(--activeColor);
+    height: 22px;
+    line-height: 22px;
+    &:hover {
+      color: #fff;
+      background: var(--activeColor); 
+    }
+  }
+  & .article-category {
+    height: 22px;
+    line-height: 22px;
+    padding: 0 6px;
+    border: 1px solid var(--markColor);
+    color: var(--markColor);
+    &:hover {
+      color: #fff;
+      background: var(--markColor);
+    }
+  }
+}
 
 .article-container {
   overflow: hidden; 
@@ -177,6 +214,9 @@ ul {
       margin-top: 15px;
       margin-bottom: 20px;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+    }
+    & .article-content {
+      margin-top: 60px;
     }
   }
   & .aside {

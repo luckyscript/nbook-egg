@@ -2,27 +2,23 @@
 <div class="wrap" data-aid=<%=article.aid%>>
   <div class="container article-container">
     <article class="article">
-      <h2 id="articleTitle">
-        <a href="/article/<%=article.aid%>"><%=article.title%></a>
-      </h2>
       <div class="post-info article-info">
-          <time><%=article.created%></time>
-          |
-          阅读：<span><%=article.readnum%></span>
-          <%if(category && category[0]){%>
-              |
-              <i class="fa fa-bookmark"></i>
-              <a href="/category/<%=category[0].name%>">#<%=category[0].name%></a>
-          <%}%>
-          <%if(tags && tags.length > 0) {%>
-          |
-          <i class="fa fa-tags"></i>
-              <%tags.forEach(function(i) {%>
-                  <a href="/tag/<%=i.name%>">#<%=i.name%></a>
-              <%})%>
-          <%}%>
+      <span>Luckyscript post on <%=article.created%></span>
       </div>
-      <div class="post-content">
+      <h2 class="post-title article-title">
+        <a href="/article/<%=article.link%>" class="post-title-link"><%=article.title%></a>
+      </h2>
+      <div class="post-info  article-info">
+        <a class="article-category" href="/category/<%=article.category.name%>"><%=article.category.name%></a>
+        <%article.tags.forEach(t => { %>
+          <a class="article-tag" href="/tag/<%=t.name%>"><%=t.name%></a>
+        <%})%>
+        <span>Reading time：<%=Math.ceil(article.contentLength/230)%> min</span>
+        <span><%=article.readnum%> Times read</span>
+      </div>
+      <div>
+      </div>
+      <div class="post-content article-content">
         <%if (article.diff) {%>
           <p class="expired-tips"> 提醒：本文最后更新于 <%=article.diff%> 天前，文中所描述的信息可能已发生改变，请谨慎阅读。</p>
         <%}%>
@@ -38,5 +34,49 @@
 <%- include('footer.html') %>
 </body>
 
-<script src="/public/scripts/article.js"></script>
+<script>
+window.onload = function() {
+  const headerNodes = [1, 2, 3, 4, 5, 6].reduce((result, current) => {
+    result.push(...document.querySelectorAll(`h${current}.articleHeader`));
+    return result;
+  }, []);
+  const headerNodesOffsetTop = headerNodes.map(v => v.offsetTop);
+
+  const tocListNodes = document.querySelectorAll('li.toc-list');
+
+  // flag 节流
+  let flag = false;
+  handleScroll();
+  
+  document.addEventListener('scroll', handleScroll, false);
+
+  function handleScroll () {
+    if (flag)
+      return;
+    flag = true;
+    window.setTimeout(function() {
+      let scrollTop = document.documentElement.scrollTop;
+      const activeIndex = headerNodesOffsetTop.map(v => v - scrollTop).filter(v => v <= 0).length - 1;
+      setActiveHeader(activeIndex);
+      flag = false;
+    }, 10);
+  }
+
+  function setActiveHeader(index) {
+    const highLightHeader = document.querySelector('#highlight-header');
+    tocListNodes.forEach(toc => {
+      toc.className = 'toc-list';
+    })
+    if (index === -1) {
+      highLightHeader.style.top = 0;
+      tocListNodes[0].className = 'toc-list active';
+    } else {
+      highLightHeader.style.top = index * 28 + 'px';
+      tocListNodes[index].className = 'toc-list active';
+    }
+
+  }
+};
+
+</script>
 </html>

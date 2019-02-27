@@ -8,9 +8,9 @@
                 </h2>
                 <div class="post-info">
                     <span>Post on <%=item.created%></span>
-                    <span>5 Comments</span>
-                    <span>Words count:3,006</span>
-                    <span>Reading time 13 min</span>
+                    <span><%=item.comments.length%> Comments</span>
+                    <span>Words count：<%=item.contentLength.toLocaleString()%></span>
+                    <span>Reading time：<%=Math.ceil(item.contentLength/230)%> min</span>
                 </div>
                 <div class="post-content">
                     <%-item.text%>

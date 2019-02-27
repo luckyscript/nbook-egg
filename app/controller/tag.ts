@@ -13,3 +13,5 @@ class TagController extends Controller {
     }
   }
 }
+
+export default TagController;

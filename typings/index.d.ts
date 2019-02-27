@@ -14,6 +14,7 @@ export interface Article {
   readnum: number;
   type: string;
   link?: string;
+  contentLength?: number;
 }
 
 export interface User {

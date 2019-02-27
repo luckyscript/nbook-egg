@@ -16,10 +16,8 @@ class ArticleService extends Service {
   }
 
   public handleArticleList(articleList: Article[]): Article[] {
-    const { markdown, getBrief } = this.ctx.service.common;
     articleList.forEach(article => {
-      article.link = article.slug || `id/${article.aid}`;
-      article.text = markdown(getBrief(article.text)).html;
+      article = this.handleArticle(article);
     });
     return articleList;
   }
@@ -28,6 +26,8 @@ class ArticleService extends Service {
     const { getBrief, markdown } = this.ctx.service.common;
     const brief = getBrief(articleRaw.text);
     const { html, toc } = markdown(articleRaw.text);
+    articleRaw.link = articleRaw.slug || `id/${articleRaw.aid}`;
+    articleRaw.contentLength = articleRaw.text.length;
     articleRaw.text = html;
     articleRaw.toc = toc;
     articleRaw.brief = brief;

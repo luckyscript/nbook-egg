@@ -8,7 +8,7 @@
       <h2 class="post-title article-title">
         <a href="/article/<%=article.link%>" class="post-title-link"><%=article.title%></a>
       </h2>
-      <div class="post-info  article-info">
+      <div class="post-info  article-info" style="margin-left: 20px;">
         <a class="article-category" href="/category/<%=article.category.name%>"><%=article.category.name%></a>
         <%article.tags.forEach(t => { %>
           <a class="article-tag" href="/tag/<%=t.name%>"><%=t.name%></a>
@@ -22,7 +22,7 @@
         <%if (article.diff) {%>
           <p class="expired-tips"> 提醒：本文最后更新于 <%=article.diff%> 天前，文中所描述的信息可能已发生改变，请谨慎阅读。</p>
         <%}%>
-        <%-article.text%>
+        <%-article.html%>
       </div>
       <%- include('./components/comments.ejs')%>
     </article>
@@ -33,7 +33,82 @@
 </div>
 <%- include('footer.html') %>
 </body>
+<script src="//apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+  const cookieObject = document.cookie.split(';').reduce((result, current) => {
+    const [,key, value] = /(.+)=(.+)/.exec(current.trim());
+    result[key] = value;
+    return result;
+  }, {});
+  const csrfToken = cookieObject['csrfToken'];
+  const replys = [];
+  window.pid = null;
+  window.aid = "<%=article.aid%>";
+  function reply(id, name) {
+    const commentTextarea = document.querySelector('#comment-content');
+    window.pid = id;
+    if (commentTextarea.value.search(`@${name}`) === -1) {
+      commentTextarea.value = `@${name} ` + commentTextarea.value ;
+    }
+    commentTextarea.focus();
+    if (!replys.includes(id)) {
+      replys.push(id);
+    }
+  }
 
+  const submitBtn = document.querySelector('#submit-comment');
+  const formNode = document.querySelector('#comment-form');
+  submitBtn.addEventListener('click', () => {
+    // TODO 表单校验
+    const formdata = new FormData(formNode);
+    formdata.append('aid', window.aid);
+    const content = formdata.get('content');
+    $.ajax({
+      url: '/article/comment',
+      type: 'POST',
+      headers: {
+        'x-csrf-token': csrfToken,
+      },
+      processData: false,
+      contentType: false,
+      data: formdata,
+      success: function (data) {
+        
+      }
+    });
+  })
+
+  /*{# $('.submit-comment').click(function() {
+      var name = $('#comment-name').val();
+      var email = $('#comment-email').val();
+      var site = $('#comment-site').val();
+      var content = $('#comment-content').val();
+      var pid = $('#pid').val();
+      if(name && email) {
+          $.ajax({
+              url: '/comment/add',
+              data: {
+                  name: name,
+                  email: email,
+                  site: site,
+                  content: content,
+                  replyMails: [],
+                  type: 'article',
+                  identity: aid,
+                  pid: pid || null
+              },
+              method: 'POST',
+              success: function(res) {
+                  if(!res.errno) {
+                      window.location.reload();
+                  } else {
+
+                  }
+              }
+          })
+      }
+  }) #}*/
+</script>
 <script>
 window.onload = function() {
   const headerNodes = [1, 2, 3, 4, 5, 6].reduce((result, current) => {

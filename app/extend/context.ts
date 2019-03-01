@@ -1,4 +1,10 @@
 const context: any = {
+  /**
+   * render a part of page that can decrease ttfb time
+   * current only use in the home page
+   * @param tpl ejs template
+   * @param options render option
+   */
   async renderSome(tpl: string, options: any) {
     this.res.statusCode = 200;
     const firstChunkMinLength: number = 4096;
@@ -55,6 +61,21 @@ const context: any = {
       errMsg,
       data,
     };
+  },
+  /**
+   * set or get key from redis
+   * @param {string} key cache key
+   * @param {any} value cache value
+   */
+  async cache(key: string, value?: any) {
+    if (!value) {
+      const valueString = await this.app.redis.get(key);
+      return JSON.parse(valueString);
+    } else {
+      const valueString = JSON.stringify(value);
+      console.log(value);
+      await this.app.redis.set(key, valueString);
+    }
   },
 };
 

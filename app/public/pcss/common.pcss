@@ -151,7 +151,7 @@ ul {
 .article-title {
   text-align: left;
   font-size: 30px;
-  margin: 5px 0;
+  margin: 5px 0 0 20px;
   & a {
     color: var(--activeColor);
   }
@@ -160,9 +160,9 @@ ul {
   color: #999;
   margin: 1.2em 0;
   text-align: center;
+  font-size: 12px;
   & span {
     color: #999;
-    font-size: 12px;
     &:not(:last-of-type)::after {
       content: '|';
       margin-left: 5px;
@@ -211,59 +211,75 @@ ul {
     & #articleTitle {
       font-size: 30px;
       line-height: 42px;
-      margin-top: 15px;
-      margin-bottom: 20px;
+      margin: 15px 0 20px 0;
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
     }
     & .article-content {
       margin-top: 60px;
     }
   }
-  & .aside {
-    width: 20%;
-    float: right;
-    & .toc {
-      border-left: 1px solid var(--borderColor);
-      position: fixed;
-      width: 250px;
-      & .toc-header {
-        font-weight: bold;
-        font-size: 16px;
-        padding: 8px 12px;
-        color: #333;
-        line-height: 1.5;
+}
+.aside {
+  width: 20%;
+  float: right;
+  & .toc {
+    border-left: 1px solid var(--borderColor);
+    position: fixed;
+    width: 250px;
+    & .toc-header {
+      font-weight: bold;
+      font-size: 16px;
+      padding: 8px 12px;
+      color: #333;
+      line-height: 1.5;
+    }
+    & .toc-body {
+      position:relative;
+      & #highlight-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 28px;
+        z-index: 1;
+        list-style: none;
+        background: #f3f3f3;
+        border-left: 2px solid var(--activeColor);
+        transition: all .2s ease;
       }
-      & .toc-body {
-        position:relative;
-        & #highlight-header {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
+      & .articleIndex {
+        padding: 0 15px;
+        list-style: square;
+        position: relative;
+        font-size: 14px;
+        line-height: 2;
+        z-index: 2;
+        & li {
           height: 28px;
-          z-index: 1;
-          list-style: none;
-          background: #f3f3f3;
-          border-left: 2px solid var(--activeColor);
-          transition: all .2s ease;
-        }
-        & .articleIndex {
-          padding: 0 15px;
-          list-style: square;
-          position: relative;
-          font-size: 14px;
-          line-height: 2;
-          z-index: 2;
-          & li {
-            height: 28px;
-            &.active , &.active a{
-              color: var(--activeColor);
-            }
-            &:hover {
-              text-decoration: underline;
-            }
+          &.active , &.active a{
+            color: var(--activeColor);
+          }
+          &:hover {
+            text-decoration: underline;
           }
         }
+      }
+    }
+  }
+}
+
+.archive {
+  margin-top: 60px;
+  & .post-item {
+    margin: 20px 25px;
+    list-style: square;
+    &:hover {
+      color: var(--markColor);
+    }
+    & a {
+      &:hover {
+        color: var(--activeColor);
+        border-bottom: 1px solid var(-activeColor);
       }
     }
   }

@@ -12,25 +12,31 @@ class ArticleService extends Service {
     const articleList = await this.findAllByPage(pageSize, page, {
       status: 'public',
     });
-    return this.handleArticleList(articleList);
+    return articleList;
   }
 
   public handleArticleList(articleList: Article[]): Article[] {
+    const { getBrief, markdown } = this.ctx.service.common;
     articleList.forEach(article => {
-      article = this.handleArticle(article);
+      article = this.handleArticle(article, 'list');
+      const brief = getBrief(article.text);
+      const { html } = markdown(brief);
+      article.html = html;
     });
     return articleList;
   }
 
-  public handleArticle(articleRaw) {
-    const { getBrief, markdown } = this.ctx.service.common;
-    const brief = getBrief(articleRaw.text);
-    const { html, toc } = markdown(articleRaw.text);
+  public handleArticle(articleRaw, type?: string) {
+    if (!type || type !== 'list') {
+      const { getBrief, markdown } = this.ctx.service.common;
+      const brief = getBrief(articleRaw.text);
+      const { html, toc } = markdown(articleRaw.text);
+      articleRaw.html = html;
+      articleRaw.toc = toc;
+      articleRaw.brief = brief;
+    }
     articleRaw.link = articleRaw.slug || `id/${articleRaw.aid}`;
     articleRaw.contentLength = articleRaw.text.length;
-    articleRaw.text = html;
-    articleRaw.toc = toc;
-    articleRaw.brief = brief;
     return articleRaw;
   }
   public generateArticleCommentsNode(comments) {
@@ -53,7 +59,7 @@ class ArticleService extends Service {
     const moment = require('moment');
     articleList.forEach(v => {
       v.link = v.slug || `id/${v.aid}`;
-      v.time = moment(v.created).format('MMM Do');
+      v.time = moment(v.created).format('MMM Do,YYYY');
     });
     const archive = _.chain(articleList).groupBy(v => moment(v.created).format('YYYY')).value();
     const result = Object.entries(archive).reduce((result: any[], current) => {
@@ -62,7 +68,7 @@ class ArticleService extends Service {
         key,
         value,
       };
-      result.push(single);
+      result.unshift(single);
       return result;
     }, []);
     return result;

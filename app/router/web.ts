@@ -13,6 +13,7 @@ export default (app: Application) => {
   router.get('/article/:slug', controller.article.index);
   router.get('/random/article', controller.article.random);
   router.get('/search', controller.article.search);
+  router.post('/article/comment', controller.article.addComment);
 
   // archive page
   router.get('/archive', controller.archive.index);

@@ -1,16 +1,32 @@
 <%- include('components/header.ejs') %>
   <div class="wrap">
     <main class="container">
-        <div class="archive">
+        <div class="archive article">
             <% archive.forEach(function(a) {%>
-                <h2 class="archive-year"><%=a['key']%></h2>      
+                <h2 class="archive-year" id="<%=a['key']%>"><%=a['key']%>年</h2>
+                <ul>
                 <%a['value'].forEach(function(item) {%>
-                    <div class="post-item">
-                        <div class="post-info"><%=item.time%></div>
+                    <li class="post-item">
                         <a href="/article/<%=item.link%>" class="post-title-link"><%=item.title%></a>
-                    </div>
+                        <span class="post-info">(<%=item.time%>)</span>
+                    </li>
                 <% })%>
+                </ul>
             <% })%>
+        </div>
+        <div class="aside">
+            <div class="toc">
+                <div class="toc-header">Year's List</div>
+                <div class="toc-body">
+                    <ul class="articleIndex">
+                    <% archive.forEach(function(a) {%>
+                    <li class="toc-list">
+                        <a href="#<%=a['key']%>"> <%=a['key']%>年 </a>
+                    </li>
+                    <% }) %>
+                    </ul>
+                </div>
+            </div>
         </div>
     </main>
   </div>

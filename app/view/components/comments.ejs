@@ -1,57 +1,16 @@
 
-<form class="post-comment">
+<form class="post-comment" id="comment-form">
   <ul class="comment-container">
       <%-commentNode%>
   </ul>
   <div class="comment-form">
-      <input type="text" placeholder="name(*)" id="comment-name"> 
-      <input type="text" placeholder="email(*)" id="comment-email">
-      <input type="text" placeholder="site" id="comment-site">
+      <input type="text" placeholder="name(*)" name="name"> 
+      <input type="text" placeholder="email(*)" name="email">
+      <input type="text" placeholder="site" name="site">
   </div>
   <div class="text-area">
       <textarea name="content" id="comment-content"></textarea>
   </div>
-  <button class="submit-comment" type="button">发表</button>
+  <button id="submit-comment" type="button">发表</button>
   <input type="hidden" id="pid">
 </form>
-<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script>
-  var replyMails = [];
-  function reply(id, name) {
-      $('#pid').val(id);
-      $('#comment-content').val('@'+name+' '+$('#comment-content').val());
-      $('#comment-content').focus();
-  }
-  var aid = "<%=article.aid%>";
-
-  $('.submit-comment').click(function() {
-      var name = $('#comment-name').val();
-      var email = $('#comment-email').val();
-      var site = $('#comment-site').val();
-      var content = $('#comment-content').val();
-      var pid = $('#pid').val();
-      if(name && email) {
-          $.ajax({
-              url: '/comment/add',
-              data: {
-                  name: name,
-                  email: email,
-                  site: site,
-                  content: content,
-                  replyMails: [],
-                  type: 'article',
-                  identity: aid,
-                  pid: pid || null
-              },
-              method: 'POST',
-              success: function(res) {
-                  if(!res.errno) {
-                      window.location.reload();
-                  } else {
-
-                  }
-              }
-          })
-      }
-  })
-</script>

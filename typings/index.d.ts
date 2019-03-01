@@ -4,6 +4,8 @@ export interface Article {
   created: string;
   modified: string;
   text: string;
+  html?: string;
+  brief?: string;
   order: number;
   authorId: number;
   status: string;

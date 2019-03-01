@@ -14,14 +14,24 @@ class ArticleController extends Controller {
       });
     }
     const article = ctx.service.article.handleArticle(articleRaw);
+    const title = article.title || '文章详情';
     const commentNode = ctx.service.article.generateArticleCommentsNode(article.comments);
+    const relativeArticle = ctx.service.article.findAllByPage(5, 1, { categoryId: article.category.id });
     await ctx.render('article.html', {
       article,
       category: article.category,
       commentNode,
+      relativeArticle,
       tags: article.tags,
-      title: article.title || '文章详情',
+      title,
     });
+  }
+  async addComment() {
+    const { ctx } = this;
+    const { aid, content } = ctx.request.body;
+      // TODO add comment
+    const article = await ctx.model.Article.findByWhere({ aid });
+    await ctx.service.mail.sendNewComment('jsjhlk@qq.com', article, content);
   }
   async random() {
     // const {}

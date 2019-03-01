@@ -1,4 +1,40 @@
 
+.post-comment {
+  border-top: 1px solid #ddd;
+  margin-top: 100px;
+  & .comment-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    & input {
+      width: 220px;
+      font-size: 16px;
+      padding: 5px;
+      outline: 0;
+    }
+  }
+  & .text-area {
+    & textarea {
+      resize: none;
+      width: 100%;
+      margin: 10px 0;
+      height: 150px;
+      font-size: 16px;
+      outline: 0;
+      padding: 15px;
+    }
+  }
+  & button {
+    width: 80px;
+    height: 30px;
+    float: right;
+    margin-right: 15px;
+    background: none;
+    border: 2px solid #42b983;
+
+  }
+}
+
 .comment-container {
   margin-top: 20px;
   & .comment-item {

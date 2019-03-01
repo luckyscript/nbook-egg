@@ -1,4 +1,6 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import * as path from 'path';
+import * as os from 'os';
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
@@ -14,6 +16,7 @@ export default (appInfo: EggAppInfo) => {
 
   // add your egg config in here
   config.middleware = [
+    'handleError',
     'local',
     'authUser',
   ];
@@ -52,6 +55,21 @@ export default (appInfo: EggAppInfo) => {
       pass: '****',
     },
     secure: true,
+  };
+
+  config.adminInfo = {
+    name: '萧迹',
+    mail: 'jsjhlk@qq.com',
+  };
+
+  config.multipart = {
+    mode: 'file',
+    tmpdir: path.join(os.tmpdir(), 'egg-multipart-tmp', appInfo.name),
+    cleanSchedule: {
+      // run tmpdir clean job on every day 04:30 am
+      // cron style see https://github.com/eggjs/egg-schedule#cron-style-scheduling
+      cron: '0 30 4 * * *',
+    },
   };
 
   config.session = {

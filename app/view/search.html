@@ -1,0 +1,22 @@
+<%- include components/header.ejs%>
+<div class="wrap">
+  <main class="container">
+      <div class="article">
+        <h5>搜索结果：</h5>
+        <% if(articleList.length === 0) {%>
+          <h2>你搜索的内容博客暂时找不到哦，因为机器性能不够，目前不支持全文搜索</h2>
+        <%}%>
+        <ul>
+        <%articleList.forEach(function(item) {%>
+            <li class="post-item">
+                <a href="/article/<%=item.link%>" class="post-title-link"><%=item.title%></a>
+                <span class="post-info">(<%=item.created%>)</span>
+            </li>
+        <% })%>
+        </ul>
+      </div>
+  </main>
+</div>
+<%- include footer.html%>
+</body>
+</html>

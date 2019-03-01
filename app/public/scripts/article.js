@@ -20,7 +20,6 @@ window.onload = function() {
     window.setTimeout(function() {
       let scrollTop = document.documentElement.scrollTop;
       const activeIndex = headerNodesOffsetTop.map(v => v - scrollTop).filter(v => v <= 0).length - 1;
-      console.log(activeIndex);
       setActiveHeader(activeIndex);
       flag = false;
     }, 10);

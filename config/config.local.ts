@@ -2,6 +2,7 @@ import { EggAppConfig, PowerPartial } from 'egg';
 
 export default () => {
   const config: PowerPartial<EggAppConfig> = {};
+  config.site = 'http://dev.luckyscript.me:7001';
   config.sequelize = {
     dialect: 'mysql',
     host: 'localhost',

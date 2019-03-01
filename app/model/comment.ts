@@ -12,7 +12,17 @@ const CommentModel = app => {
   }, {
     timestamps: false,
   });
-
+  Comment.findByIds = async function(ids) {
+    const Op = app.Sequelize.Op;
+    const comments = await this.findAll({
+      where: {
+        id: {
+          [Op.in]: ids,
+        },
+      },
+    });
+    return comments;
+  };
   return Comment;
 };
 

@@ -41,9 +41,8 @@ class ArticleService extends Service {
   }
   public generateArticleCommentsNode(comments) {
     const { ctx } = this;
-    const { generateCommentTree, generateCommentNode } = ctx.service.comment;
-    const tree = generateCommentTree(comments);
-    return generateCommentNode(tree);
+    const tree = ctx.service.comment.generateCommentTree(comments);
+    return ctx.service.comment.generateCommentNode(tree);
   }
   public async findAllByArchive() {
     const { ctx } = this;

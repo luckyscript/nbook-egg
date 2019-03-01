@@ -8,7 +8,6 @@ class LinkController extends Controller {
     const { ctx } = this;
     const page = ctx.params.page || 1;
     const pageSize = 15;
-    console.log('inhere');
     const linksData = await ctx.model.Link.findByPage(page, pageSize);
     const moment = require('moment');
     linksData.forEach(v => {

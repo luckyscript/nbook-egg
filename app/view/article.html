@@ -61,17 +61,26 @@
   submitBtn.addEventListener('click', () => {
     // TODO 表单校验
     const formdata = new FormData(formNode);
-    formdata.append('aid', window.aid);
     const content = formdata.get('content');
+    const name = formdata.get('name');
+    const email = formdata.get('email');
+    const site = formdata.get('site');
     $.ajax({
       url: '/article/comment',
       type: 'POST',
       headers: {
         'x-csrf-token': csrfToken,
       },
-      processData: false,
-      contentType: false,
-      data: formdata,
+      dataType: 'json',
+      data: {
+        aid: window.aid,
+        pid: window.pid,
+        replys,
+        content,
+        name,
+        email,
+        site,
+      },
       success: function (data) {
         
       }

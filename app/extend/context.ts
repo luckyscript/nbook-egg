@@ -73,7 +73,6 @@ const context: any = {
       return JSON.parse(valueString);
     } else {
       const valueString = JSON.stringify(value);
-      console.log(value);
       await this.app.redis.set(key, valueString);
     }
   },

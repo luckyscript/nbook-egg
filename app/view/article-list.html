@@ -23,12 +23,5 @@
         <%})%>
     </ul>
 
-    <ul class="page">
-        <%if(pageInfo.currentPage != 1){%>
-          <li><a href="/page/<%=Number(pageInfo.currentPage)-1%>">PREV</a></li>
-        <%}%>
-        <%if(pageInfo.currentPage != pageInfo.totalPage){%>
-          <li><a href="/page/<%=Number(pageInfo.currentPage)+1%>">NEXT</a></li>
-        <%}%>
-    </ul>
+    <% include components/pagination.ejs %>
 </main>

@@ -36,8 +36,7 @@
 }
 
 .container {
-  width: 1400px;
-  padding-left: 100px;
+  width: 1200px;
   margin: 30px auto;
   display: flex;
   justify-content: center;
@@ -286,7 +285,7 @@
       }
     }
   }
-  & .friend-link {
+  & .friend-link,& .tag {
     min-height: 200px;
     margin: 50px 0;
     & ul {
@@ -294,5 +293,37 @@
       padding-left: 12px;
     }
     border-bottom: 1px solid var(--borderColor);
+  }
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  user-select: none;
+  & li {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--borderColor);
+    margin: 4px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 4px;
+    & a {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+    }
+    &:hover {
+      border: 1px solid var(--activeColor);
+      & a {
+        color: var(--activeColor);
+      }
+    }
+    &.active {
+      border: 1px solid var(--markColor);
+      & a {
+        color: var(--markColor);
+      }
+    }
   }
 }

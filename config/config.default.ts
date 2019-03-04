@@ -1,6 +1,7 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 import * as path from 'path';
 import * as os from 'os';
+import * as fs from 'fs';
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
@@ -104,6 +105,10 @@ export default (appInfo: EggAppInfo) => {
         url: '/link',
       },
     ],
+  };
+
+  config.siteFile = {
+    '/favicon.ico': fs.readFileSync(path.join(__dirname, '../', '/favicon.ico')),
   };
 
   // the return config will combines to EggAppConfig

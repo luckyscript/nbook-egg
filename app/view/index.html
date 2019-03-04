@@ -2,14 +2,12 @@
     <div class="container">
       <% include article-list.html %>
       <aside class="aside">
-      <% include components/friend-link.ejs %>
-      <% include components/tag.ejs %>
+        <% include components/friend-link.ejs %>
+        <% include components/tag.ejs %>
       </aside>
     </div>
   </div>
 <%- include('footer.html') %>
-<%if (userInfo) {%>
-<div><%= userInfo.name%></div>
-<%}%>
+
 </body>
 </html>

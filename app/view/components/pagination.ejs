@@ -1,0 +1,26 @@
+<ul class="pagination">
+  <li class="<%=pageInfo.currentPage === 1 ? 'disable' : ''%>"><</li>
+
+  <li class="<%= pageInfo.currentPage === 1 ? 'active': ''%>"><a href="/">1</a></li>
+  
+  <% if (pageInfo.currentPage - 2 > 1) {%>
+    <span>•••</span>
+  <%}%>
+
+  <% for (var i = 2; i < pageInfo.totalPage; i++) {%>
+    <% if (Math.abs(i - pageInfo.currentPage) < 3) {%>
+      <li class="<%= pageInfo.currentPage == i ? 'active': ''%>"><a href="/page/<%=i%>"><%=i%></a></li>
+    <%}%>
+  <%}%>
+  
+  <% if (pageInfo.totalPage - 2 > pageInfo.currentPage) {%>
+    <span>•••</span>
+  <%}%>
+  
+  <% if (pageInfo.totalPage > 1) {%>
+    <li class="<%= pageInfo.currentPage === pageInfo.totalPage ? 'active': ''%>"><a href="/page/<%=pageInfo.totalPage%>"><%=pageInfo.totalPage%></a></li>
+  <%}%>
+  <li class="<%=pageInfo.currentPage === pageInfo.totalPage? 'disable' : ''%>">
+    <a href="/page/<%=pageInfo.currentPage + 1%>">></a>
+  </li> 
+</ul>

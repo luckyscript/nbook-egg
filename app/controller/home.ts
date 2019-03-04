@@ -32,7 +32,8 @@ export default class HomeController extends Controller {
     }
 
     const pageInfo: PageInfo = {
-      totalPage: Math.ceil(totalCount / pageSize),
+      // totalPage: Math.ceil(totalCount / pageSize),
+      totalPage: 30,
       currentPage: page,
     };
 

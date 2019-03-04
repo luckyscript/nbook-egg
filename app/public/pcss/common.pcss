@@ -31,16 +31,13 @@
   color: var(--fontColor);
 }
 
-ul {
-  list-style: none;
-}
-
 .wrap {
   width: 100%;
 }
 
 .container {
-  width: 1200px;
+  width: 1400px;
+  padding-left: 100px;
   margin: 30px auto;
   display: flex;
   justify-content: center;
@@ -49,6 +46,9 @@ ul {
 .main ,.article {
   width: 900px;
   padding: 0 20px;
+  & ul {
+    list-style: none;
+  }
 }
 
 .aside {
@@ -219,20 +219,40 @@ ul {
     }
   }
 }
+
+.archive {
+  margin-top: 60px;
+  & .post-item {
+    margin: 20px 25px;
+    list-style: square;
+    &:hover {
+      color: var(--markColor);
+    }
+    & a {
+      &:hover {
+        color: var(--activeColor);
+        border-bottom: 1px solid var(-activeColor);
+      }
+    }
+  }
+}
+
+/* aside style*/
+
 .aside {
   width: 20%;
   float: right;
+  & .title {
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px 12px;
+    color: #333;
+    line-height: 1.5;
+  }
   & .toc {
     border-left: 1px solid var(--borderColor);
     position: fixed;
     width: 250px;
-    & .toc-header {
-      font-weight: bold;
-      font-size: 16px;
-      padding: 8px 12px;
-      color: #333;
-      line-height: 1.5;
-    }
     & .toc-body {
       position:relative;
       & #highlight-header {
@@ -266,21 +286,13 @@ ul {
       }
     }
   }
-}
-
-.archive {
-  margin-top: 60px;
-  & .post-item {
-    margin: 20px 25px;
-    list-style: square;
-    &:hover {
-      color: var(--markColor);
+  & .friend-link {
+    min-height: 200px;
+    margin: 50px 0;
+    & ul {
+      list-style: square;
+      padding-left: 12px;
     }
-    & a {
-      &:hover {
-        color: var(--activeColor);
-        border-bottom: 1px solid var(-activeColor);
-      }
-    }
+    border-bottom: 1px solid var(--borderColor);
   }
 }

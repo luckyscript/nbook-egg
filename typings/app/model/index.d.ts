@@ -7,6 +7,7 @@ import ExportCategory from '../../../app/model/category';
 import ExportCategoryConfig from '../../../app/model/category_config';
 import ExportChat from '../../../app/model/chat';
 import ExportComment from '../../../app/model/comment';
+import ExportConfig from '../../../app/model/config';
 import ExportLink from '../../../app/model/link';
 import ExportTag from '../../../app/model/tag';
 import ExportTagConfig from '../../../app/model/tag_config';
@@ -19,6 +20,7 @@ declare module 'sequelize' {
     CategoryConfig: ReturnType<typeof ExportCategoryConfig>;
     Chat: ReturnType<typeof ExportChat>;
     Comment: ReturnType<typeof ExportComment>;
+    Config: ReturnType<typeof ExportConfig>;
     Link: ReturnType<typeof ExportLink>;
     Tag: ReturnType<typeof ExportTag>;
     TagConfig: ReturnType<typeof ExportTagConfig>;

@@ -3,16 +3,16 @@
     <% if (pageInfo.currentPage == 1) {%>
       <span><</span>
     <%} else {%>
-      <a href="/page/1"><</a>
+      <a href="<%=pageLink%>/page/1"><</a>
     <%}%>
   </li>
 
-  <li class="<%= pageInfo.currentPage == 1 ? 'active': ''%>"><a href="/">1</a></li>
+  <li class="<%= pageInfo.currentPage == 1 ? 'active': ''%>"><a href="<%=pageLink%>/">1</a></li>
   
   <% if (pageInfo.currentPage - 2 > 1) {%>
     <div title="向前5页">
       <span class="action-dobule-left">
-        <a href="/page/<%=Math.max(parseInt(pageInfo.currentPage) - 4, 1)%>"><<</a>
+        <a href="<%=pageLink%>/page/<%=Math.max(parseInt(pageInfo.currentPage) - 4, 1)%>"><<</a>
       </span>
       <span class="item-ellipsis">•••</span>
     </div>
@@ -20,27 +20,27 @@
 
   <% for (var i = 2; i < pageInfo.totalPage; i++) {%>
     <% if (Math.abs(i - pageInfo.currentPage) < 3) {%>
-      <li class="<%= pageInfo.currentPage == i ? 'active': ''%>"><a href="/page/<%=i%>"><%=i%></a></li>
+      <li class="<%= pageInfo.currentPage == i ? 'active': ''%>"><a href="<%=pageLink%>/page/<%=i%>"><%=i%></a></li>
     <%}%>
   <%}%>
   
   <% if (pageInfo.totalPage - 2 > pageInfo.currentPage) {%>
     <div title="向后5页">
       <span class="action-dobule-right">
-        <a href="/page/<%=Math.min(parseInt(pageInfo.currentPage) + 4, pageInfo.totalPage)%>">>></a>
+        <a href="<%=pageLink%>/page/<%=Math.min(parseInt(pageInfo.currentPage) + 4, pageInfo.totalPage)%>">>></a>
       </span>
       <span class="item-ellipsis">•••</span>
     </div>
   <%}%>
   
   <% if (pageInfo.totalPage > 1) {%>
-    <li class="<%= pageInfo.currentPage == pageInfo.totalPage ? 'active': ''%>"><a href="/page/<%=pageInfo.totalPage%>"><%=pageInfo.totalPage%></a></li>
+    <li class="<%= pageInfo.currentPage == pageInfo.totalPage ? 'active': ''%>"><a href="<%=pageLink%>/page/<%=pageInfo.totalPage%>"><%=pageInfo.totalPage%></a></li>
   <%}%>
   <li class="<%=pageInfo.currentPage == pageInfo.totalPage? 'disable' : ''%>">
       <% if (pageInfo.currentPage == pageInfo.totalPage) {%>
         <span>></span>
       <%} else {%>
-        <a href="/page/<%=parseInt(pageInfo.currentPage) + 1%>">></a>
+        <a href="<%=pageLink%>/page/<%=parseInt(pageInfo.currentPage) + 1%>">></a>
       <%}%>
   </li> 
 </ul>

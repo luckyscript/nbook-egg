@@ -243,7 +243,7 @@
   float: right;
   & .title {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
     padding: 8px 12px;
     color: #333;
     line-height: 1.5;
@@ -291,6 +291,15 @@
     & ul {
       list-style: square;
       padding-left: 12px;
+      & li {
+        font-size: 14px;
+        margin: 5px 0;
+        &:hover {
+          & a {
+            color: var(--activeColor);
+          }
+        }
+      }
     }
     border-bottom: 1px solid var(--borderColor);
   }
@@ -309,7 +318,7 @@
     line-height: 30px;
     text-align: center;
     &>span {
-      color: var(--borderColor);
+      color: var(--greyColor);
     }
     & .action-dobule-left, & .action-dobule-right {
       display: none;
@@ -329,7 +338,7 @@
   & li {
     width: 32px;
     height: 32px;
-    border: 1px solid var(--borderColor);
+    border: 1px solid var(--greyColor);
     margin: 8px;
     cursor: pointer;
     text-align: center;
@@ -337,9 +346,9 @@
     border-radius: 4px;
     &.disable {
       cursor: not-allowed;
-      border: 1px solid var(--borderColor) !important;
+      border: 1px solid var(--greyColor) !important;
       & span {
-        color: var(--borderColor);
+        color: var(--greyColor);
       }
     }
     & a {

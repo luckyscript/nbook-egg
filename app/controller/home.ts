@@ -21,6 +21,7 @@ export default class HomeController extends Controller {
       await ctx.cache(`articleList#page${page}`, articleList);
     }
     articleList = await ctx.service.article.handleArticleList(articleList);
+
     let totalCount = await ctx.cache('totalCount');
     if (!totalCount) {
       totalCount = await ctx.model.Article.count({
@@ -36,9 +37,16 @@ export default class HomeController extends Controller {
       currentPage: page,
     };
 
+    const tags = await ctx.model.Tag.findAll();
+
+    const friendLinks = await ctx.model.Config.getFriendLinks();
+
     return await ctx.render('index.html', {
       articleList,
       pageInfo,
+      pageLink: '/',
+      tags,
+      friendLinks,
     });
   }
 }

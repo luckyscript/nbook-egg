@@ -13,16 +13,16 @@ class LinkController extends Controller {
     linksData.forEach(v => {
       v.date = moment(v.date).format('YYYY-MM-DD');
     });
+    const total = await ctx.model.Link.count();
     const pageInfo: PageInfo = {
-      totalPage: Math.ceil(15 / 15),
-      currentPage: 1,
+      totalPage: Math.ceil(total / 15),
+      currentPage: page,
     };
     await ctx.render('link.html', {
       title: '链接',
-      links: {
-        data: linksData,
-        pageInfo,
-      },
+      pageInfo,
+      pageLink: '/link',
+      links:  linksData,
     });
   }
 

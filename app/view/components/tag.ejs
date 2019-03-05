@@ -1,7 +1,8 @@
 <div class="tag">
   <div class="title">Tags</div>
   <ul>
-    <li>tag</li>
-    <li>tag</li>
+    <% tags.forEach(function(tag) {%>
+      <li><a href="/tag/<%=tag.name%>"><%=tag.name%></a></li>
+    <%})%>
   </ul>
 </div>

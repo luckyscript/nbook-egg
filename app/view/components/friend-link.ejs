@@ -1,6 +1,8 @@
 <div class="friend-link">
   <div class="title">Friend Links</div>
   <ul class="link-list">
-    <li>Huspy's Blog</li>
+    <% friendLinks.forEach(function(link) {%>
+      <li><a href="<%=link.url%>" nofollow><%=link.name%></a></li>
+    <%})%>
   </ul>
 </div>

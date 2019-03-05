@@ -19,6 +19,7 @@ export default (app: Application) => {
 
   // link page
   router.get('/link', controller.link.index);
+  router.get('/link/page/:page', controller.link.index);
   router.get('/link/add', controller.link.add);
   router.get('/link/to/:uuid', controller.link.to);
   router.post('/link/submit', controller.link.submit);

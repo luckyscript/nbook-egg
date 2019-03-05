@@ -20,6 +20,7 @@ export default (appInfo: EggAppInfo) => {
     'handleError',
     'local',
     'authUser',
+    'apiAuthUser',
   ];
 
   config.redis = {

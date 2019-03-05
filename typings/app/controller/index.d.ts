@@ -13,6 +13,7 @@ import ExportTest from '../../../app/controller/test';
 import ExportTweet from '../../../app/controller/tweet';
 import ExportUser from '../../../app/controller/user';
 import ExportApiArticle from '../../../app/controller/api/article';
+import ExportApiUser from '../../../app/controller/api/user';
 
 declare module 'egg' {
   interface IController {
@@ -28,6 +29,7 @@ declare module 'egg' {
     user: ExportUser;
     api: {
       article: ExportApiArticle;
+      user: ExportApiUser;
     }
   }
 }

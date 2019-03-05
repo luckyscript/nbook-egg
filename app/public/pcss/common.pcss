@@ -299,15 +299,49 @@
 .pagination {
   list-style: none;
   display: flex;
+  justify-content: center;
   user-select: none;
+  &>div {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    margin: 8px;
+    line-height: 30px;
+    text-align: center;
+    &>span {
+      color: var(--borderColor);
+    }
+    & .action-dobule-left, & .action-dobule-right {
+      display: none;
+      & a {
+        color: var(--activeColor);
+      }
+    }
+    &:hover {
+      & .item-ellipsis {
+        display: none;
+      }
+      & .action-dobule-left, & .action-dobule-right {
+        display: block;
+      }
+    }
+  }
   & li {
     width: 32px;
     height: 32px;
     border: 1px solid var(--borderColor);
-    margin: 4px;
+    margin: 8px;
+    cursor: pointer;
     text-align: center;
     line-height: 30px;
     border-radius: 4px;
+    &.disable {
+      cursor: not-allowed;
+      border: 1px solid var(--borderColor) !important;
+      & span {
+        color: var(--borderColor);
+      }
+    }
     & a {
       width: 100%;
       height: 100%;

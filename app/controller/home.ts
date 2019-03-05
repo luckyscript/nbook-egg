@@ -15,10 +15,10 @@ export default class HomeController extends Controller {
       title,
     });
 
-    let articleList = await ctx.cache('articleList');
+    let articleList = await ctx.cache(`articleList#page${page}`);
     if (!articleList || !articleList.length) {
       articleList = await ctx.service.article.findAllPublicByPage(pageSize, page);
-      await ctx.cache('articleList', articleList);
+      await ctx.cache(`articleList#page${page}`, articleList);
     }
     articleList = await ctx.service.article.handleArticleList(articleList);
     let totalCount = await ctx.cache('totalCount');
@@ -32,8 +32,7 @@ export default class HomeController extends Controller {
     }
 
     const pageInfo: PageInfo = {
-      // totalPage: Math.ceil(totalCount / pageSize),
-      totalPage: 30,
+      totalPage: Math.ceil(totalCount / pageSize),
       currentPage: page,
     };
 

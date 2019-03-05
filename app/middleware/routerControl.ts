@@ -1,9 +1,9 @@
-const routerControl = () => {
+const routerControl = options => {
   return async (ctx, next) => {
-    if (ctx.params.page && ctx.params.page <= 1 || ctx.params.page === 0) {
-      ctx.redirect('/');
+    if (ctx.params.page && ctx.params.page <= 1) {
+      return ctx.redirect(options.path || '/');
     }
-    await next();
+    return await next();
   };
 };
 

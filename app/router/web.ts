@@ -2,11 +2,10 @@ import { Application } from 'egg';
 
 export default (app: Application) => {
   const { controller, router, middleware } = app;
-  const routerControl = middleware.routerControl();
 
   // index page
   router.get('/', controller.home.index);
-  router.get('/page/:page', routerControl, controller.home.index);
+  router.get('/page/:page', middleware.routerControl('/'), controller.home.index);
 
   // article page
   router.get('/article/id/:id', controller.article.index);
@@ -27,7 +26,7 @@ export default (app: Application) => {
 
   // tweet page
   router.get('/tweet', controller.tweet.index);
-  router.get('/tweet/page/:page', controller.tweet.index);
+  router.get('/tweet/page/:page', middleware.routerControl('/tweet'), controller.tweet.index);
 
   // user api
   router.post('/login', controller.user.login);

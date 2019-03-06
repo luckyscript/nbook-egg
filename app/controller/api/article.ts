@@ -11,7 +11,7 @@ class ArticleApiController extends Controller {
     const where: any = {};
     if (title) {
       where.title = {
-        [app.Sequelize.Op.like]: `%${title}%`
+        [app.Sequelize.Op.like]: `%${title}%`,
       };
     }
     if (category) {

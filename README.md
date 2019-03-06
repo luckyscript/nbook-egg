@@ -11,6 +11,7 @@
 ## TODO-BE
 - [ ] API controllers
 - [ ] write test code
+- [ ] sequlieze因为目前是typescript，一些api不支持导致了controller或者service里面的多余代码
 
 ### Development
 

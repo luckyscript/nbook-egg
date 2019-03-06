@@ -5,15 +5,22 @@ class ArticleApiController extends Controller {
    * 获取文章列表
    */
   public async getArticleList () {
-    const { ctx } = this;
-    const { pageSize = 15, page = 1 } = ctx.request.body;
+    const { ctx, app } = this;
+    const { pageSize = 15, currentPage = 1 } = ctx.request.body;
     const { title, category } = ctx.request.body;
-    const where = {
-      title,
-      category,
-    };
-    const resultDTO = await ctx.service.article.findAllByPage(pageSize, page, where);
-    ctx.body = resultDTO;
+    const where: any = {};
+    if (title) {
+      where.title = {
+        [app.Sequelize.Op.like]: `%${title}%`
+      };
+    }
+    if (category) {
+      where.categoryId = category;
+    }
+    const resultDTO = await ctx.service.article.findAllByPage(pageSize, currentPage, where);
+    const totalSize = await ctx.model.Article.count({ where });
+    const pageInfo = { pageSize, currentPage, totalSize };
+    ctx.body = ctx.page(resultDTO, pageInfo);
   }
   /**
    * 获取文章详情

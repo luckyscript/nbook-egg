@@ -54,6 +54,15 @@ const context: any = {
       data,
     };
   },
+  page(data, pageInfo) {
+    return {
+      success: true,
+      errMsg: '',
+      errCode: 0,
+      data,
+      ...pageInfo,
+    };
+  },
   error(errMsg = '', errCode = 1, data = null) {
     return {
       success: false,

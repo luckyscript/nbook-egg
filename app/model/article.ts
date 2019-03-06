@@ -4,7 +4,7 @@ import TagModel from './tag';
 import TagConfigModel from './tag_config';
 
 const ArticleModel = app => {
-  const { STRING, DATE, INTEGER } = app.Sequelize;
+  const { STRING, INTEGER } = app.Sequelize;
   const Comment = CommentModel(app);
   const Category = CategoryModel(app);
   const Tag = TagModel(app);
@@ -12,8 +12,8 @@ const ArticleModel = app => {
   const Article = app.model.define('article', {
     aid: { type: INTEGER(11), primaryKey: true, autoIncrement: true },
     title: STRING(200),
-    created: DATE,
-    modified: DATE,
+    created: STRING(20),
+    modified: STRING(20),
     text: STRING,
     order: INTEGER(10),
     authorId: INTEGER(10),

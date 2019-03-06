@@ -5,6 +5,11 @@ class ArticleService extends Service {
   public async findAllByPage(pageSize, page, where?: any) {
     const { ctx } = this;
     const articleList = await ctx.model.Article.findByPage(pageSize, page, where);
+    const moment = require('moment');
+    articleList.forEach(v => {
+      v.set('created', moment(v.created).format('YYYY-MM-DD'));
+      v.set('modified', moment(v.modified).format('YYYY-MM-DD HH:mm:ss'));
+    });
     return articleList;
   }
 

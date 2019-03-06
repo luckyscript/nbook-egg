@@ -13,6 +13,7 @@ import ExportTest from '../../../app/controller/test';
 import ExportTweet from '../../../app/controller/tweet';
 import ExportUser from '../../../app/controller/user';
 import ExportApiArticle from '../../../app/controller/api/article';
+import ExportApiCategory from '../../../app/controller/api/category';
 import ExportApiUser from '../../../app/controller/api/user';
 
 declare module 'egg' {
@@ -29,6 +30,7 @@ declare module 'egg' {
     user: ExportUser;
     api: {
       article: ExportApiArticle;
+      category: ExportApiCategory;
       user: ExportApiUser;
     }
   }

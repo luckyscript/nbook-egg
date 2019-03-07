@@ -7,9 +7,11 @@ export default (app: Application) => {
 
   // article controller
   router.post('/api/article/getArticleList', controller.api.article.getArticleList);
+  router.post('/api/article/addArticle', controller.api.article.addArticle);
 
   // category controller
   router.post('/api/category/getCategoryList', controller.api.category.getCategoryList);
+  router.post('/api/category/getCategoryTree', controller.api.category.getCategoryTree);
 
   // render controller( only dev)
   router.get('/admin', controller.admin.index);

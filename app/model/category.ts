@@ -1,5 +1,5 @@
 const categoryModel = app => {
-  const { STRING, INTEGER } = app.Sequelize;
+  const { STRING, INTEGER, VIRTUAL } = app.Sequelize;
 
   const Category = app.model.define('category', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
@@ -7,6 +7,7 @@ const categoryModel = app => {
     name: STRING(20),
     count: INTEGER,
     ename: STRING(20),
+    children: VIRTUAL,
   }, {
     timestamps: false,
   });

@@ -45,32 +45,42 @@ class ArticleApiController extends Controller {
       categoryId,
       status,
     } = ctx.request.body;
+    if (!slug) {
+      ctx.status = 400;
+      return ctx.body = ctx.error('slug必填');
+    }
     const slugCount = await ctx.model.Article.count({
       where: {
         slug,
       },
     });
     if (slugCount) {
-      return ctx.body = ctx.fail('slug重复，请修改');
+      ctx.status = 400;
+      return ctx.body = ctx.error('slug重复，请修改');
     }
     try {
       const { id: authorId } = ctx.user;
+      const moment = require('moment');
+      const modified = moment().format('YYYY-MM-DD HH:mm:ss');
       const aid = await ctx.model.Article.upsert({
         title,
         created,
+        modified,
         slug,
         categoryId,
         status: status ? 'public' : 'private',
         authorId,
       });
-      const tagsConfig = tags.map(tag_id => ({
-        tag_id,
-        aid,
-      }));
-      await ctx.model.TagConfig.blukCreate(tagsConfig);
-
+      if (tags && tags.length) {
+        const tagsConfig = tags.map(tag_id => ({
+          tag_id,
+          aid,
+        }));
+        await ctx.model.TagConfig.bulkCreate(tagsConfig);
+      }
       ctx.body = ctx.success('新建成功');
     } catch (e) {
+      console.error(e);
       throw(new Error('新建失败'));
     }
   }

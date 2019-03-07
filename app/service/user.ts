@@ -28,6 +28,7 @@ class UserService extends Service {
     const algropass = md5(salt + password + 'nbook^' + salt + '$nbook');
     if (password && algropass === passwordDB) {
       const userInfo = {
+        id: user.uid,
         name: user.name,
         mail: user.mail,
         url: user.url,

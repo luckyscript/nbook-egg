@@ -32,5 +32,47 @@ class ArticleApiController extends Controller {
     const resultDTO = await ctx.model.Article.findByWhere(where);
     ctx.body = resultDTO;
   }
+  /**
+   * 新建文章
+   */
+  public async addArticle() {
+    const { ctx } = this;
+    const {
+      title,
+      created,
+      slug,
+      tags,
+      categoryId,
+      status,
+    } = ctx.request.body;
+    const slugCount = await ctx.model.Article.count({
+      where: {
+        slug,
+      },
+    });
+    if (slugCount) {
+      return ctx.body = ctx.fail('slug重复，请修改');
+    }
+    try {
+      const { id: authorId } = ctx.user;
+      const aid = await ctx.model.Article.upsert({
+        title,
+        created,
+        slug,
+        categoryId,
+        status: status ? 'public' : 'private',
+        authorId,
+      });
+      const tagsConfig = tags.map(tag_id => ({
+        tag_id,
+        aid,
+      }));
+      await ctx.model.TagConfig.blukCreate(tagsConfig);
+
+      ctx.body = ctx.success('新建成功');
+    } catch (e) {
+      throw(new Error('新建失败'));
+    }
+  }
 }
 export default ArticleApiController;

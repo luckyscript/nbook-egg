@@ -30,7 +30,7 @@ class ArticleApiController extends Controller {
     const { id } = ctx.request.body;
     const where = { aid: id };
     const resultDTO = await ctx.model.Article.findByWhere(where);
-    console.log(resultDTO)
+    console.log(resultDTO);
     ctx.body = ctx.success(resultDTO);
   }
   /**

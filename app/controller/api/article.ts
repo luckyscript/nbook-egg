@@ -25,12 +25,13 @@ class ArticleApiController extends Controller {
   /**
    * 获取文章详情
    */
-  public async getArticle() {
+  public async getArticleDetail() {
     const { ctx } = this;
     const { id } = ctx.request.body;
     const where = { aid: id };
     const resultDTO = await ctx.model.Article.findByWhere(where);
-    ctx.body = resultDTO;
+    console.log(resultDTO)
+    ctx.body = ctx.success(resultDTO);
   }
   /**
    * 新建文章

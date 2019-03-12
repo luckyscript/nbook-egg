@@ -45,3 +45,19 @@ export interface MailData {
   subject: string;
   html?: string;
 }
+
+// egg-patch 
+
+interface EggFile {
+  field: string;
+  filename: string;
+  encoding: string;
+  mime: string;
+  filepath: string;
+}
+
+declare module 'egg' {
+  interface Request {
+    files: EggFile[];
+  }
+}

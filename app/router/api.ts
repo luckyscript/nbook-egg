@@ -17,6 +17,10 @@ export default (app: Application) => {
   // tag controller
   router.post('/api/tag/getTagList', controller.api.tag.getTagList);
 
+  // common controller
+  // upload files
+  router.post('/api/upload', controller.api.common.upload);
+
   // render controller( only dev)
   router.get('/admin', controller.admin.index);
   router.get('/admin/*', controller.admin.index);

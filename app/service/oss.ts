@@ -10,7 +10,7 @@ class OssService extends Service {
    * @param filename 文件名
    * @param tmppath 临时路径
    */
-  async add(filename:string, tmppath: string) {
+  async add(filename: string, tmppath: string) {
     try {
       console.log(tmppath);
       fs.accessSync(tmppath, fs.R_OK);

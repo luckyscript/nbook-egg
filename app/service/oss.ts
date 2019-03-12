@@ -12,14 +12,22 @@ class OssService extends Service {
    */
   async add(filename: string, tmppath: string) {
     try {
-      console.log(tmppath);
       fs.accessSync(tmppath, fs.R_OK);
+    } catch (e) {
+      throw e;
+    }
+    const readSrc = fs.createReadStream(tmppath);
+    return await this.addByStream(filename, readSrc);
+  }
+
+  async addByStream(filename: string, fileStream) {
+    try {
       fs.accessSync(path.resolve(this.ossPath), fs.R_OK);
     } catch (e) {
       throw new Error(e);
     }
     const filepath = path.resolve(path.join(this.ossPath, filename));
-    const readSrc = fs.createReadStream(tmppath);
+    const readSrc = fileStream;
     const writeDes = fs.createWriteStream(filepath);
     const stream = readSrc.pipe(writeDes);
     return new Promise(resolve => {

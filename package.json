@@ -50,6 +50,7 @@
     "postcss-easy-import": "^3.0.0",
     "request-promise": "^4.2.4",
     "requests": "^0.2.2",
+    "stream-wormhole": "^1.1.0",
     "typescript": "^3.0.0"
   },
   "devDependencies": {

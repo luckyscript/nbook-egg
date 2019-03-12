@@ -1,6 +1,6 @@
 import { Controller } from 'egg';
 import * as path from 'path';
-import fs from 'fs-extra';
+// import fs from 'fs-extra';
 
 class CommonController extends Controller {
   async upload() {
@@ -10,9 +10,9 @@ class CommonController extends Controller {
     const filename = Date.now() + path.basename(file.filename);
     let resultDTO;
     try {
-      resultDTO = await ctx.service.oss.put(filename, file.filepath);
+      resultDTO = await ctx.service.oss.add(filename, file.filepath);
     } finally {
-      await fs.unlink(file.filepath);
+      // await fs.unlink(file.filepath);
     }
     ctx.body = ctx.success({
       url: resultDTO.url,

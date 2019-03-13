@@ -1,0 +1,8 @@
+<div class="recent-comments">
+  <div class="title">Recent Comments</div>
+  <ul class="link-list">
+    <% friendLinks.forEach(function(link) {%>
+      <li><a href="<%=link.url%>" nofollow><%=link.name%></a></li>
+    <%})%>
+  </ul>
+</div>

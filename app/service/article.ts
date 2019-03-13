@@ -5,11 +5,6 @@ class ArticleService extends Service {
   public async findAllByPage(pageSize, page, where?: any) {
     const { ctx } = this;
     const articleList = await ctx.model.Article.findByPage(pageSize, page, where);
-    const moment = require('moment');
-    articleList.forEach(v => {
-      v.set('created', moment(v.created).format('YYYY-MM-DD'));
-      v.set('modified', moment(v.modified).format('YYYY-MM-DD HH:mm:ss'));
-    });
     return articleList;
   }
 
@@ -20,13 +15,13 @@ class ArticleService extends Service {
     return articleList;
   }
 
-  public handleArticleList(articleList: Article[]): Article[] {
+  public handleArticleList(articleList: Article[]|any): Article[] {
     const { getBrief, markdown } = this.ctx.service.common;
     articleList.forEach(article => {
       article = this.handleArticle(article, 'list');
       const brief = getBrief(article.text);
       const { html } = markdown(brief);
-      article.html = html;
+      article.set('html', html);
     });
     return articleList;
   }

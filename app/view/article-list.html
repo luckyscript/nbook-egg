@@ -13,7 +13,7 @@
                     <span>Reading time：<%=Math.ceil(item.contentLength/230)%> min</span>
                 </div>
                 <div class="post-content">
-                    <%-item.html%>
+                    <%-item.markdown.html%>
                 </div>
                 <div class="read-more">
                     <a href="/article/<%=item.link%>">read more</a>

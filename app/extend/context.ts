@@ -85,6 +85,18 @@ const context: any = {
       await this.app.redis.set(key, valueString);
     }
   },
+
+  async fetchData(key: string, callback) {
+    let data = await this.cache(key);
+    if (data) {
+      return data;
+    }
+    if (!callback) {
+      throw new Error('callback is need');
+    }
+    data = await callback();
+    await this.cache(key, data);
+  },
 };
 
 export default context;

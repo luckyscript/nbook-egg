@@ -22,7 +22,7 @@
         <%if (article.diff) {%>
           <p class="expired-tips"> 提醒：本文最后更新于 <%=article.diff%> 天前，文中所描述的信息可能已发生改变，请谨慎阅读。</p>
         <%}%>
-        <%-article.html%>
+        <%-article.markdown.html%>
       </div>
       <%- include('./components/comments.ejs')%>
     </article>

@@ -1,10 +1,10 @@
-<% if (article.toc && article.toc.length) {%>
+<% if (article.markdown && article.markdown.toc && article.markdown.toc.length) {%>
 <div class="toc">
   <div class="title">目录</div>
   <div class="toc-body">
     <div id="highlight-header"></div>
     <ul class="articleIndex">
-    <% article.toc.forEach(function(item) { %>
+    <% article.markdown.toc.forEach(function(item) { %>
       <li style="margin-left: <%=item.level * 15 - 5%>px;" class="toc-list">
         <a href="#<%=item.slug%>"> <%=item.title%> </a>
       </li>

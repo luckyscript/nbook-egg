@@ -15,31 +15,22 @@ export default class HomeController extends Controller {
       title,
     });
 
-    let articleList = await ctx.cache(`articleList#page${page}`);
-    if (!articleList || !articleList.length) {
-      articleList = await ctx.service.article.findAllPublicByPage(pageSize, page);
-      await ctx.cache(`articleList#page${page}`, articleList);
-    }
-    articleList = await ctx.service.article.handleArticleList(articleList);
+    const articleList = await ctx.fetchData(`articleList#page${page}`,
+      () => ctx.service.article.findAllByPage(pageSize, page));
 
-    let totalCount = await ctx.cache('totalCount');
-    if (!totalCount) {
-      totalCount = await ctx.model.Article.count({
-        where: {
-          status: 'public',
-        },
-      });
-      await ctx.cache('totalCount', totalCount);
-    }
+    // articleList = await ctx.service.article.handleArticleList(articleList);
+
+    const totalCount = await ctx.fetchData('totalCount',
+      () => ctx.model.Article.count({ where: { status: 'public' } }));
 
     const pageInfo: PageInfo = {
       totalPage: Math.ceil(totalCount / pageSize),
       currentPage: page,
     };
 
-    const tags = await ctx.model.Tag.findAll();
+    const tags = await ctx.fetchData('tags', () => ctx.model.Tag.findAll());
 
-    const friendLinks = await ctx.model.Config.getFriendLinks();
+    const friendLinks = await ctx.fetchData('friendLinks', () => ctx.model.Config.getFriendLinks());
 
     return await ctx.render('index.html', {
       articleList,

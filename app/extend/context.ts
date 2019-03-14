@@ -76,17 +76,18 @@ const context: any = {
    * @param {string} key cache key
    * @param {any} value cache value
    */
-  async cache(key: string, value?: any) {
+  async cache(key: string, value?: any, maxAge?: number) {
     if (!value) {
       const valueString = await this.app.redis.get(key);
       return JSON.parse(valueString);
     } else {
+      const cacheTime = maxAge || 24 * 60 * 60 * 1000;
       const valueString = JSON.stringify(value);
-      await this.app.redis.set(key, valueString);
+      await this.app.redis.set(key, valueString, 'PX', cacheTime);
     }
   },
 
-  async fetchData(key: string, callback) {
+  async fetchData(key: string, callback, maxAge?: number) {
     let data = await this.cache(key);
     if (data) {
       return data;
@@ -95,7 +96,8 @@ const context: any = {
       throw new Error('callback is need');
     }
     data = await callback();
-    await this.cache(key, data);
+    await this.cache(key, data, maxAge);
+    return data;
   },
 };
 

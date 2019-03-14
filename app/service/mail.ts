@@ -47,20 +47,32 @@ class MailService extends Service {
   }
   /**
    * 发给自己的
+   * @param type 留言类型 目前有 article、about
    * @param article article detail
    * @param comment comment detail
    * @param who send to who? default to me
    */
-  async sendAdminNewComment(article, comment, who?: string) {
+  async sendAdminNewComment(type: string, comment, article?: any, who?: string) {
     const { config } = this;
     const from = `Luckyscript's Blog<${config.mail_opts.auth.user}>`;
     const to = who || config.adminInfo.mail;
-    const subject = `博客文章:${article.title}有新的留言啦`;
-    const html = `
-      <p>${config.adminInfo.name}！博客有用户留言啦，快去查看吧！</p>
-      <p>${comment.name || '有人'}在文章${article.title}下留言: ${comment.content}</p>
-      <p>快速访问点击 ${config.site || 'https://www.luckyscript.me'}/article/id/${article.aid}</p>
-    `;
+    let subject, html;
+    switch (type) {
+      case 'article':
+        subject = `博客文章:${article.title}有新的留言啦`;
+        html = `
+          <p>${config.adminInfo.name}！博客有用户留言啦，快去查看吧！</p>
+          <p>${comment.name || '有人'}在文章${article.title}下留言: ${comment.content}</p>
+          <p>快速访问点击 ${config.site || 'https://www.luckyscript.me'}/article/id/${article.aid}</p>
+        `;
+        break;
+      default:
+        subject = `博客页面: ${type}页有新的留言啦`;
+        html = `
+        <p>${config.adminInfo.name}！博客有用户留言啦，快去查看吧！</p>
+        <p>${comment.name || '有人'}在网页下留言: ${comment.content}</p>
+      `;
+    }
     await this.sendContent({ from, to, subject, html });
   }
 }

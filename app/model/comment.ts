@@ -1,14 +1,27 @@
+import * as Sequelize from 'sequelize';
+export interface CommentAttributes {
+  created: string;
+}
+export interface Commentnstance extends Sequelize.Instance<CommentAttributes> {}
+
 const CommentModel = app => {
   const { STRING, INTEGER } = app.Sequelize;
+  const moment = require('moment');
   const Comment = app.model.define('comment', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+    type: STRING(20),
     content: STRING(600),
     name: STRING(20),
     email: STRING(20),
     pid: INTEGER,
     identity: STRING(50),
     site: STRING(50),
-    created: STRING(50),
+    created: {
+      type: STRING(50),
+      get(this: Commentnstance) {
+        return moment(this.getDataValue('created')).format('YYYY-MM-DD HH:mm:ss');
+      },
+    },
   }, {
     timestamps: false,
   });

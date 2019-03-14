@@ -16,9 +16,7 @@ export default class HomeController extends Controller {
     });
 
     const articleList = await ctx.fetchData(`articleList#page${page}`,
-      () => ctx.service.article.findAllByPage(pageSize, page));
-
-    // articleList = await ctx.service.article.handleArticleList(articleList);
+      () => ctx.service.article.findAllPublicByPage(pageSize, page), 10 * 60 * 1000);
 
     const totalCount = await ctx.fetchData('totalCount',
       () => ctx.model.Article.count({ where: { status: 'public' } }));
@@ -35,7 +33,7 @@ export default class HomeController extends Controller {
     return await ctx.render('index.html', {
       articleList,
       pageInfo,
-      pageLink: '/',
+      pageLink: '',
       tags,
       friendLinks,
     });

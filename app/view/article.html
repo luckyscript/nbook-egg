@@ -86,37 +86,6 @@
       }
     });
   })
-
-  /*{# $('.submit-comment').click(function() {
-      var name = $('#comment-name').val();
-      var email = $('#comment-email').val();
-      var site = $('#comment-site').val();
-      var content = $('#comment-content').val();
-      var pid = $('#pid').val();
-      if(name && email) {
-          $.ajax({
-              url: '/comment/add',
-              data: {
-                  name: name,
-                  email: email,
-                  site: site,
-                  content: content,
-                  replyMails: [],
-                  type: 'article',
-                  identity: aid,
-                  pid: pid || null
-              },
-              method: 'POST',
-              success: function(res) {
-                  if(!res.errno) {
-                      window.location.reload();
-                  } else {
-
-                  }
-              }
-          })
-      }
-  }) #}*/
 </script>
 <script>
 window.onload = function() {

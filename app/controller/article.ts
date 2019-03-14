@@ -28,25 +28,15 @@ class ArticleController extends Controller {
   }
   async addComment() {
     const { ctx } = this;
-    const moment = require('moment');
-    const { aid, pid, content, name, email, site, replys } = ctx.request.body;
-      // TODO add comment
-    const created = moment().format('YYYY-MM-DD HH:mm:ss');
+    const params = ctx.request.body;
+    const { aid, replys, name, content, email, site } = params;
 
-    await ctx.model.Comment.upsert({
-      identity: aid,
-      pid,
-      content,
-      name,
-      email,
-      site,
-      created,
-      type: 'article',
-    });
-    ctx.body = ctx.success('评论成功');
+    const resultDTO = await ctx.service.comment.addComment(params);
+    ctx.body = resultDTO;
+
     const comment = { content, name, email, site };
     const article = await ctx.model.Article.findByWhere({ aid });
-    await ctx.service.mail.sendAdminNewComment(article, comment);
+    await ctx.service.mail.sendAdminNewComment('article', comment, article);
     if (replys && replys.length) {
       const replyComments = await ctx.model.Comment.findByIds(replys);
       replyComments.forEach(async comment => {

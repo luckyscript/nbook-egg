@@ -1,3 +1,100 @@
 <%- include ./components/header.ejs%>
-
+  <div class="wrap">
+    <div class="container about-container">
+      <aside class="aside about-aside">
+        <div class="my-info">
+          <h3>About Me</h3>
+          <div>
+            <img class="my-photo" src="https://tvax3.sinaimg.cn/crop.0.0.568.568.180/005Q8srJly8g113pud0g2j30fs0fsdgv.jpg">
+          </div>
+          <ul>
+            <li>
+              <i class="fab fa-weibo"></i>
+              <a nofollow href="https://weibo.com/luckyscript">weibo</a>
+            </li>
+            <li>
+              <i class="fab fa-github"></i>
+              <a nofollow href="https://github.com/luckyscript">github</a>
+            </li>
+            <li>
+              <i class="fab fa-steam"></i>
+              <a nofollow href="https://weibo.com/luckyscript">weibo</a>
+            </li>
+            <li>
+              <i class="fab fa-envelope"></i>
+              <a nofollow href="https://weibo.com/luckyscript">weibo</a>
+            </li>
+            <li>
+              <i class="fab fa-telegram"></i>
+              <a nofollow href="https://weibo.com/luckyscript">weibo</a>
+            </li>
+            <li>
+              <i class="fab fa-weibo"></i>
+              <a nofollow href="https://weibo.com/luckyscript">weibo</a>
+            </li>
+            <li>
+              <i class="fab fa-weibo"></i>
+              <a nofollow href="https://weibo.com/luckyscript">weibo</a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+      <article class="article">
+      <div style="height: 600px"></div>
+      <span>虽然这里空白很大,但我没有时间写</span>
+      <%- include ./components/comments.ejs%>
+      </article>
+    </div>
+  </div>
 </body>
+<script src="//apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+const cookieObject = document.cookie.split(';').reduce((result, current) => {
+    const [,key, value] = /(.+)=(.+)/.exec(current.trim());
+    result[key] = value;
+    return result;
+  }, {});
+  const csrfToken = cookieObject['csrfToken'];
+  window.pid = null;
+  function reply(id, name) {
+    const commentTextarea = document.querySelector('#comment-content');
+    window.pid = id;
+    if (commentTextarea.value.search(`@${name}`) === -1) {
+      commentTextarea.value = `@${name} ` + commentTextarea.value ;
+    }
+    commentTextarea.focus();
+  }
+
+  const submitBtn = document.querySelector('#submit-comment');
+  const formNode = document.querySelector('#comment-form');
+  submitBtn.addEventListener('click', () => {
+    // TODO 表单校验
+    const formdata = new FormData(formNode);
+    const content = formdata.get('content');
+    const name = formdata.get('name');
+    const email = formdata.get('email');
+    const site = formdata.get('site');
+    $.ajax({
+      url: '/about/comment',
+      type: 'POST',
+      headers: {
+        'x-csrf-token': csrfToken,
+      },
+      dataType: 'json',
+      data: {
+        pid: window.pid,
+        content,
+        name,
+        email,
+        site,
+        type: 'about',
+      },
+      success: function (data) {
+        if (data && data.success) {
+
+        }
+      }
+    });
+  })
+</script>
+<%- include footer.html%>

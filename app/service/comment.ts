@@ -53,6 +53,35 @@ class CommentService extends Service {
       return result;
     }, '');
   }
+
+  public async addComment(params) {
+    const { ctx } = this;
+    const { pid, aid: identity, type } = params;
+    const xssFilter = require('xss');
+    let { content, name, email, site } = params;
+    email = xssFilter(email);
+    site = xssFilter(site);
+    name = xssFilter(name);
+    content = xssFilter(content, {
+      whiteList: {
+        x: [],
+      },
+    });
+    const moment = require('moment');
+    const created = moment().format('YYYY-MM-DD HH:mm:ss');
+
+    await ctx.model.Comment.upsert({
+      identity: identity || null,
+      pid: pid || null,
+      content,
+      name,
+      email,
+      site,
+      created,
+      type: type || 'article',
+    });
+    return ctx.success('评论成功');
+  }
 }
 
 export default CommentService;

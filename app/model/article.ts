@@ -12,7 +12,7 @@ export interface ArticleAttributes {
   created: string;
   modified: string;
 }
-export interface ArticleInstance extends Sequelize.Instance<ArticleAttributes>{
+export interface ArticleInstance extends Sequelize.Instance<ArticleAttributes> {
   aid: number;
   text: string;
   slug: string;
@@ -55,14 +55,14 @@ const ArticleModel = app => {
     brief: {
       type: VIRTUAL,
       get(this: ArticleInstance) {
-        const text = getBrief(this.getDataValue('text'));
-        return text;
+        const { html } = markdown(getBrief(this.getDataValue('text')));
+        return html;
       },
     },
     markdown: {
       type: VIRTUAL,
       get(this: ArticleInstance) {
-        const md = markdown(getBrief(this.getDataValue('text')));
+        const md = markdown(this.getDataValue('text'));
         return md;
       },
     },

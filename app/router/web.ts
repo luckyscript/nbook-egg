@@ -29,6 +29,9 @@ export default (app: Application) => {
   router.get('/tweet', controller.tweet.index);
   router.get('/tweet/page/:page', middleware.routerControl('/tweet'), controller.tweet.index);
 
+  // about page
+  router.get('/about', controller.about.index);
+
   // user api
   router.post('/login', controller.user.login);
 //   router.post('/register', controller.user.register);

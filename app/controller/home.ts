@@ -30,12 +30,16 @@ export default class HomeController extends Controller {
 
     const friendLinks = await ctx.fetchData('friendLinks', () => ctx.model.Config.getFriendLinks());
 
+    const recentComments = await ctx.fetchData('recentComments',
+      () => ctx.model.Comment.findRecentComments(), 10 * 60 * 1000);
+
     return await ctx.render('index.html', {
       articleList,
       pageInfo,
       pageLink: '',
       tags,
       friendLinks,
+      recentComments,
     });
   }
 }

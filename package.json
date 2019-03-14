@@ -26,6 +26,7 @@
     "clean": "ets clean"
   },
   "dependencies": {
+    "@luckylab/x-filter": "^1.0.1",
     "@types/mocha": "^2.2.48",
     "@types/node": "^7.10.3",
     "cssnano": "^4.1.10",

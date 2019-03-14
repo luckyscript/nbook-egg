@@ -1,8 +1,22 @@
 <div class="recent-comments">
   <div class="title">Recent Comments</div>
   <ul class="link-list">
-    <% friendLinks.forEach(function(link) {%>
-      <li><a href="<%=link.url%>" nofollow><%=link.name%></a></li>
+    <% recentComments.forEach(function(comment) {%>
+      <%if (comment.type === 'article') {%>
+        <li>
+          <a href="/article/id/<%=comment.identity%>#comment">
+            <span class="name"><%=comment.name%>: </span>
+            <%=comment.content.length > 100 ?comment.content.substr(0, 100)+'...':comment.content %>
+          </a>
+        </li>
+      <%} else {%>
+        <li>
+          <a href="/<%=comment.type%>#comment">
+            <span class="name"><%=comment.name%>: </span>
+            <%=comment.content.substr(0, 100)%>
+          </a>
+        </li>
+      <%}%>
     <%})%>
   </ul>
 </div>

@@ -36,6 +36,13 @@ const CommentModel = app => {
     });
     return comments;
   };
+
+  Comment.findRecentComments = async function() {
+    return await this.findAll({
+      limit: 10,
+      order: [[ 'created', 'DESC' ]],
+    });
+  };
   return Comment;
 };
 

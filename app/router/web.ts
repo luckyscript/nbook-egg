@@ -5,9 +5,10 @@ export default (app: Application) => {
 
   // index page
   router.get('/', controller.home.index);
-  router.get('/page/:page', middleware.routerControl('/'), controller.home.index);
+  router.get('/page/:page', middleware.routerControl({ path: '/' }), controller.home.index);
 
   // article page
+  router.get('/article', controller.home.index);
   router.get('/article/id/:id', controller.article.index);
   router.get('/article/:slug', controller.article.index);
   router.get('/random/article', controller.article.random);
@@ -19,7 +20,7 @@ export default (app: Application) => {
 
   // link page
   router.get('/link', controller.link.index);
-  router.get('/link/page/:page', controller.link.index);
+  router.get('/link/page/:page', middleware.routerControl({ path: '/link' }), controller.link.index);
   router.get('/link/add', controller.link.add);
   router.get('/link/to/:uuid', controller.link.to);
   router.post('/link/submit', controller.link.submit);
@@ -27,7 +28,7 @@ export default (app: Application) => {
 
   // tweet page
   router.get('/tweet', controller.tweet.index);
-  router.get('/tweet/page/:page', middleware.routerControl('/tweet'), controller.tweet.index);
+  router.get('/tweet/page/:page', middleware.routerControl({ path: '/tweet' }), controller.tweet.index);
 
   // about page
   router.get('/about', controller.about.index);

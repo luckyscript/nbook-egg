@@ -58,15 +58,13 @@ class CommentService extends Service {
     const { ctx } = this;
     const { pid, aid: identity, type } = params;
     const xssFilter = require('xss');
+    const xFilter = require('@luckylab/x-filter');
     let { content, name, email, site } = params;
     email = xssFilter(email);
     site = xssFilter(site);
     name = xssFilter(name);
-    content = xssFilter(content, {
-      whiteList: {
-        x: [],
-      },
-    });
+    content = xFilter(content);
+
     const moment = require('moment');
     const created = moment().format('YYYY-MM-DD HH:mm:ss');
 

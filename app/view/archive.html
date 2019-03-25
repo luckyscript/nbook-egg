@@ -8,7 +8,7 @@
                 <%a['value'].forEach(function(item) {%>
                     <li class="post-item">
                         <a href="/article/<%=item.link%>" class="post-title-link"><%=item.title%></a>
-                        <span class="post-info">(<%=item.time%>)</span>
+                        <span class="post-info">(<%=item.created%>)</span>
                     </li>
                 <% })%>
                 </ul>

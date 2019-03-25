@@ -45,7 +45,6 @@ class ArticleService extends Service {
     return result;
   }
   public async updateReadNum() {
-    const { ctx } = this;
   }
 }
 

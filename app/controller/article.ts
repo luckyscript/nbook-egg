@@ -5,15 +5,14 @@ class ArticleController extends Controller {
     const { ctx } = this;
     const { slug, id: aid } = ctx.params;
     const where: any = { slug, aid, status: 'public' };
-    const articleRaw = await ctx.model.Article.findByWhere(where);
-    if (!articleRaw) {
+    const article = await ctx.model.Article.findByWhere(where);
+    if (!article) {
       ctx.status = 404;
       return await ctx.render('404.html', {
         title: 'Not Found',
         message: '您找的文章不见了',
       });
     }
-    const article = ctx.service.article.handleArticle(articleRaw);
     const title = article.title || '文章详情';
     const commentNode = ctx.service.article.generateArticleCommentsNode(article.comments);
     const relativeArticle = ctx.service.article.findAllByPage(5, 1, { categoryId: article.category.id });
@@ -26,6 +25,7 @@ class ArticleController extends Controller {
       title,
     });
   }
+
   async addComment() {
     const { ctx } = this;
     const params = ctx.request.body;
@@ -44,9 +44,11 @@ class ArticleController extends Controller {
       });
     }
   }
+
   async random() {
     // const {}
   }
+
   async search() {
     const { ctx, app } = this;
     const keywords = ctx.query.keywords;

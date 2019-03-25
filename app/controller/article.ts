@@ -59,8 +59,7 @@ class ArticleController extends Controller {
       },
     };
     const articleService = ctx.service.article;
-    const articleListRaw = await articleService.findAllByPage(pageSize, page, where);
-    const articleList = articleService.handleArticleList(articleListRaw);
+    const articleList = await articleService.findAllByPage(pageSize, page, where);
     await ctx.render('search.html', {
       title: `${keywords}搜索结果`,
       articleList,

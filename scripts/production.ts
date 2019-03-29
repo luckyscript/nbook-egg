@@ -4,7 +4,11 @@ import { resolve } from 'path';
 const build = () => {
   const plugins: any[] = [
     require('postcss-easy-import'),
-    require('postcss-cssnext'),
+    require('postcss-preset-env')({
+      features: {
+        'nesting-rules': true,
+      },
+    }),
     require('cssnano')({
       autoprefixer: false,
       zindex: false,

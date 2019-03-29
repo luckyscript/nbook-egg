@@ -4,3 +4,31 @@
         <p>According to <a href="https://eugdpr.org/" nofollow>relevant laws</a>,blog does not provide services to EU users.</p>
     </div>
 </footer>
+<script>
+    (function() {
+        window.__theme = '<%=theme%>';
+        function setTheme(newTheme) {
+            window.__theme = newTheme;
+            if (newTheme === 'light') {
+                document.querySelector('#mode-toggle').className = 'react-toggle';
+            } else {
+                document.querySelector('#mode-toggle').className = 'react-toggle react-toggle--checked';
+            }
+            document.body.className = newTheme;
+        }
+
+       
+
+        window.__setPreferredTheme = function(newTheme) {
+            setTheme(newTheme);
+            document.cookie = `theme=${newTheme}; expires=Fri, 31 Dec 9999 23:59:59 GMT;`;
+        }
+
+        // window.__setPreferredTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
+
+        document.querySelector('#mode-toggle').addEventListener('click', function (e) {
+            let theme = window.__theme === 'light' ? 'dark' : 'light';
+            window.__setPreferredTheme(theme);
+        })
+    })();
+</script>

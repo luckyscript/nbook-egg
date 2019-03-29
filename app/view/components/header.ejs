@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/public/lib/font-awesome/css/font-awesome.min.css">
     <link rel="manifest" href="/static/manifest.json">
 </head>
-<body>
+<body class="<%=theme%>">
 <header>
     <div>
         <a href="/">
@@ -43,5 +43,6 @@
             <input id="searchBox" name="keywords" placeholder="请输入关键字">
             <button>Search</button>
         </form>
+        <%- include ./toggle.ejs%>
     </div>
 </header>

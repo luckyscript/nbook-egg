@@ -13,7 +13,7 @@
                     <li class="tweet-item">
                         <blockquote class="tweet-body">
                             [<time><%=i.mblog.created_at%></time>]
-                            <%- i.mblog.text.replace("<a href='\/", '<a target="_blank" href=\'http://m.weibo.cn\/')%>
+                            <%- i.mblog.text.replace(/<a href='\//g, '<a target="_blank" href=\'http://m.weibo.cn\/')%>
                             <%if (i.mblog.pics && i.mblog.pics.length) {%>
                                 <div>
                                     <%i.mblog.pics.forEach(function(p) {%>
@@ -24,7 +24,7 @@
                             <%if(i.mblog.retweeted_status) {%>
                             <blockquote class="tweet-repost">
                                 <span><%=i.mblog.retweeted_status.user.screen_name%>: </span>
-                                <%-i.mblog.retweeted_status.text.replace('<a href="\/', '<a target="_blank" href="http://m.weibo.cn\/')%>
+                                <%-i.mblog.retweeted_status.text.replace(/<a href="\//g, '<a target="_blank" href="http://m.weibo.cn\/')%>
                             <%if (i.mblog.retweeted_status.pics && i.mblog.retweeted_status.pics.length) {%>
                                 <div>
                                     <%i.mblog.retweeted_status.pics.forEach(function(p) {%>

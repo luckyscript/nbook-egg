@@ -23,13 +23,13 @@
 }
 
 .fl-table td {
-    border-right: 1px solid #f8f8f8;
+    /* border-right: 1px solid #f8f8f8; */
     font-size: 12px;
 }
 
 .fl-table thead th {
     color: #ffffff;
-    background: #4FC3A1;
+    background: var(--activeColor);
 }
 
 
@@ -38,8 +38,12 @@
     background: #324960;
 }
 
+.fl-table tr:nth-child(odd) {
+    background: var(--bg);
+}
+
 .fl-table tr:nth-child(even) {
-    background: #F8F8F8;
+    background: var(--libgColor);
 }
 
 /* Responsive */

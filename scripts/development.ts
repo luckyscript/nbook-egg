@@ -7,7 +7,11 @@ export default function() {
   autoCompiler({
     plugins: [
       require('postcss-easy-import'),
-      require('postcss-cssnext'),
+      require('postcss-preset-env')({
+        features: {
+          'nesting-rules': true,
+        },
+      }),
       require('cssnano')({
         autoprefixer: false,
         zindex: false,
@@ -19,8 +23,8 @@ export default function() {
       }),
     ],
     multiPath: [{
-      source: path.resolve(__dirname, '..', 'app', 'public', 'pcss', 'common.pcss'),
-      desc: path.resolve(__dirname, '..', 'app', 'public', 'stylesheets', 'common.css'),
+      source: path.resolve(__dirname, '..', 'app', 'public', 'pcss'),
+      desc: path.resolve(__dirname, '..', 'app', 'public', 'stylesheets'),
     }],
     sourceMap: true,
   });

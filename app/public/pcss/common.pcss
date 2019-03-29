@@ -31,6 +31,11 @@
   color: var(--fontColor);
 }
 
+body {
+  background: var(--bg);
+  transition: color 0.2s ease-out 0s, background 0.2s ease-out 0s;
+}
+
 .wrap {
   width: 100%;
 }
@@ -93,10 +98,11 @@
   & .article-info {
     text-align: left;
   }
+
   
   & .post-content {
-    color: #34495e;
-    font-size: 15px;
+    color: var(--fontColor);
+    font-size: 18px;
     line-height: 1.6;
     font-family: "Menlo","Lucida Console";
     padding: 0 20px;
@@ -111,7 +117,7 @@
       position: relative;
       &::before {
         content: '#';
-        color: #42b983;
+        color: var(--activeColor);
         position: absolute;
         left: -0.8em;
       }
@@ -120,7 +126,7 @@
   & .read-more {
     width: 120px;
     height: 32px;
-    background: #fff;
+    user-select: none;
     border-radius: 2px;
     margin: 20px auto 0;
     border: 2px solid var(--activeColor);
@@ -160,6 +166,7 @@
 }
 .post-info {
   color: #999;
+  user-select: none;
   margin: 1.2em 0;
   text-align: center;
   font-size: 12px;
@@ -242,11 +249,12 @@
 
 .aside {
   position: relative;
+  user-select: none;
   & .title {
     font-weight: bold;
     font-size: 18px;
     padding: 8px 12px;
-    color: #333;
+    color: var(--activeColor);
     line-height: 1.5;
   }
   & .toc {
@@ -264,7 +272,7 @@
         height: 28px;
         z-index: 1;
         list-style: none;
-        background: #f3f3f3;
+        background: var(--libgColor);
         border-left: 2px solid var(--activeColor);
         transition: all .2s ease;
       }
@@ -406,3 +414,28 @@
 .about-container {
   padding: 0 100px;
 }
+
+.react-toggle{
+  touch-action:pan-x;
+  display:inline-block;
+  position:relative;
+  cursor:pointer;
+  background-color:transparent;
+  border:0;
+  padding:0;
+  -webkit-touch-callout:none;
+  user-select:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  -webkit-tap-highlight-color:transparent
+}
+.react-toggle-track{
+  width:50px;
+  height:24px;
+  padding:0;border-radius:30px;
+  background-color:var(--libgColor);
+  transition:all .2s ease;
+}
+  .react-toggle-track-check{position:absolute;width:17px;height:17px;left:5px;top:0;bottom:0;margin-top:auto;margin-bottom:auto;line-height:0;opacity:0;transition:opacity .25s ease}
+  .react-toggle--checked .react-toggle-track-check,.react-toggle-track-x{opacity:1;transition:opacity .25s ease}.react-toggle-track-x{position:absolute;width:17px;height:17px;right:5px;top:0;bottom:0;margin-top:auto;margin-bottom:auto;line-height:0}
+  .react-toggle--checked .react-toggle-track-x{opacity:0}
+  .react-toggle-thumb{position:absolute;top:1px;left:1px;width:22px;height:22px;border-radius:50%;background-color:var(--activeColor);box-sizing:border-box;transition:all .5s cubic-bezier(.23,1,.32,1) 0ms;-webkit-transform:translateX(0);transform:translateX(0)}.react-toggle--checked .react-toggle-thumb{-webkit-transform:translateX(26px);transform:translateX(26px);border-color:#19ab27}.react-toggle--focus .react-toggle-thumb{box-shadow:0 0 2px 3px #ffa7c4}.react-toggle:active .react-toggle-thumb{box-shadow:0 0 5px 5px #ffa7c4}

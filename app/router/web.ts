@@ -35,6 +35,8 @@ export default (app: Application) => {
 
   // user api
   router.post('/login', controller.user.login);
+  router.get('/auth/github/login', controller.auth.githubLogin);
+  router.get('/auth/github/githubAuth', controller.auth.githubAuth);
 //   router.post('/register', controller.user.register);
 
   router.get('/test', controller.test.index);

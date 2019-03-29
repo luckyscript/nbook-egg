@@ -4,10 +4,15 @@
       <h2>Comments:</h2>
       <%-commentNode%>
   </ul>
-  <div class="comment-form">
-      <input type="text" placeholder="name(*)" name="name"> 
-      <input type="text" placeholder="email(*)" name="email">
-      <input type="text" placeholder="site" name="site">
+  <% if (!githubUserInfo) {%>
+    <div>
+      <a class="chat-login fa fa-github" href="/auth/github/login">使用Github登录参与评论</a>
+    </div>
+  <%}%>
+  <div class="comment-container">
+    <div class="avatar">
+      <img src="<%=githubUserInfo.avatar_url%>">
+    </div>
   </div>
   <div class="text-area">
       <textarea name="content" id="comment-content"></textarea>

@@ -1,3 +1,4 @@
+import * as rp from 'request-promise';
 const context: any = {
   /**
    * render a part of page that can decrease ttfb time
@@ -98,6 +99,21 @@ const context: any = {
     data = await callback();
     await this.cache(key, data, maxAge);
     return data;
+  },
+
+  async remote(opt: any) {
+    const options = {
+      ...opt,
+      method: 'get',
+    };
+    console.log(options);
+    if (!options.uri) {
+      throw new Error('Context#remote require uri option');
+    }
+    this.logger.info('Context#remote request remote server: ', options.uri);
+    this.logger.info('Request options:', JSON.stringify(options));
+    const result = await rp(options);
+    return result;
   },
 };
 

@@ -28,8 +28,8 @@ class TagController extends Controller {
   async deleteTag() {
     const { ctx } = this;
     const { id } = ctx.request.body;
-    await ctx.model.Tag.destory({ id });
-    await ctx.model.TagConfig.destory({ id });
+    await ctx.model.Tag.destroy({ id });
+    await ctx.model.TagConfig.destroy({ id });
     ctx.body = ctx.success('删除成功');
   }
 }

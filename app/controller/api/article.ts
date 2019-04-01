@@ -47,6 +47,7 @@ class ArticleApiController extends Controller {
       tags,
       categoryId,
       status,
+      text,
     } = ctx.request.body;
     if (!slug) {
       ctx.status = 400;
@@ -73,6 +74,7 @@ class ArticleApiController extends Controller {
         categoryId,
         status: status ? 'public' : 'private',
         authorId,
+        text,
       });
       if (tags && tags.length) {
         const tagsConfig = tags.map(tag_id => ({
@@ -91,7 +93,7 @@ class ArticleApiController extends Controller {
   public async deleteArticle() {
     const { ctx } = this;
     const { id: aid } = ctx.request.body;
-    await ctx.model.Article.destory({
+    await ctx.model.Article.destroy({
       where: {
         aid,
       },
@@ -110,7 +112,8 @@ class ArticleApiController extends Controller {
       tags,
       categoryId,
       status,
-    } = ctx.body;
+      text,
+    } = ctx.request.body;
     if (!slug) {
       ctx.status = 400;
       return ctx.body = ctx.error('slug必填');
@@ -128,8 +131,7 @@ class ArticleApiController extends Controller {
     try {
       const { id: authorId } = ctx.user;
       const moment = require('moment');
-      const created = moment().format('YYYY-MM-DD HH:mm:ss');
-      const modified = created;
+      const modified = moment().format('YYYY-MM-DD HH:mm:ss');
       await ctx.model.Article.upsert({
         aid,
         title,
@@ -139,6 +141,7 @@ class ArticleApiController extends Controller {
         categoryId,
         status: status ? 'public' : 'private',
         authorId,
+        text,
       });
       if (tags && tags.length) {
         const tagsConfig = tags.map(tag_id => ({

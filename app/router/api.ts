@@ -9,6 +9,8 @@ export default (app: Application) => {
   router.post('/api/article/getArticleList', controller.api.article.getArticleList);
   router.post('/api/article/getArticleDetail', controller.api.article.getArticleDetail);
   router.post('/api/article/addArticle', controller.api.article.addArticle);
+  router.post('/api/article/deleteArticle', controller.api.article.deleteArticle);
+  router.post('/api/article/modifyArticle', controller.api.article.modifyArticle);
 
   // category controller
   router.post('/api/category/getCategoryList', controller.api.category.getCategoryList);

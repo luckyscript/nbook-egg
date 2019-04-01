@@ -22,6 +22,7 @@ class ArticleApiController extends Controller {
     const pageInfo = { pageSize, currentPage, totalSize };
     ctx.body = ctx.page(resultDTO, pageInfo);
   }
+
   /**
    * 获取文章详情
    */
@@ -33,6 +34,7 @@ class ArticleApiController extends Controller {
     console.log(resultDTO);
     ctx.body = ctx.success(resultDTO);
   }
+
   /**
    * 新建文章
    */
@@ -83,6 +85,72 @@ class ArticleApiController extends Controller {
     } catch (e) {
       console.error(e);
       throw(new Error('新建失败'));
+    }
+  }
+
+  public async deleteArticle() {
+    const { ctx } = this;
+    const { id: aid } = ctx.request.body;
+    await ctx.model.Article.destory({
+      where: {
+        aid,
+      },
+     });
+    ctx.body = ctx.success('删除成功');
+  }
+
+  public async modifyArticle() {
+    const { ctx, app } = this;
+    const { Op } = app.Sequelize;
+    const {
+      id: aid,
+      title,
+      created,
+      slug,
+      tags,
+      categoryId,
+      status,
+    } = ctx.body;
+    if (!slug) {
+      ctx.status = 400;
+      return ctx.body = ctx.error('slug必填');
+    }
+    const slugCount = await ctx.model.Article.count({
+      where: {
+        slug,
+        aid: { [Op.ne]: aid },
+      },
+    });
+    if (slugCount) {
+      ctx.status = 400;
+      return ctx.body = ctx.error('slug重复，请修改');
+    }
+    try {
+      const { id: authorId } = ctx.user;
+      const moment = require('moment');
+      const created = moment().format('YYYY-MM-DD HH:mm:ss');
+      const modified = created;
+      await ctx.model.Article.upsert({
+        aid,
+        title,
+        created,
+        modified,
+        slug,
+        categoryId,
+        status: status ? 'public' : 'private',
+        authorId,
+      });
+      if (tags && tags.length) {
+        const tagsConfig = tags.map(tag_id => ({
+          tag_id,
+          aid,
+        }));
+        await ctx.model.TagConfig.bulkCreate(tagsConfig);
+      }
+      ctx.body = ctx.success('修改成功');
+    } catch (e) {
+      console.error(e);
+      throw(new Error('修改失败'));
     }
   }
 }

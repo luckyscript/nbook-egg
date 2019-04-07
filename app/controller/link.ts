@@ -57,23 +57,24 @@ class LinkController extends Controller {
       ctx.body = ctx.error('验证出错，请重试');
       return;
     }
-    // const { url, title, category } = ctx.body;
-    // const moment = require('moment');
-    // const date = moment().format('YYYY-MM-DD HH:mm:ss');
-    // const uuidV4 = require('uuid/v4');
-    // const uuid = uuidV4().substring(0, 8);
-    // let show = 0;
-    // if (ctx.user && ctx.user.name) {
-    //   show = 1;
-    // }
-    // let row = await this.model('links').add({
-    //   date,
-    //   name: title,
-    //   url: url,
-    //   categoryId: category,
-    //   uuid,
-    //   show,
-    // });
+
+    const { url, title, category } = ctx.request.body;
+    const moment = require('moment');
+    const created = moment().format('YYYY-MM-DD HH:mm:ss');
+    const uuidV4 = require('uuid/v4');
+    const uuid = uuidV4().substring(0, 8);
+    let show = 0;
+    if (ctx.user && ctx.user.name) {
+      show = 1;
+    }
+    await ctx.model.Link.upsert({
+      created,
+      name: title,
+      url,
+      categoryId: category,
+      uuid,
+      show,
+    });
     ctx.body = ctx.success('提交成功');
 
   }

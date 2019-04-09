@@ -7,6 +7,7 @@ import ExportArticle from '../../../app/service/article';
 import ExportCategory from '../../../app/service/category';
 import ExportComment from '../../../app/service/comment';
 import ExportCommon from '../../../app/service/common';
+import ExportFile from '../../../app/service/file';
 import ExportGeetest from '../../../app/service/geetest';
 import ExportMail from '../../../app/service/mail';
 import ExportOss from '../../../app/service/oss';
@@ -21,6 +22,7 @@ declare module 'egg' {
     category: ExportCategory;
     comment: ExportComment;
     common: ExportCommon;
+    file: ExportFile;
     geetest: ExportGeetest;
     mail: ExportMail;
     oss: ExportOss;

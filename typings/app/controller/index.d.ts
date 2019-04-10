@@ -16,6 +16,7 @@ import ExportApiArticle from '../../../app/controller/api/article';
 import ExportApiCategory from '../../../app/controller/api/category';
 import ExportApiCommon from '../../../app/controller/api/common';
 import ExportApiConfig from '../../../app/controller/api/config';
+import ExportApiFile from '../../../app/controller/api/file';
 import ExportApiTag from '../../../app/controller/api/tag';
 import ExportApiUser from '../../../app/controller/api/user';
 
@@ -36,6 +37,7 @@ declare module 'egg' {
       category: ExportApiCategory;
       common: ExportApiCommon;
       config: ExportApiConfig;
+      file: ExportApiFile;
       tag: ExportApiTag;
       user: ExportApiUser;
     }

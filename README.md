@@ -6,7 +6,8 @@
 * 部署使用nginx + docker
 
 ## TODO-FE
-- [ ] aside content
+- [x] aside content
+- [ ] db migrant
 
 ## TODO-BE
 - [ ] API controllers

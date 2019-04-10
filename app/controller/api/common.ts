@@ -7,7 +7,8 @@ class CommonController extends Controller {
     const { ctx } = this;
     const { files } = ctx.request;
     const file = files[0];
-    const filename = Date.now() + path.basename(file.filename);
+    const suffix = path.basename(file.filename).replace(/[^\.]+/, '');
+    const filename = Date.now() + (suffix || '');
     let resultDTO;
     try {
       resultDTO = await ctx.service.oss.add(filename, file.filepath);

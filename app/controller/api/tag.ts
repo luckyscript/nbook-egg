@@ -6,6 +6,32 @@ class TagController extends Controller {
     const resultDTO = await ctx.model.Tag.findAll();
     ctx.body = ctx.success(resultDTO);
   }
+
+  async addTag() {
+    const { ctx } = this;
+    const { name } = ctx.request.body;
+    await ctx.model.Tag.upsert({
+      name,
+    });
+    ctx.body = ctx.success('创建成功');
+  }
+
+  async modifyTag() {
+    const { ctx } = this;
+    const { name } = ctx.request.body;
+    await ctx.model.Tag.upsert({
+      name,
+    });
+    ctx.body = ctx.success('创建成功');
+  }
+
+  async deleteTag() {
+    const { ctx } = this;
+    const { id } = ctx.request.body;
+    await ctx.model.Tag.destroy({ id });
+    await ctx.model.TagConfig.destroy({ id });
+    ctx.body = ctx.success('删除成功');
+  }
 }
 
 export default TagController;

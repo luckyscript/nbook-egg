@@ -2,7 +2,7 @@ version: '3'
 services: 
   redis:
     image: redis:3.2-alpine
-    command: redis-server --appendonly yes --requirepass nbook
+    command: redis-server --appendonly yes --requirepass nbook_redis
     volumes:
       - nbook-redis:/data
     networks:
@@ -23,13 +23,13 @@ services:
       - nbook-mysql:/var/lib/mysql
     networks:
       - docker_nbook
-    # ports:
-    #   - '3306:3306'
+    ports:
+      - '3306:3306'
 
   nbook-egg:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
       args:
         - env=value
     volumes:
@@ -51,7 +51,7 @@ services:
       - docker_nbook
     ports:
       - 7001:7001
-    command: ["./wait-for-it.sh", "mysql:3306", "--", "npm", "run", "docker"]
+    command: ["npm", "run", "docker"]
 
 volumes:
   nbook-redis:

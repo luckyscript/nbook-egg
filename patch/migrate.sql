@@ -9,16 +9,16 @@ RENAME TABLE `un_article` TO `articles`,
 
 -- add tables
 
-DROP TABLE IF EXISTS `config`;
+DROP TABLE IF EXISTS `configs`;
 
-CREATE TABLE `config` (
+CREATE TABLE `configs` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(20) DEFAULT NULL,
   `content` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `config` (`id`, `type`, `content`)
+INSERT INTO `configs` (`id`, `type`, `content`)
 VALUES
 	(1,'friendlink','[{name: \'huspy\', url: \'https:www.mierhuo.com\'}]');
 

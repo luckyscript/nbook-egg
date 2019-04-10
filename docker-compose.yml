@@ -24,7 +24,7 @@ services:
     networks:
       - docker_nbook
     ports:
-      - '3306:3306'
+      - '6603:3306'
 
   nbook-egg:
     build:
@@ -34,6 +34,7 @@ services:
         - env=value
     volumes:
       - ./logs/docker:/root/logs/nbook-egg
+      - ./app/public/upload:/usr/src/app/app/public/upload
     environment:
       - NODE_ENV=production
       - EGG_SERVER_ENV=prod

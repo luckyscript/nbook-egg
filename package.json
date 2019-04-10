@@ -48,7 +48,6 @@
     "nodemailer": "^5.1.1",
     "nodemailer-smtp-transport": "^2.7.4",
     "postcss": "^7.0.14",
-    "postcss-cssnext": "^3.1.0",
     "postcss-easy-import": "^3.0.0",
     "postcss-preset-env": "^6.6.0",
     "request-promise": "^4.2.4",

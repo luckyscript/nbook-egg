@@ -25,6 +25,18 @@ const CommentModel = app => {
   }, {
     timestamps: false,
   });
+
+  Comment.findByPage = async function (pageSize, page) {
+    const data = await this.findAll({
+      limit: pageSize,
+      offset: (page - 1) * pageSize,
+      order: [
+        [ 'created', 'DESC' ],
+      ]
+    });
+    return data;
+  }
+
   Comment.findByIds = async function(ids) {
     const Op = app.Sequelize.Op;
     const comments = await this.findAll({

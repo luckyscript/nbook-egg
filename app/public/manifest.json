@@ -1,0 +1,12 @@
+{
+  "name": "Luckyscript's Blog",
+  "short_name": "luckyscript",
+  "description": "Luckyscript's Blog",
+  "display": "standalone",
+  "start_url": "/",
+  "theme_color": "#313131",
+  "background_color": "#313131",
+  "icons": [
+
+  ]
+}

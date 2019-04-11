@@ -1,5 +1,13 @@
 import { Service } from 'egg';
 class CommentService extends Service {
+
+  public async findByPageInfo(pageInfo) {
+    const { pageSize, currentPage } = pageInfo;
+    const { ctx } = this;
+    const commentList = await ctx.model.Comment.findByPage(pageSize, currentPage);
+    return commentList;
+  }
+
   /**
    * 生成树结构的评论
    * @param {Array}comments

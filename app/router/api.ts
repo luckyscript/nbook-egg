@@ -26,6 +26,17 @@ export default (app: Application) => {
   router.delete('/api/file/deleteFile', controller.api.file.deleteFile);
   router.put('/api/file/renameFile', controller.api.file.renameFile);
 
+  // comment controller
+  router.post('/api/comment/getCommentList', controller.api.comment.getCommentList);
+  // router.delete('/api/comment/deleteComment', controller.api.comment.deleteComment);
+  // router.put('/api/comment/updateComment', controller.api.comment.updateComment);
+  // router.post('/api/comment/replyComment', controller.api.comment.replyComment);
+
+  // link controller
+  // router.post('/api/link/getLinkList', controller.api.link.getLinkList);
+  // router.delete('/api/link/deleteLink', controller.api.link.deleteLink);
+  // router.put('/api/link/updateLink', controller.api.link.updateLink);
+
   // render controller( only dev)
   router.get('/admin', controller.admin.index);
   router.get('/admin/*', controller.admin.index);

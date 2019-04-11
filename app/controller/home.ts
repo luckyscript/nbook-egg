@@ -8,7 +8,6 @@ export default class HomeController extends Controller {
   public async index() {
     const { ctx } = this;
     const title = '首页';
-    // console.log('yyy', ctx.get('cookie'));
     // TODO 后面做成配置存在数据库里面，并且缓存到redis里
     const pageSize = 5; // 后面做成配置存到数据库里
     const page: number = ctx.params.page || 1;

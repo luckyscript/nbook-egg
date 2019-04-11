@@ -28,7 +28,7 @@ header {
       border-radius: 50%;
     }
   }
-    
+
   & .nav {
     margin-left: 50px;
     position: relative;
@@ -87,5 +87,11 @@ header {
       color: #fff;
       background: var(--activeColor);
     }
+  }
+}
+
+@media (max-width: 767px) {
+  header .nav, header form, header .react-toggle {
+    display: none;
   }
 }

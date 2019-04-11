@@ -41,7 +41,8 @@ body {
 }
 
 .container {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   margin: 30px auto;
   display: flex;
   justify-content: center;
@@ -102,7 +103,7 @@ body {
   
   & .post-content {
     color: var(--fontColor);
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
     font-family: "Menlo","Lucida Console";
     padding: 0 20px;
@@ -213,9 +214,6 @@ body {
 
 .article-container {
   & .article {
-    width: 80%;
-    float: left;
-    padding: 0 100px;
     & #articleTitle {
       font-size: 30px;
       line-height: 42px;
@@ -244,6 +242,7 @@ body {
     }
   }
 }
+
 
 /* aside style*/
 
@@ -285,6 +284,9 @@ body {
         z-index: 2;
         & li {
           height: 28px;
+          & a {
+            word-break: keep-all;
+          }
           &.active , &.active a{
             color: var(--activeColor);
           }
@@ -435,7 +437,14 @@ body {
   background-color:var(--libgColor);
   transition:all .2s ease;
 }
-  .react-toggle-track-check{position:absolute;width:17px;height:17px;left:5px;top:0;bottom:0;margin-top:auto;margin-bottom:auto;line-height:0;opacity:0;transition:opacity .25s ease}
-  .react-toggle--checked .react-toggle-track-check,.react-toggle-track-x{opacity:1;transition:opacity .25s ease}.react-toggle-track-x{position:absolute;width:17px;height:17px;right:5px;top:0;bottom:0;margin-top:auto;margin-bottom:auto;line-height:0}
-  .react-toggle--checked .react-toggle-track-x{opacity:0}
-  .react-toggle-thumb{position:absolute;top:1px;left:1px;width:22px;height:22px;border-radius:50%;background-color:var(--activeColor);box-sizing:border-box;transition:all .5s cubic-bezier(.23,1,.32,1) 0ms;-webkit-transform:translateX(0);transform:translateX(0)}.react-toggle--checked .react-toggle-thumb{-webkit-transform:translateX(26px);transform:translateX(26px);border-color:#19ab27}.react-toggle--focus .react-toggle-thumb{box-shadow:0 0 2px 3px #ffa7c4}.react-toggle:active .react-toggle-thumb{box-shadow:0 0 5px 5px #ffa7c4}
+.react-toggle-track-check{position:absolute;width:17px;height:17px;left:5px;top:0;bottom:0;margin-top:auto;margin-bottom:auto;line-height:0;opacity:0;transition:opacity .25s ease}
+.react-toggle--checked .react-toggle-track-check,.react-toggle-track-x{opacity:1;transition:opacity .25s ease}.react-toggle-track-x{position:absolute;width:17px;height:17px;right:5px;top:0;bottom:0;margin-top:auto;margin-bottom:auto;line-height:0}
+.react-toggle--checked .react-toggle-track-x{opacity:0}
+.react-toggle-thumb{position:absolute;top:1px;left:1px;width:22px;height:22px;border-radius:50%;background-color:var(--activeColor);box-sizing:border-box;transition:all .5s cubic-bezier(.23,1,.32,1) 0ms;-webkit-transform:translateX(0);transform:translateX(0)}.react-toggle--checked .react-toggle-thumb{-webkit-transform:translateX(26px);transform:translateX(26px);border-color:#19ab27}.react-toggle--focus .react-toggle-thumb{box-shadow:0 0 2px 3px #ffa7c4}.react-toggle:active .react-toggle-thumb{box-shadow:0 0 5px 5px #ffa7c4}
+
+
+@media (max-width: 767px) {
+  .aside {
+    display: none;
+  }
+}

@@ -3,10 +3,14 @@ import { Controller } from 'egg';
 class AboutController extends Controller {
   async index() {
     const { ctx } = this;
+    const about = await ctx.model.Article.findByWhere({
+      slug: 'about',
+    });
     const comments = await ctx.model.Comment.findAll({ where: { type: 'about' } }) || [];
     const commentNode = ctx.service.article.generateArticleCommentsNode(comments);
     await ctx.render('about.html', {
       title: 'About',
+      about,
       commentNode,
     });
   }

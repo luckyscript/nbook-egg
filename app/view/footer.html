@@ -21,7 +21,7 @@
 
         window.__setPreferredTheme = function(newTheme) {
             setTheme(newTheme);
-            document.cookie = `theme=${newTheme}; expires=Fri, 31 Dec 9999 23:59:59 GMT;`;
+            document.cookie = `theme=${newTheme}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;`;
         }
 
         // window.__setPreferredTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));

@@ -14,9 +14,11 @@ import ExportTweet from '../../../app/controller/tweet';
 import ExportUser from '../../../app/controller/user';
 import ExportApiArticle from '../../../app/controller/api/article';
 import ExportApiCategory from '../../../app/controller/api/category';
+import ExportApiComment from '../../../app/controller/api/comment';
 import ExportApiCommon from '../../../app/controller/api/common';
 import ExportApiConfig from '../../../app/controller/api/config';
 import ExportApiFile from '../../../app/controller/api/file';
+import ExportApiLink from '../../../app/controller/api/link';
 import ExportApiTag from '../../../app/controller/api/tag';
 import ExportApiUser from '../../../app/controller/api/user';
 
@@ -35,9 +37,11 @@ declare module 'egg' {
     api: {
       article: ExportApiArticle;
       category: ExportApiCategory;
+      comment: ExportApiComment;
       common: ExportApiCommon;
       config: ExportApiConfig;
       file: ExportApiFile;
+      link: ExportApiLink;
       tag: ExportApiTag;
       user: ExportApiUser;
     }

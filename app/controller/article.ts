@@ -16,6 +16,7 @@ class ArticleController extends Controller {
     const title = article.title || '文章详情';
     const commentNode = ctx.service.article.generateArticleCommentsNode(article.comments);
     const relativeArticle = ctx.service.article.findAllByPage(5, 1, { categoryId: article.category.id });
+
     await ctx.render('article.html', {
       article,
       category: article.category,

@@ -1,4 +1,5 @@
 .post-content {
+  font: 100%/1.75 'Merriweather','Georgia',serif;
   & h1,
   & h2,
   & h3,
@@ -6,6 +7,13 @@
   & h5,
   & h6 {
     margin: 10px 0;
+    font-weight: bold;
+    & .header-link {
+      &:after {
+        content: '#';
+        color: var(--markColor);
+      }
+    }
   }
   & h1,
   & h2 {
@@ -13,15 +21,21 @@
     padding-bottom: 10px;
   }
   & p {
-    line-height: 2;
-    margin-bottom: 1.75rem;
+    line-height: 1.75;
+    margin: 1rem 0;
   }
   & p code, & li code {
     color: var(--markColor);
-    font-family: "Lucida Console","monospace";
+    font-family: Consolas,Menlo,Monaco,source-code-pro,Courier New,monospace;
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: var(--markBg);
   }
   & ol,& ul {
     margin-left: 30px;
+    & li {
+      margin-bottom: calc(1.75rem / 2);
+    }
   }
   & hr {
     height: 3px;
@@ -35,6 +49,7 @@
   }
   & a {
     color: var(--activeColor);
+    text-decoration: underline;
     word-break: break-all;
   }
   & img {
@@ -54,7 +69,7 @@
     margin: 5px 0;
     position: relative;
     & code {
-      font-family: "Menlo","Lucida Console";
+      font-family: Consolas,Menlo,Monaco,source-code-pro,Courier New,monospace;
       white-space: pre-wrap;
       word-wrap: break-word;
       &::after {

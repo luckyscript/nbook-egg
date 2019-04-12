@@ -115,13 +115,7 @@ body {
       font-size: 2em;
     }
     & h1, & h2, & h3, & h4, & h5 {
-      position: relative;
-      &::before {
-        content: '#';
-        color: var(--activeColor);
-        position: absolute;
-        left: -0.8em;
-      }
+      position: relative; 
     }
   }
   & .read-more {
@@ -222,6 +216,15 @@ body {
     }
     & .article-content {
       margin-top: 60px;
+
+      & .expired-tips {
+        padding: 5px 10px;
+        font-size: 15px;
+        background-color: var(--libgColor);
+        border-left: 5px solid var(--warnColor);
+        color: var(--markColor);
+        overflow: hidden;
+      }
     }
   }
 }

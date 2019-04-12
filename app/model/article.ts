@@ -28,6 +28,19 @@ const ArticleModel = app => {
   const Article = app.model.define('article', {
     aid: { type: INTEGER(11), primaryKey: true, autoIncrement: true },
     title: STRING(200),
+    outdate: {
+      type: VIRTUAL,
+      get(this: ArticleInstance) {
+        const originModified = this.getDataValue('modified');
+        const now = moment();
+        const diff = now.diff(originModified, 'day');
+        if (diff > 100) {
+          return diff;
+        } else {
+          return 'false';
+        }
+      },
+    },
     created: {
       type: STRING(20),
       get(this: ArticleInstance) {

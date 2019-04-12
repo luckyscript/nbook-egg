@@ -19,8 +19,8 @@
       <div>
       </div>
       <div class="post-content article-content">
-        <%if (article.diff) {%>
-          <p class="expired-tips"> 提醒：本文最后更新于 <%=article.diff%> 天前，文中所描述的信息可能已发生改变，请谨慎阅读。</p>
+        <%if (article.outdate !== 'false') {%>
+          <p class="expired-tips"> 提醒：本文最后更新于 <%=article.outdate%> 天前，文中所描述的信息可能已发生改变，请谨慎阅读。</p>
         <%}%>
         <%-article.markdown.html%>
       </div>

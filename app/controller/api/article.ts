@@ -148,6 +148,7 @@ class ArticleApiController extends Controller {
           tag_id,
           aid,
         }));
+        await ctx.model.TagConfig.bulkDelete({ where: { aid } });
         await ctx.model.TagConfig.bulkCreate(tagsConfig);
       }
       ctx.body = ctx.success('修改成功');

@@ -12,6 +12,8 @@ const TagConfigModel = app => {
     timestamps: false,
   });
 
+  TagConfig.removeAttribute('id');
+
   return TagConfig;
 };
 

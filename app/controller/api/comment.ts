@@ -1,7 +1,7 @@
 import { Controller } from 'egg';
 
 class CommentController extends Controller {
-  public async getCommentList() {    
+  public async getCommentList() {
     const { ctx } = this;
     const { pageSize = 15, currentPage = 1 } = ctx.request.body;
     const resultDTO = await ctx.model.Comment.findByPageInfo({ pageSize, currentPage });
@@ -9,11 +9,11 @@ class CommentController extends Controller {
     const pageInfo = { pageSize, currentPage, totalSize };
     ctx.body = ctx.page(resultDTO, pageInfo);
   }
-  
+
   public deleteComment() {
 
   }
-  
+
   public updateComment() {
 
   }
@@ -21,7 +21,6 @@ class CommentController extends Controller {
   public async replyComment() {
 
   }
-
 
 }
 

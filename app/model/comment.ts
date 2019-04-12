@@ -32,10 +32,10 @@ const CommentModel = app => {
       offset: (page - 1) * pageSize,
       order: [
         [ 'created', 'DESC' ],
-      ]
+      ],
     });
     return data;
-  }
+  };
 
   Comment.findByIds = async function(ids) {
     const Op = app.Sequelize.Op;

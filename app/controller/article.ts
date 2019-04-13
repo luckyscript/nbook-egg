@@ -13,6 +13,7 @@ class ArticleController extends Controller {
         message: '您找的文章不见了',
       });
     }
+    await ctx.service.article.updateReadNum(article);
     const title = article.title || '文章详情';
     const commentNode = ctx.service.article.generateArticleCommentsNode(article.comments);
     const relativeArticle = ctx.service.article.findAllByPage(5, 1, { categoryId: article.category.id });

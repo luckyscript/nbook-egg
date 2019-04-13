@@ -132,6 +132,10 @@ const ArticleModel = app => {
     return data;
   };
 
+  Article.prototype.incrementReadNum = async function () {
+    return await this.increment('readnum');
+  };
+
   return Article;
 };
 

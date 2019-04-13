@@ -44,7 +44,20 @@ class ArticleService extends Service {
     }, []);
     return result;
   }
-  public async updateReadNum() {
+  public async updateReadNum(article) {
+    const { ctx } = this;
+    const readCookie = ctx.cookies.get('nbook-readlog');
+    if (readCookie) {
+      const readArray = readCookie.split(',');
+      if (!readArray.includes(`${article.aid}`)) {
+        await article.incrementReadNum();
+        ctx.cookies.set('nbook-readlog', `${readCookie},${article.aid}`);
+      } else {
+        return;
+      }
+    } else {
+      ctx.cookies.set('nbook-readlog', `${article.aid}`);
+    }
   }
 }
 

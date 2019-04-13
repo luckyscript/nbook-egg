@@ -8,6 +8,9 @@
   & h6 {
     margin: 10px 0;
     font-weight: bold;
+    & a {
+      text-decoration: none;
+    }
     & .header-link {
       &:after {
         content: '#';
@@ -17,7 +20,7 @@
   }
   & h1,
   & h2 {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--borderColor);
     padding-bottom: 10px;
   }
   & p {
@@ -40,6 +43,7 @@
   & hr {
     height: 3px;
     margin: 50px 0;
+    border: 0;
     border-top: 3px dashed var(--activeColor);
   }
   & blockquote {

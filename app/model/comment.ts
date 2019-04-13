@@ -52,6 +52,7 @@ const CommentModel = app => {
   Comment.findRecentComments = async function() {
     return await this.findAll({
       limit: 10,
+      type: 'article',
       order: [[ 'created', 'DESC' ]],
     });
   };

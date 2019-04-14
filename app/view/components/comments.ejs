@@ -1,18 +1,39 @@
 
 <form class="post-comment" id="comment-form">
   <ul class="comment-container" id="comment">
-      <h2>Comments:</h2>
-      <%-commentNode%>
+    <h2>Comments:</h2>
+    <%-commentNode%>
   </ul>
   <div class="comment-form">
-      <input type="text" placeholder="name(*)" name="name"> 
-      <input type="email" placeholder="email(*)" name="email">
-      <input type="text" placeholder="site" name="site">
-  </div>
+      <div class="comment-form-title">
+        <h4>参与评论:</h4>
+        <% if (!githubUserInfo) {%>
+          <h5 class="chat-login fa fa-github"><a href="/auth/github/login?redirectUrl=http://www.luckyscript.me/auth/github/githubAuth?redirectUrl=<%=currentUrl%>">使用github登陆参与</a></h5>
+        <%} else {%>
+          <h5>登陆身份: <%=githubUserInfo.login%>
+            <a href="/auth/github/logout?redirectUrl=<%=currentUrl%>">退出</a></h5>
+        <%}%>
+      </div>
+      <% if (!githubUserInfo) {%>
+        <div class="comment-input-wrap">
+          <input type="text" placeholder="Your First Name" name="name"> 
+          <input type="email" placeholder="Your Email" name="email">
+          <input type="text" placeholder="Your site(optional)" name="site">
+        </div>
+      <%} else {%>
+        <div class="comment-input-wrap" style="display: none;">
+          <input type="text" placeholder="Your First Name" name="name" value="<%=githubUserInfo.login%>"> 
+          <input type="email" placeholder="Your Email" name="email" value="<%=githubUserInfo.email%>">
+          <input type="text" placeholder="Your site(optional)" name="site" value="<%=githubUserInfo.html_url%>">
+        </div>
+      <%}%>
   <div class="text-area">
       <textarea name="content" id="comment-content"></textarea>
   </div>
+  <div id="captcha">
+      <p id="wait" class="show">验证码正在赶来的路上...</p>
+  </div>
   <button id="submit-comment" type="button">发表</button>
-  <span>评论功能仍在开发中</span>
   <input type="hidden" id="pid">
+</div>
 </form>

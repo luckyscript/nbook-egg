@@ -22,8 +22,10 @@ const ConfigModel = app => {
         app.logger.error(e);
         return [];
       }
+    } else {
+      await this.upsert({ type: 'friendLinks', content: '[]' });
+      return [];
     }
-    return [];
   };
 
   return Config;

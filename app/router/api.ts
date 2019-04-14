@@ -28,7 +28,7 @@ export default (app: Application) => {
 
   // comment controller
   router.post('/api/comment/getCommentList', controller.api.comment.getCommentList);
-  // router.delete('/api/comment/deleteComment', controller.api.comment.deleteComment);
+  router.delete('/api/comment/deleteComment', controller.api.comment.deleteComment);
   // router.put('/api/comment/updateComment', controller.api.comment.updateComment);
   // router.post('/api/comment/replyComment', controller.api.comment.replyComment);
 
@@ -36,6 +36,9 @@ export default (app: Application) => {
   // router.post('/api/link/getLinkList', controller.api.link.getLinkList);
   // router.delete('/api/link/deleteLink', controller.api.link.deleteLink);
   // router.put('/api/link/updateLink', controller.api.link.updateLink);
+
+  router.post('/api/setting/getFriendLinkList', controller.api.config.getFriendLinks);
+  router.put('/api/setting/setFriendLinkList', controller.api.config.setFriendLinks);
 
   // render controller( only dev)
   router.get('/admin', controller.admin.index);

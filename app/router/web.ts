@@ -9,6 +9,7 @@ export default (app: Application) => {
 
   // article page
   router.get('/article', controller.home.index);
+  router.get('/article/validate', controller.article.validate);
   router.get('/article/id/:id', controller.article.index);
   router.get('/article/:slug', controller.article.index);
   router.get('/random/article', controller.article.random);
@@ -32,9 +33,14 @@ export default (app: Application) => {
 
   // about page
   router.get('/about', controller.about.index);
+  router.get('/about/validate', controller.about.validate);
+  router.post('/about/comment', controller.about.addComment);
 
   // user api
   router.post('/login', controller.user.login);
+  router.get('/auth/github/login', controller.auth.githubLogin);
+  router.get('/auth/github/githubAuth', controller.auth.githubAuth);
+  router.get('/auth/github/logout', controller.auth.githubLogout);
 //   router.post('/register', controller.user.register);
 
   router.get('/test', controller.test.index);

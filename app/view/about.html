@@ -57,6 +57,7 @@
   </div>
 </body>
 <script src="//apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
 <script>
 const cookieObject = document.cookie.split(';').reduce((result, current) => {
     const [,key, value] = /(.+)=(.+)/.exec(current.trim());
@@ -73,37 +74,96 @@ const cookieObject = document.cookie.split(';').reduce((result, current) => {
     }
     commentTextarea.focus();
   }
-
-  const submitBtn = document.querySelector('#submit-comment');
-  const formNode = document.querySelector('#comment-form');
-  submitBtn.addEventListener('click', () => {
-    // TODO 表单校验
-    const formdata = new FormData(formNode);
-    const content = formdata.get('content');
-    const name = formdata.get('name');
-    const email = formdata.get('email');
-    const site = formdata.get('site');
-    $.ajax({
-      url: '/about/comment',
-      type: 'POST',
-      headers: {
-        'x-csrf-token': csrfToken,
-      },
-      dataType: 'json',
-      data: {
-        pid: window.pid,
-        content,
-        name,
-        email,
-        site,
-        type: 'about',
-      },
-      success: function (data) {
-        if (data && data.success) {
-
+  var handler = function (captchaObj) {
+    captchaObj.appendTo('#captcha');
+    captchaObj.onReady(function () {
+      $("#wait").hide();
+    });
+    const submitBtn = document.querySelector('#submit-comment');
+    const formNode = document.querySelector('#comment-form');
+    submitBtn.addEventListener('click', () => {
+      // TODO 表单校验
+      const formdata = new FormData(formNode);
+      const content = formdata.get('content').trim();
+      const name = formdata.get('name').trim();
+      const email = formdata.get('email').trim();
+      const site = formdata.get('site').trim();
+      if (name === '') {
+        alert('请填写您的姓名或昵称');
+        return;
+      }
+      if (email === '') {
+        alert('请输入您的邮箱');
+        return;
+      } else {
+        if (!/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(email)) {
+          alert('您的邮箱不合法');
+          return;
         }
       }
-    });
-  })
+      if (content === '') {
+        alert('请输入您评论的内容');
+        return;
+      }
+      if (site !== '') {
+        if (!/^(https|http):\/\/([\w\-]+(\.[\w\-]+)*\/)*[\w\-]+(\.[\w\-]+)*\/?(\?([\w\-\.,@?^=%&:\/~\+#]*)+)?/.test(site)) {
+          alert('您的网站地址不合法，请以（http|https）开头');
+          return;
+        }
+      }
+      var result = captchaObj.getValidate();
+      if (!result) {
+        return alert('请完成验证');
+      }
+
+      $.ajax({
+        url: '/about/comment',
+        type: 'POST',
+        headers: {
+          'x-csrf-token': csrfToken,
+        },
+        dataType: 'json',
+        data: {
+          pid: window.pid,
+          content,
+          name,
+          email,
+          site,
+          type: 'about',
+          geetest_challenge: result.geetest_challenge,
+          geetest_validate: result.geetest_validate,
+          geetest_seccode: result.geetest_seccode
+        },
+        success: function (data) {
+          if (data.success) {
+            window.location.hash = '#comment';
+            window.location.reload();
+          } else {
+            alert(data.errMsg);
+            captchaObj.reset();
+          }
+        },
+        error: function(data) {
+          alert(data.responseText);
+          captchaObj.reset();
+        }
+      });
+    })
+  }
+  $.ajax({
+    url: "/about/validate?t=" + (new Date()).getTime(),
+    type: "get",
+    dataType: "json",
+    success: function (data) {
+      initGeetest({
+        gt: data.gt,
+        challenge: data.challenge,
+        offline: !data.success,
+        new_captcha: data.new_captcha,
+        product: "popup",
+        width: "300px"
+      }, handler);
+    }
+  });
 </script>
 <%- include footer.html%>

@@ -8,6 +8,8 @@ const local = () => {
     } else {
       ctx.locals.theme = 'light';
     }
+    const { url } = ctx.request;
+    ctx.locals.currentUrl = url;
     return await next();
   };
 };

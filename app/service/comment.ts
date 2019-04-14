@@ -1,5 +1,7 @@
 import { Service } from 'egg';
 class CommentService extends Service {
+  nameList = [ 'lukai', '陆凯', '萧迹', 'luckyscript' ];
+  mailList = [ 'main.lukai@gmail.com', 'jsjhlk@gmail.com', 'jsjhlk@qq.com' ];
 
   public async findByPageInfo(pageInfo) {
     const { pageSize, currentPage } = pageInfo;
@@ -72,6 +74,14 @@ class CommentService extends Service {
     site = xssFilter(site);
     name = xssFilter(name);
     content = xFilter(content);
+
+    if (this.nameList.includes(name)) {
+      throw new Error('留言名字含有保留字');
+    }
+
+    if (this.mailList.includes(email)) {
+      throw new Error('留言邮箱含有保留字');
+    }
 
     const moment = require('moment');
     const created = moment().format('YYYY-MM-DD HH:mm:ss');

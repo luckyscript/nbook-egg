@@ -65,7 +65,7 @@ class CommentService extends Service {
   }
 
   public async addComment(params) {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const { pid, aid: identity, type } = params;
     const xssFilter = require('xss');
     const xFilter = require('@luckylab/x-filter');
@@ -75,13 +75,17 @@ class CommentService extends Service {
     name = xssFilter(name);
     content = xFilter(content);
 
-    // if (this.nameList.includes(name)) {
-    //   throw new Error('留言名字含有保留字');
-    // }
+    if (ctx.user && ctx.user.name) {
+      app.logger.info(`${ctx.user.name}在线，免检查`);
+    } else {
+      if (this.nameList.includes(name)) {
+        throw new Error('留言名字含有保留字');
+      }
 
-    // if (this.mailList.includes(email)) {
-    //   throw new Error('留言邮箱含有保留字');
-    // }
+      if (this.mailList.includes(email)) {
+        throw new Error('留言邮箱含有保留字');
+      }
+    }
 
     const moment = require('moment');
     const created = moment().format('YYYY-MM-DD HH:mm:ss');

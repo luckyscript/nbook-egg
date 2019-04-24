@@ -6,7 +6,7 @@
                 <li class="tweet-item">
                     <blockquote class="tweet-body">
                     [<time>现在</time>]
-                    本页面聚合了我的新浪微博，图片显示不了是因为新浪限制了referer<br />如果想关注我的微博，请点击<a style="color: #d480aa" href="https://weibo.com/luckyscript" target="_blank">follow</a>
+                    本页面聚合了我的新浪微博,用反代干掉了新浪的referer限制<br />如果想关注我的微博，请点击<a style="color: #d480aa" href="https://weibo.com/luckyscript" target="_blank">follow</a>
                     </blockquote>
                 </li>
                 <%data.forEach(function(i) {%>
@@ -17,7 +17,7 @@
                             <%if (i.mblog.pics && i.mblog.pics.length) {%>
                                 <div>
                                     <%i.mblog.pics.forEach(function(p) {%>
-                                        <a href="<%=p.url%>" target="_blank" class="tweet-image">点击查看图片</a>
+                                        <img src="<%=p.url.replace(/^(https?):\/\/([\w\-]+(\.[\w\-]+)*)/, 'http://sinaimg.luckyscript.me')%>" class="tweet-image" />
                                     <%})%> 
                                 </div>
                             <%}%>
@@ -28,7 +28,7 @@
                             <%if (i.mblog.retweeted_status.pics && i.mblog.retweeted_status.pics.length) {%>
                                 <div>
                                     <%i.mblog.retweeted_status.pics.forEach(function(p) {%>
-                                        <a href="<%=p.url%>" class="tweet-image">点击查看图片</a>
+                                        <img src="<%=p.url.replace(/^(https?):\/\/([\w\-]+(\.[\w\-]+)*)/, 'http://sinaimg.luckyscript.me')%>" class="tweet-image" />
                                     <%})%> 
                                 </div>
                             <%}%>

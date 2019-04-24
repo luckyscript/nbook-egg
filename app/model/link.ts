@@ -1,12 +1,27 @@
 import categoryModel from './category';
+import * as Sequelize from 'sequelize';
+
+export interface LinkAttributes {
+  created: string;
+}
+export interface LinkInstance extends Sequelize.Instance<LinkAttributes> {
+  created: string;
+}
 
 const linkModel = app => {
   const { STRING, INTEGER } = app.Sequelize;
   const Category = categoryModel(app);
 
+  const moment = require('moment');
   const Link = app.model.define('link', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-    created: STRING(50),
+    created: {
+      type: STRING(20),
+      get(this: LinkInstance) {
+        const originCreate = this.getDataValue('created');
+        return moment(originCreate).format('YYYY-MM-DD');
+      },
+    },
     name: STRING(50),
     url: STRING(200),
     categoryId: INTEGER,

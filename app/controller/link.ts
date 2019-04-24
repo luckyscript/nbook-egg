@@ -9,10 +9,6 @@ class LinkController extends Controller {
     const page = ctx.params.page || 1;
     const pageSize = 15;
     const linksData = await ctx.model.Link.findByPage(page, pageSize);
-    const moment = require('moment');
-    linksData.forEach(v => {
-      v.date = moment(v.date).format('YYYY-MM-DD');
-    });
     const total = await ctx.model.Link.count();
     const pageInfo: PageInfo = {
       totalPage: Math.ceil(total / 15),

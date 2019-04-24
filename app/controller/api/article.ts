@@ -72,7 +72,7 @@ class ArticleApiController extends Controller {
         modified,
         slug,
         categoryId,
-        status: status ? 'public' : 'private',
+        status,
         authorId,
         text,
       });
@@ -81,6 +81,7 @@ class ArticleApiController extends Controller {
           tag_id,
           aid,
         }));
+        await ctx.model.TagConfig.destroy({ where: { aid } });
         await ctx.model.TagConfig.bulkCreate(tagsConfig);
       }
       ctx.body = ctx.success('新建成功');
@@ -139,7 +140,7 @@ class ArticleApiController extends Controller {
         modified,
         slug,
         categoryId,
-        status: status ? 'public' : 'private',
+        status,
         authorId,
         text,
       });

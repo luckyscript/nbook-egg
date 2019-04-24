@@ -22,7 +22,8 @@ class TweetService extends Service {
       },
     };
     const data = await rp(options);
-    const { total, tweetData } = TweetEntity.Create(data);
+    let { total, tweetData } = TweetEntity.Create(data);
+    tweetData = tweetData.filter(v => v.mblog && v.mblog.create_at && v.mblog.text);
     return { data: tweetData, total };
   }
 }

@@ -1,5 +1,5 @@
 <% include components/header.ejs %>
-<div class="wrap" data-aid=<%=article.aid%>>
+<div class="wrap" data-aid=<%=article.aid%> style="opacity: 0; transition: all .2s;">
   <div class="container article-container">
     <article class="article">
       <div class="post-info article-info">
@@ -35,6 +35,7 @@
 </body>
 <script src="//apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://static.geetest.com/static/tools/gt.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/mathjax/2.7.1/MathJax.js"></script>
 <script>
   const cookieObject = document.cookie.split(';').reduce((result, current) => {
     const [,key, value] = /(.+)=(.+)/.exec(current.trim());
@@ -193,6 +194,24 @@ $.ajax({
       width: "300px"
     }, handler);
   }
+});
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+  },
+  asciimath2jax: {
+    delimiters: [['$`', '`$']]
+  },
+  showMathMenu: false,
+  showProcessingMessages: false,
+  messageStyle: "none",
+  "HTML-CSS": { availableFonts: ["TeX"] }
+});
+MathJax.Hub.Queue(function () {
+  document.querySelector('.wrap').style.opacity = 1;
 });
 </script>
 </html>

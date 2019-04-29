@@ -56,6 +56,7 @@ class ArticleService extends Service {
         return;
       }
     } else {
+      await article.incrementReadNum();
       ctx.cookies.set('nbook-readlog', `${article.aid}`);
     }
   }

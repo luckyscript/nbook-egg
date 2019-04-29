@@ -28,7 +28,12 @@ export default class HomeController extends Controller {
 
     const tags = await ctx.fetchData('tags', () => ctx.model.Tag.findAll());
 
-    const friendLinks = await ctx.fetchData('friendLinks', () => ctx.model.Config.getFriendLinks());
+    // const friendLinks = await ctx.fetchData('friendLinks', () => ctx.model.Config.getFriendLinks());
+
+    const friendLinks = [
+      { name: 'Huspy\'s blog', url: 'https://www.mierhuo.com' },
+      { name: 'Double Young', url: 'http://doubleyoung.me' },
+    ];
 
     const recentComments = await ctx.fetchData('recentComments',
       () => ctx.model.Comment.findRecentComments(), 10 * 60 * 1000);

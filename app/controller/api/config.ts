@@ -9,6 +9,11 @@ class ConfigController extends Controller {
   public async setFriendLinks() {}
   public async getFootDesc() {}
   public async setFootDesc() {}
+  public async getConfigList() {}
+  public async addConfig() {}
+  public async deleteConfig() {}
+  public async modifyConfig() {}
+  public async getConfig() {}
 }
 
 export default ConfigController;

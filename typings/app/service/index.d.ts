@@ -8,6 +8,7 @@ import ExportAuth from '../../../app/service/auth';
 import ExportCategory from '../../../app/service/category';
 import ExportComment from '../../../app/service/comment';
 import ExportCommon from '../../../app/service/common';
+import ExportConfig from '../../../app/service/config';
 import ExportFile from '../../../app/service/file';
 import ExportGeetest from '../../../app/service/geetest';
 import ExportMail from '../../../app/service/mail';
@@ -24,6 +25,7 @@ declare module 'egg' {
     category: ExportCategory;
     comment: ExportComment;
     common: ExportCommon;
+    config: ExportConfig;
     file: ExportFile;
     geetest: ExportGeetest;
     mail: ExportMail;

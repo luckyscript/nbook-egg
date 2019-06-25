@@ -22,6 +22,10 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-session',
   },
+  geetest: {
+    enable: true,
+    package: 'egg-geetest',
+  },
 };
 
 export default plugin;

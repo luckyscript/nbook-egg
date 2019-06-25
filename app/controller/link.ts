@@ -32,18 +32,18 @@ class LinkController extends Controller {
   }
 
   async validate() {
-    const { ctx } = this;
-    const data = await ctx.service.geetest.register();
+    const { ctx, app } = this;
+    const data = await app.geetest.registerPromise();
     await ctx.setSession(this.gtKey, false);
     ctx.body = data;
   }
 
   async submit() {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const { geetest_challenge, geetest_validate, geetest_seccode } = ctx.request.body;
     const gtSession = await ctx.getSession(this.gtKey);
     try {
-      const gtResult = await ctx.service.geetest.twoStepCheck(gtSession, geetest_challenge, geetest_validate, geetest_seccode);
+      const gtResult = await app.geetest.twoStepCheck(gtSession, geetest_challenge, geetest_validate, geetest_seccode);
       if (!gtResult) {
         ctx.body = ctx.error('验证失败，请重试');
         return;

@@ -19,6 +19,7 @@ config/**/*.js
 app/**/*.map
 test/**/*.map
 config/**/*.map
+config/config.prod.ts
 
 !app/public/**/*.js
 app/public/upload/*

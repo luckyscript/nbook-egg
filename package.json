@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "npm run tsc && node ./scripts/production.js",
-    "start": "npm run tsc && egg-scripts start --daemon --title=egg-server-nbook-egg",
+    "start": "npm run build && egg-scripts start --daemon --title=egg-server-nbook-egg",
     "stop": "egg-scripts stop --title=egg-server-nbook-egg",
     "docker": "./wait-for-it.sh mysql:3306 -- egg-scripts start --title=egg-server-nbook-egg",
     "dev": "egg-bin dev",
@@ -19,8 +19,8 @@
     "test-local": "egg-bin test",
     "test": "npm run lint -- --fix && npm run test-local",
     "cov": "egg-bin cov",
-    "tsc": "ets && tsc -p tsconfig.json && npm run build",
-    "ci": "npm run lint && npm run cov && npm run tsc",
+    "tsc": "ets && tsc -p tsconfig.json",
+    "ci": "npm run lint && npm run cov && npm run build",
     "autod": "autod",
     "lint": "tslint --project . -c tslint.json",
     "clean": "ets clean"

@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "build": "node ./scripts/production.js",
+    "build": "npm run tsc && node ./scripts/production.js",
     "start": "npm run tsc && egg-scripts start --daemon --title=egg-server-nbook-egg",
     "stop": "egg-scripts stop --title=egg-server-nbook-egg",
     "docker": "./wait-for-it.sh mysql:3306 -- egg-scripts start --title=egg-server-nbook-egg",

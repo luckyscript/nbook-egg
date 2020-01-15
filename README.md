@@ -1,18 +1,7 @@
 # Nbook
-
-* 前端展示部分采用ejs
-* 后台管理系统采用react+antd (https://github.com/luckyscript/nbook-admin)
-* 数据存储采用mysql + redis
-* 部署使用nginx + docker
-
-## TODO-FE
-- [x] aside content
-- [ ] db migrant
-
-## TODO-BE
-- [ ] API controllers
-- [ ] write test code
-- [ ] sequlieze因为目前是typescript，一些api不支持导致了controller或者service里面的多余代码
+* react+antd (https://github.com/luckyscript/nbook-admin)
+* db: mysql + redis
+* deploy by nginx & docker
 
 ### Development
 
@@ -35,9 +24,9 @@ $ docker-compose up
 nginx.conf
 ```
 location ~ /admin/ {                                                                              
- root  /Users/lukai/MySpace/nbook-admin;
+ root  /Users/luckyscript/MySpace/nbook-admin;
  index index.html;
- include /Users/lukai/Myspace/nbook-admin/admin/.htaccess;
+ include /Users/luckyscript/Myspace/nbook-admin/admin/.htaccess;
 }
 ```
 

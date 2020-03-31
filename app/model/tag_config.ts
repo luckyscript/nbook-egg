@@ -14,6 +14,14 @@ const TagConfigModel = app => {
 
   TagConfig.removeAttribute('id');
 
+  TagConfig.findByTagId = async function(tagId) {
+    return await this.findAll({
+      where: {
+        tag_id: tagId,
+      },
+    });
+  };
+
   return TagConfig;
 };
 

@@ -130,7 +130,7 @@ const ArticleModel = app => {
       order: [
         [ 'created', 'DESC' ],
       ],
-      include: [ Comment, Category ],
+      include: [ Comment, Category, Tag ],
      });
     return data;
   };
@@ -146,6 +146,28 @@ const ArticleModel = app => {
       include: [ Comment, Category, Tag ],
     });
     return data;
+  };
+
+  Article.findAllByTag = async function (tagId) {
+    const tags = await TagConfig.findByTagId(tagId);
+    const aids = tags.map(tag => tag.aid);
+    const Op = app.Sequelize.Op;
+    if (aids && aids.length) {
+      const data = await this.findAll({
+        where: {
+          aid: {
+            [Op.in]: aids,
+          },
+        },
+        order: [
+          [ 'created', 'DESC' ],
+        ],
+        include: [ Comment, Tag, Category ],
+      });
+      return data;
+    } else {
+      return [];
+    }
   };
 
   Article.prototype.incrementReadNum = async function () {

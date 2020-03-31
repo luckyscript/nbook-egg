@@ -78,13 +78,23 @@ const context: any = {
    * @param {any} value cache value
    */
   async cache(key: string, value?: any, maxAge?: number) {
+    if (!this.app || !this.app.redis) {
+      return null;
+    }
     if (!value) {
       const valueString = await this.app.redis.get(key);
-      return JSON.parse(valueString);
+      try {
+        const data = JSON.parse(valueString);
+        return data;
+      } catch (e) {
+        return null;
+      }
     } else {
       const cacheTime = maxAge || 24 * 60 * 60 * 1000;
       const valueString = JSON.stringify(value);
-      await this.app.redis.set(key, valueString, 'PX', cacheTime);
+      try {
+        await this.app.redis.set(key, valueString, 'PX', cacheTime);
+      } catch (e) {}
     }
   },
 

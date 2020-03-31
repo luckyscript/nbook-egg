@@ -8,6 +8,14 @@ const TagModel = app => {
     timestamps: false,
   });
 
+  Tag.findByName = async function (name) {
+    const data = await this.findOne({
+      where: {
+        name,
+      },
+    });
+    return data;
+  };
   return Tag;
 };
 

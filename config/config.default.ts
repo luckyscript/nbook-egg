@@ -45,7 +45,7 @@ export default (appInfo: EggAppInfo) => {
     port: 3306,
     user: 'root',
     password: 'lukai123',
-    database: 'nbook',
+    database: 'nbook_egg',
     timestamps: false,
   };
 

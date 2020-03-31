@@ -5,7 +5,7 @@ class ArticleController extends Controller {
   async index() {
     const { ctx } = this;
     const { slug, id: aid } = ctx.params;
-    const where: any = { slug, aid, status: 'public' };
+    const where: any = { slug, aid };
     const article = await ctx.model.Article.findByWhere(where);
     if (!article) {
       ctx.status = 404;

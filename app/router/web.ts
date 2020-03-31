@@ -16,6 +16,8 @@ export default (app: Application) => {
   router.get('/search', controller.article.search);
   router.post('/article/comment', controller.article.addComment);
 
+  router.get('/category/:name', controller.category.index);
+
   // archive page
   router.get('/archive', controller.archive.index);
 

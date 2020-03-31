@@ -105,6 +105,10 @@ export default (appInfo: EggAppInfo) => {
         name: 'Link',
         url: '/link',
       },
+      {
+        name: 'Leetcode',
+        url: '/category/leetcode',
+      },
     ],
   };
 

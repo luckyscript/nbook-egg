@@ -7,6 +7,7 @@ import ExportAdmin from '../../../app/controller/admin';
 import ExportArchive from '../../../app/controller/archive';
 import ExportArticle from '../../../app/controller/article';
 import ExportAuth from '../../../app/controller/auth';
+import ExportCategory from '../../../app/controller/category';
 import ExportHome from '../../../app/controller/home';
 import ExportLink from '../../../app/controller/link';
 import ExportTag from '../../../app/controller/tag';
@@ -30,6 +31,7 @@ declare module 'egg' {
     archive: ExportArchive;
     article: ExportArticle;
     auth: ExportAuth;
+    category: ExportCategory;
     home: ExportHome;
     link: ExportLink;
     tag: ExportTag;

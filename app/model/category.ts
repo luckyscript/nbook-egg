@@ -12,6 +12,15 @@ const categoryModel = app => {
     timestamps: false,
   });
 
+  Category.findByName = async function (name) {
+    const data = await this.findOne({
+      where: {
+        name,
+      },
+    });
+    return data;
+  };
+
   return Category;
 };
 

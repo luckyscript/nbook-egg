@@ -1,0 +1,36 @@
+  <%- include('components/header.ejs') %>
+  <div class="wrap">
+    <div class="container">
+      <main class="main">
+        <ul class="post-list">
+            <%articleList.forEach(function(item) {%>
+            <li class="post-list-item">
+                <article class="post-block">
+                    <h2 class="post-title">
+                        <a href="/article/<%=item.link%>" class="post-title-link"><%=item.title%></a>
+                    </h2>
+                    <div class="post-info">
+                        <span>Post on <%=item.created%></span>
+                        <span><%=item.comments.length%> Comments</span>
+                        <span>Words count：<%=item.contentLength.toLocaleString()%></span>
+                        <span>Reading time：<%=Math.ceil(item.contentLength/230)%> min</span>
+                    </div>
+                    <div class="post-content">
+                        <%-item.brief%>
+                    </div>
+                    <div class="read-more">
+                        <a href="/article/<%=item.link%>">read more</a>
+                    </div>
+                </article>
+            </li>
+            <%})%>
+        </ul>
+
+    </main>
+
+    </div>
+  </div>
+<%- include('footer.html') %>
+
+</body>
+</html>

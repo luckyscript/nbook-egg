@@ -60,6 +60,18 @@ class ArticleService extends Service {
       ctx.cookies.set('nbook-readlog', `${article.aid}`);
     }
   }
+  public async findAllByCategory(name) {
+    const { ctx } = this;
+    const category = await ctx.model.Category.findByName(name);
+    if (category && category.id) {
+      const data = await ctx.model.Article.findAllByWhere({
+        categoryId: category.id,
+      });
+      return data;
+    } else {
+      return [];
+    }
+  }
 }
 
 export default ArticleService;

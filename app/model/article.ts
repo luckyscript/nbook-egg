@@ -119,6 +119,22 @@ const ArticleModel = app => {
     return data;
   };
 
+  Article.findAllByWhere = async function(where) {
+    Object.keys(where).forEach(w => {
+      if (where[w] === undefined) {
+        delete where[w];
+      }
+    });
+    const data = await this.findAll({
+      where,
+      order: [
+        [ 'created', 'DESC' ],
+      ],
+      include: [ Comment, Category ],
+     });
+    return data;
+  };
+
   Article.findByWhere = async function (where) {
     Object.keys(where).forEach(w => {
       if (where[w] === undefined) {

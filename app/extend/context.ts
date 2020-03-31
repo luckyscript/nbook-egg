@@ -94,7 +94,9 @@ const context: any = {
       const valueString = JSON.stringify(value);
       try {
         await this.app.redis.set(key, valueString, 'PX', cacheTime);
-      } catch (e) {}
+      } catch (e) {
+        console.error(e);
+      }
     }
   },
 

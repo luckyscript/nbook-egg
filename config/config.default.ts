@@ -23,7 +23,6 @@ export default (appInfo: EggAppInfo) => {
     },
   };
 
- 
   config.view = {
     mapping: {
       '.ejs': 'ejs',

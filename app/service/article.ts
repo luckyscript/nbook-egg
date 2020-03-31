@@ -75,7 +75,6 @@ class ArticleService extends Service {
   public async findAllByTag(name) {
     const { ctx } = this;
     const tag = await this.ctx.model.Tag.findByName(name);
-    console.log(tag)
     if (tag && tag.id) {
       const data = await ctx.model.Article.findAllByTag(tag.id);
       return data;

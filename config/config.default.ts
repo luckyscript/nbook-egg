@@ -23,6 +23,8 @@ export default (appInfo: EggAppInfo) => {
     },
   };
 
+  config.serlina = {};
+
   config.view = {
     mapping: {
       '.ejs': 'ejs',
@@ -77,27 +79,27 @@ export default (appInfo: EggAppInfo) => {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
     nav: [
       {
-        name: 'Home',
+        name: '首页',
         url: '/',
       },
       {
-        name: 'Archive',
+        name: '博客',
         url: '/archive',
       },
       {
-        name: 'Tweet',
+        name: '微博',
         url: '/tweet',
       },
       {
-        name: 'About',
+        name: '关于',
         url: '/about',
       },
       {
-        name: 'Link',
+        name: '链接',
         url: '/link',
       },
       {
-        name: 'Leetcode',
+        name: '力扣',
         url: '/category/leetcode',
       },
     ],

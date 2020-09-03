@@ -9,6 +9,7 @@ import ExportCategory from '../../../app/service/category';
 import ExportComment from '../../../app/service/comment';
 import ExportCommon from '../../../app/service/common';
 import ExportConfig from '../../../app/service/config';
+import ExportDiamond from '../../../app/service/diamond';
 import ExportFile from '../../../app/service/file';
 import ExportGeetest from '../../../app/service/geetest';
 import ExportMail from '../../../app/service/mail';
@@ -26,6 +27,7 @@ declare module 'egg' {
     comment: ExportComment;
     common: ExportCommon;
     config: ExportConfig;
+    diamond: ExportDiamond;
     file: ExportFile;
     geetest: ExportGeetest;
     mail: ExportMail;

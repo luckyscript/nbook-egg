@@ -1,15 +1,15 @@
 const local = () => {
   return async (ctx, next) => {
     const nav = ctx.app.config.nav || [];
-    ctx.locals.nav = nav;
+    ctx.app.serlina.inject({ nav });
     const theme = ctx.cookies.get('theme', { signed: false });
     if (theme) {
-      ctx.locals.theme = theme;
+      ctx.app.serlina.inject({ theme });
     } else {
-      ctx.locals.theme = 'light';
+      ctx.app.serlina.inject({ nav: 'light' });
     }
     const { url } = ctx.request;
-    ctx.locals.currentUrl = url;
+    ctx.app.serlina.inject({ currentUrl: url });
     return await next();
   };
 };

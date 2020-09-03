@@ -14,6 +14,7 @@ class LoginController extends Controller {
   async login() {
     const { ctx } = this;
     const params = ctx.request.body;
+    console.log(params);
     const resultDTO = await this.service.user.login(params);
     ctx.body = resultDTO;
   }

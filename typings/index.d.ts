@@ -60,4 +60,7 @@ declare module 'egg' {
   interface Request {
     files: EggFile[];
   }
+  interface Application {
+    serlina: any;
+  }
 }

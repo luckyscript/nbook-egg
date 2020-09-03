@@ -1,0 +1,140 @@
+/* markdown */
+.post-content {
+  font: 100%/1.75 'Menlo','Lucida Console','Merriweather','Georgia',serif;
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    margin: 10px 0;
+    font-weight: bold;
+    & a {
+      text-decoration: none;
+    }
+    & .header-link {
+      &:after {
+        content: '#';
+        color: var(--markColor);
+      }
+    }
+  }
+  & h1,
+  & h2 {
+    border-bottom: 1px solid var(--borderColor);
+    padding-bottom: 10px;
+  }
+  & p {
+    line-height: 1.75;
+    margin: 1rem 0;
+  }
+  & p code, & li code {
+    color: var(--markColor);
+    font-family: Consolas,Menlo,Monaco,source-code-pro,Courier New,monospace;
+    padding: 2px 5px;
+    border-radius: 5px;
+    background: var(--markBg);
+  }
+  & ol,& ul {
+    margin-left: 30px;
+    & li {
+      margin-bottom: calc(1.75rem / 2);
+    }
+  }
+  & hr {
+    height: 3px;
+    margin: 50px 0;
+    border: 0;
+    border-top: 3px dashed var(--activeColor);
+  }
+  & blockquote {
+    margin: 2em 0;
+    padding-left: 20px;
+    border-left: 4px solid var(--activeColor);
+  }
+  & a {
+    color: var(--activeColor);
+    text-decoration: underline;
+    word-break: break-all;
+  }
+  & img {
+    max-width: 100%;
+    display: block;
+    margin: 20px auto;
+  }
+  & pre {
+    &:hover {
+      & code::after {
+        visibility: visible;
+      }
+    }
+    background: var(--libgColor);
+    border-radius: 5px;
+    padding: 16px;
+    margin: 5px 0;
+    position: relative;
+    overflow-x: scroll;
+    & code {
+      font-family: Consolas,Menlo,Monaco,source-code-pro,Courier New,monospace;
+      &::after {
+        content: "Code";
+        position: absolute;
+        right: 10px;
+        top: 1px;
+        visibility: hidden;
+      }
+      &.language-js,
+      &.language-javascript {
+        &::after {
+          content: "javaScript";
+        }
+      }
+      &.language-nodejs {
+        &::after {
+          content: "Node.js";
+        }
+      }
+      &.language-css {
+        &::after {
+          content: "CSS";
+        }
+      }
+      &.language-html {
+        &::after {
+          content: "HTML";
+        }
+      }
+      &.language-c {
+        &::after {
+          content: "C";
+        }
+      }
+      &.language-cpp {
+        &::after {
+          content: "C++";
+        }
+      }
+      &.language-shell,
+      &.language-bash {
+        &::after {
+          content: "Shell";
+        }
+      }
+      &.language-python {
+        &::after {
+          content: "Python";
+        }
+      }
+      &.language-php {
+        &::after {
+          content: "PHP";
+        }
+      }
+      &.language-lisp {
+        &::after {
+          content: "Lisp";
+        }
+      }
+    }
+  }
+}

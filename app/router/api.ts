@@ -16,6 +16,10 @@ export default (app: Application) => {
   router.post('/api/category/getCategoryList', controller.api.category.getCategoryList);
   router.post('/api/category/getCategoryTree', controller.api.category.getCategoryTree);
 
+  // category controller
+  router.post('/api/diamond/get', controller.api.diamond.get);
+  router.post('/api/diamond/set', controller.api.diamond.set);
+
   // tag controller
   router.post('/api/tag/getTagList', controller.api.tag.getTagList);
 

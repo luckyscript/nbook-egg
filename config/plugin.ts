@@ -18,13 +18,13 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-router-plus',
   },
-  session: {
-    enable: true,
-    package: 'egg-session',
-  },
   geetest: {
     enable: true,
     package: 'egg-geetest',
+  },
+  serlina: {
+    enable: true,
+    package: 'egg-serlina',
   },
 };
 

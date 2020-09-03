@@ -1,0 +1,23 @@
+.nav {
+  position: relative;
+}
+.nav-list-item {
+  display: inline-block;
+  width: 56px;
+  height: 35px;
+  margin-left: 2px;
+}
+
+.nav-list-item:hover {
+  background: var(--libgColor);
+}
+
+.nav-list-item a {
+  font-size: 16px;
+  color: var(--navFontColor);
+  line-height: 35px;
+}
+
+.nav-list-item a.active {
+  border-bottom: 2px solid var(--activeColor);  
+}

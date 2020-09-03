@@ -95,7 +95,7 @@ const context: any = {
       try {
         await this.app.redis.set(key, valueString, 'PX', cacheTime);
       } catch (e) {
-        console.error(e);
+        console.log(e);
       }
     }
   },

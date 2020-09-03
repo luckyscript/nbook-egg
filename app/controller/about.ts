@@ -21,11 +21,12 @@ class AboutController extends Controller {
     const commentNode = ctx.service.article
       .generateArticleCommentsNode(comments);
 
-    await ctx.render('about.html', {
+    const data = await ctx.render('about.html', {
       title: 'About',
       about,
       commentNode,
     });
+    console.log(data);
   }
 
   public async addComment() {
